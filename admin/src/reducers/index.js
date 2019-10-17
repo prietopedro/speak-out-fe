@@ -1,11 +1,14 @@
-export const initialState = {
-  
-}
+import { combineReducers } from 'redux';
+import {studentReducer} from './studentReducer.js';
 
-export const reducer = (state = initialState, action) => {
-    switch (action.type) {
-        
-        default: 
-        return state
-}
-}
+
+
+const reducer = combineReducers({
+    studentReducer,
+
+})
+
+export default reducer;
+
+
+
