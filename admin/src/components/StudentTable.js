@@ -1,26 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { getStudent } from '../actions';
 import { Table, Divider, Pagination, Tag, Input, Button, Icon, Modal } from 'antd';
 import Highlighter from 'react-highlight-words';
 import 'antd/dist/antd.css';
-import { students } from '../dummyData.js';
+//import { students } from '../dummyData.js';
 
 import StudentCard from './StudentCard';
 
-const StudentTable = props => {
 
+const StudentTable = props => {
     const [studentId, setStudentId] = React.useState(null);
     const [modalState, setModalState] = useState(false);
 
     const closeModal = () => {
       setModalState(false)
     }
-    const openModal = (event) => {
-      event.preventDefault();
-      setStudentId(event.target.dataset.studentId)
-      console.log('event.target.dataset.studentId', event.target.dataset.studentId)
+    const openModal = (id) => {
+      setStudentId(id)
       setModalState(true)
     }
 
@@ -28,11 +26,77 @@ const StudentTable = props => {
         props.getStudent();
     },[])
 
+// Search function code line 31 - 93
+const [searchID, setSearchID] = useState({
+  searchText: '',
+})
+const refContainer = useRef();
+
+const getColumnSearchProps = dataIndex => ({
+  filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+    <div style={{ padding: 8 }}>
+      <Input
+        ref={refContainer}
+        onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+        onPressEnter={() => handleSearch(selectedKeys, confirm)}
+        placeholder={`Search ${dataIndex}`}
+        value={selectedKeys[0]}
+        style={{ width: 188, marginBottom: 8, display: 'block' }}
+      />
+      <Button
+        type="primary"
+        onClick={() => handleSearch(selectedKeys, confirm)}
+        icon="search"
+        size="small"
+        style={{ width: 90, marginRight: 8 }}
+      >
+        Search
+      </Button>
+      <Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+        Reset
+      </Button>
+    </div>
+  ),
+  filterIcon: filtered => (
+    <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+  ),
+  onFilter: (value, record) =>
+    record[dataIndex]
+      .toString()
+      .toLowerCase()
+      .includes(value.toLowerCase()),
+  onFilterDropdownVisibleChange: visible => {
+    if (visible) {
+      setTimeout(() => refContainer.current.select());
+    }
+  },
+  render: text => (
+    <Highlighter
+      highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+      searchWords={[searchID.searchText]}
+      autoEscape
+      textToHighlight={text.toString()}
+    />
+  ),
+})
+
+const handleSearch = (selectedKeys, confirm) => {
+  confirm();
+  setSearchID({ searchText: selectedKeys[0] })
+
+};
+
+const handleReset = clearFilters => {
+  clearFilters();
+  setSearchID({ searchText: '' });
+};
+
     const columns = [
-        {
+      {
             title: 'Student_id',
             dataIndex: 'student_id',
             key: 1,
+            ...getColumnSearchProps('student_id')
         },
         {
             title: 'CPR',
@@ -61,20 +125,24 @@ const StudentTable = props => {
         },
     ];
 
-    console.log('props.student',props)
+    console.log('props.student', props.student)
     const data = props.student
     .sort((a, b) => { return b.student_id - a.student_id })
     .map(student => {
-      student.student_id = (
-        <a 
-          data-student-id={student.student_id} 
-          onClick={openModal}
-        >
-          {student.student_id}
-        </a>
-      )
+      // console.log('studentMap', student)
+      // student.actions = (
+      //   <a 
+      //     data-student-id={student.student_id} 
+      //     onClick={openModal}
+      //   >
+      //     View Record
+      //   </a>
+      // )
       return student
     })
+
+    
+  
     return (
         <>
           <Modal          
@@ -91,18 +159,26 @@ const StudentTable = props => {
               dataSource={data} 
               columns={columns} 
               pagination={{ pageSize: 15 }} 
-              rowKey='id' 
+              rowKey='id'
+              onRow={(record, rowIndex) => {
+                return {
+                  onClick: event => {
+                    openModal(record.student_id)
+                  }
+                };
+              }}
             />
             
         </>
     );
 };
 
+
 const mapStateToProps = state => {
-    return {
-        isLoading: state.isLoading,
-        student: state.studentReducer.student
-    };
+  return {
+    isLoading: state.isLoading,
+    student: state.studentReducer.student
+  };
 };
 
 export default withRouter(
