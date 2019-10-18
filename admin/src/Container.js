@@ -11,7 +11,7 @@ const Container = () => {
         <>
             <Route exact path='/' component={HomePage}/>
             <Route exact path='/studenttable' component={StudentTable}/>
-            <Route exact path='/studentcard' component={StudentCard}/>
+            <Route path='/studentcard/:student_id' component={StudentCard}/>
         </>
     )
 }

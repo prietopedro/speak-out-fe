@@ -1,85 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getStudent } from '../actions';
+import { getStudentById } from '../actions';
 import { Card } from 'antd';
 import 'antd/dist/antd.css';
+import { Wrapper } from './styledComponents'
 
+const StudentCard = (props) => {
+    // props.match.params.student_id
 
-const StudentCard = props => {
-    const tabList = [
-        {
-            key: 'tab1',
-            tab: 'tab1',
-        },
-        {
-            key: 'tab2',
-            tab: 'tab2',
-        },
-    ];
-
-    const contentList = {
-        tab1: <p>content1</p>,
-        tab2: <p>content2</p>,
-    };
-
-    const tabListNoTitle = [
-        {
-            key: 'article',
-            tab: 'article',
-        },
-        {
-            key: 'app',
-            tab: 'app',
-        },
-        {
-            key: 'project',
-            tab: 'project',
-        },
-    ];
-    const contentListNoTitle = {
-        article: <p>article content</p>,
-        app: <p>app content</p>,
-        project: <p>project content</p>,
-    };
-
-    const [keyState, setKeyState] = useState({
-        key: 'tab1',
-        noTitleKey: 'app',
-    })
-
-    const onTabChange = (key, type) => {
-        console.log(key, type);
-        setKeyState({ [type]: key });
-    };
+   useEffect(() => {
+       props.getStudentById(props.student_id)
+   },[props.student_id])
     return (
         <>
             <div>
-                <Card
-                    style={{ width: '100%' }}
-                    title="Card title"
-                    extra={<a href="#">More</a>}
-                    tabList={tabList}
-                    activeTabKey={keyState.key}
-                    onTabChange={key => {
-                        onTabChange(key, 'key');
-                    }}
-                >
-                    {contentList[keyState.key]}
-                </Card>
-                <br />
-                <br />
-                <Card
-                    style={{ width: '100%' }}
-                    tabList={tabListNoTitle}
-                    activeTabKey={keyState.noTitleKey}
-                    tabBarExtraContent={<a href="#">More</a>}
-                    onTabChange={key => {
-                        onTabChange(key, 'noTitleKey');
-                    }}
-                >
-                    {contentListNoTitle[keyState.noTitleKey]}
-                </Card>
+                <Wrapper>
+                    <h4>Student ID: {props.studentById.student_id}</h4>
+                    <h4>First Name: {props.studentById.first_name}</h4>
+                    <h4>Additional Name: {props.studentById.additional_names}</h4>
+                    <h4>registration_date: {props.studentById.registration_date}</h4>
+                    <h4>Gerder: {props.studentById.gerder}</h4>
+                    <h4>Birthdate: {props.studentById.birthdate}</h4>
+                    <h4>School Grade: {props.studentById.school_grade}</h4>
+                    <h4>School Name: {props.studentById.school_name}</h4>
+                    <h4>Grade Update: {props.studentById.grade_updated}</h4>
+                    <h4>Home Telephone: {props.studentById.home_telephone}</h4>
+                    <h4>Mobile Telephone: {props.studentById.mobile_telephone}</h4>
+                    <h4>Address: 
+                        Block{props.studentById.block}
+                        Road{props.studentById.road}
+                        Building{props.studentById.building}
+                        Flat{props.studentById.flat}
+                        </h4>
+                    <h4>registration_date: {props.studentById.registration_date}</h4>
+                </Wrapper>
+                
             </div>
         </>
     );
@@ -88,14 +44,14 @@ const StudentCard = props => {
 const mapStateToProps = state => {
     return {
         isLoading: state.isLoading,
-        student: state.student
+        studentById: state.studentCardReducer.studentById
     };
 };
 
 export default withRouter(
     connect(
         mapStateToProps,
-        { getStudent }
+        { getStudentById }
     )(StudentCard)
 )
 
