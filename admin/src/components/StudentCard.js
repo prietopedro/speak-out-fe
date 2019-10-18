@@ -7,7 +7,7 @@ import 'antd/dist/antd.css';
 import { Wrapper } from './styledComponents'
 
 const StudentCard = (props) => {
-    // props.match.params.student_id
+    
 
    useEffect(() => {
        props.getStudentById(props.student_id)

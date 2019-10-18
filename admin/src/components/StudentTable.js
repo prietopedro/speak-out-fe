@@ -62,7 +62,9 @@ const StudentTable = props => {
     ];
 
     console.log('props.student',props)
-    const data = props.student.map(student => {
+    const data = props.student
+    .sort((a, b) => { return b.student_id - a.student_id })
+    .map(student => {
       student.student_id = (
         <a 
           data-student-id={student.student_id} 
