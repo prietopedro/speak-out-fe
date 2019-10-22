@@ -7,4 +7,13 @@ export {
     FETCH_STUDENTBYID_DATA_START,
     FETCH_STUDENTBYID_DATA_SUCCESS,
     FETCH_STUDENTBYID_DATA_FAILURE,
+    
   } from './studentAction.js';
+
+export {
+  login,
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE
+} from './loginAction.js'
+  

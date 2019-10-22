@@ -9,7 +9,7 @@ const HomePage = props => {
     return (
         <>
             <header className="App-header">
-                <Link to='/studenttable'>Student</Link>
+                <Link to='/login'>Admin Login</Link>
                 <h1>Speak Out is maintaining the website</h1>
                 <p>Coming Soon...</p>
             </header>
