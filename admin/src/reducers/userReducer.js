@@ -1,32 +1,31 @@
 import {
-    FETCH_STUDENTBYID_DATA_START,
-    FETCH_STUDENTBYID_DATA_SUCCESS,
-    FETCH_STUDENTBYID_DATA_FAILURE
+    FETCH_USER_DATA,
+    FETCH_USER_SUCCESS,
+    FETCH_USER_FAILURE
 } from '../actions';
 
 const initialState = {
-    studentById: {},
     isLoading: false,
-    fetching: false,
+    isFetchingData: false,
     error: null,
 };
 
-export const studentCardReducer = (state = initialState, action) => {
+export const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case FETCH_STUDENTBYID_DATA_START:
+        case FETCH_USER_DATA:
             return {
                 ...state,
                 isLoading: true,
                 error: null,
             }
-        case  FETCH_STUDENTBYID_DATA_SUCCESS:
+        case  FETCH_USER_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
-                fetching: true,
-                studentById: action.payload
+                isFetchingData: true
+                
             }
-        case FETCH_STUDENTBYID_DATA_FAILURE:
+        case FETCH_USER_FAILURE:
             return {
                 ...state,
                 isLoading: false,

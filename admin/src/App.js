@@ -1,13 +1,14 @@
 import React from 'react';
-import Container from './Container.js';
-
+import Container from './Container'
 import './App.css';
 
 
 function App() {
+  
+
   return (
-    <div>
-        <Container />
+    <div className="App">
+      <Container />
     </div>
   );
 }

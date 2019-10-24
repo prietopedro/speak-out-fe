@@ -1,35 +1,31 @@
 import {
-    FETCH_STUDENT_DATA_START,
-    FETCH_STUDENT_DATA_SUCCESS,
-    FETCH_STUDENT_DATA_FAILURE,
-    FETCH_STUDENTBYID_DATA_START,
-    FETCH_STUDENTBYID_DATA_SUCCESS,
-    FETCH_STUDENTBYID_DATA_FAILURE
+    LOGOUT_START,
+    LOGOUT_SUCCESS,
+    LOGOUT_FAILURE
 } from '../actions';
 
 const initialState = {
-    student: [],
     isLoading: false,
-    fetching: false,
+    isLoggedOut: false,
     error: null,
 };
 
-export const studentReducer = (state = initialState, action) => {
+export const logoutReducer = (state = initialState, action) => {
     switch (action.type) {
-        case FETCH_STUDENT_DATA_START:
+        case LOGOUT_START:
             return {
                 ...state,
                 isLoading: true,
                 error: null,
             }
-        case  FETCH_STUDENT_DATA_SUCCESS:
+        case  LOGOUT_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
-                fetching: true,
-                student: action.payload
+                isLoggedOut: true,
+                
             }
-        case FETCH_STUDENT_DATA_FAILURE:
+        case LOGOUT_FAILURE:
             return {
                 ...state,
                 isLoading: false,

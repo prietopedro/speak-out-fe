@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import {studentReducer} from './studentReducer.js';
-import { studentCardReducer } from './studentCardReducer'
-import { loginReducer } from './loginRucer'
+import { loginReducer } from './loginReducer';
+import { logoutReducer } from './logoutReducer';
+import { userReducer } from './userReducer';
 
 const reducer = combineReducers({
-    studentReducer,
-    studentCardReducer,
     loginReducer,
+    logoutReducer,
+    userReducer
 })
 
 export default reducer;

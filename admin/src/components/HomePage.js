@@ -1,32 +1,65 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
-import { getStudent } from '../actions';
+import React, {useState, useEffect} from 'react';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import axios from 'axios';
+import { connect } from 'react-redux'
+import { logout, getAPI } from '../actions'
+axios.defaults.withCredentials = true
+
+function Home(props) {
 
 
-const HomePage = props => {
+  useEffect(() => {
+    console.log('USe effect HOME loggedIn', props.loggedIn)
+  
+    axios
+      .get('https://speak-out-be-staging.herokuapp.com/api')
+      .then(res => {
+        console.log('RESPONSE DATA OK', res)
+      })
+      .catch(err => {
+        console.log('ERROR API', err)
+      })
+  
+  }, [])
+  
+  const logout = () => {
+    axios
+    .get('https://speak-out-be-staging.herokuapp.com/logout')
+    .then(res => {
+      console.log('LOGGED OUT', res)
+      props.history.push('/login')
+      props.updateUser({loggedIn: false, username: undefined})
+    })
+    .catch(err => {
+      console.log('ERROR API', err)
+    })
+    
+  }
 
-    return (
-        <>
-            <header className="App-header">
-                <Link to='/login'>Admin Login</Link>
-                <h1>Speak Out is maintaining the website</h1>
-                <p>Coming Soon...</p>
-            </header>
-        </>
-    );
-};
+  return (
+      <div>
+        <div>
+          <h1>Home Page</h1>
+          <h2>Speak Out is maintaining the website</h2>
+          <p>Coming Soon...</p>
+          <button onClick={logout}>Logout</button>
+        </div>
+      </div>
+  ) 
+
+}
 
 const mapStateToProps = state => {
     return {
-        isLoading: state.isLoading,
-        student: state.student
+      isLoading: state.isLoading,
+      isLoggedOut: state.logoutReducer.isLoggedOut,
     };
-};
+  };
 
 export default withRouter(
     connect(
-        mapStateToProps,
-        { getStudent }
-    )(HomePage)
-)
+      mapStateToProps,
+      { logout, getAPI}
+      )(Home)
+      )
+
