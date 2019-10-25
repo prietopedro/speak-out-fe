@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect} from 'react-router-dom';
+import { withRouter } from "react-router";
+import { connect } from 'react-redux';
+import { logIn, loggedIn } from '../actions/authenticationActions.js';
 
 
 function Login(props)  {
@@ -7,6 +10,9 @@ function Login(props)  {
       username: '',
       password: ''
   });
+
+  const [formValid, setFormValid] = useState(true);
+  
 
   useEffect(() => {
     console.log('LOGIN props: ', props)
@@ -20,13 +26,19 @@ function Login(props)  {
   };
 
   const handleSubmit = (e) => {
-      e.preventDefault()
+    e.preventDefault();
+    if(user.username.length && user.password.length) {
       props.logIn(user, props.history); 
-
+      
       setUser({           
           username: '',
           password: ''
-      })
+      });
+    } else {
+      setFormValid(false)
+    }
+    
+      
   };
 
   if (props.state.authenticationReducer.user.authenticated) {
@@ -60,10 +72,22 @@ function Login(props)  {
                     Sign in
                 </button>
               </fieldset>
+              <div>
+                {!formValid && <p>Username and Password are required.</p>}
+              </div>
           </form>
         </div>
       )
     }
 }
 
-export default Login;
+const mapStateToProps = state => {
+  return {
+    state: state
+  };
+};
+
+export default withRouter(connect(
+  mapStateToProps,
+  { logIn, loggedIn }
+)(Login));
