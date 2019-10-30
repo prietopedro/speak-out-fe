@@ -8,6 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import { reducer } from "./reducers/index";
 import 'antd/dist/antd.css';
 import 'semantic-ui-css/semantic.min.css';
+import 'antd/dist/antd.css';
 
 import './index.css';
 import App from './App';

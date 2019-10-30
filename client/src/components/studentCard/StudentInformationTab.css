@@ -1,10 +1,10 @@
 .grid-container {
     display: grid;
     height: 600px;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     background-color: #F7F7F8;
     opacity: 0.9;
-    margin-top: 3%;
+    /* margin-top: 3%; */
     grid-gap: 5%;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; 
     grid-auto-flow: row;
@@ -34,14 +34,10 @@ margin-left: 10%;
     margin-left: 10%;
 }
 
-/* .button-container {
-    display: flex;
-    width: 
-} */
-
-
-/* .placement-button {
-    border-radius: 15px;
-    height: 61px;
-    width: 246px;
-} */
+.ui.tab.active{
+    border: none;
+    padding: 0 0 0 0;
+}
+.ui.secondary.pointing.menu{
+    border-bottom: none;
+}
