@@ -11,6 +11,7 @@ const StudentInformationTab = props => {
         props.getStudentById(props.match.params.id)
     }, [])
 
+    
     return (
         <>
             <div className='grid-container'>
