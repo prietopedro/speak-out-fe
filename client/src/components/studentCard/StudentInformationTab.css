@@ -34,18 +34,21 @@ margin-left: 10%;
     margin-left: 10%;
 }
 
-.ui.tab.active{
+.ui.segment.tab.active{
     border: none;
     padding: 0 0 0 0;
 }
 .ui.secondary.pointing.menu{
     border-bottom: none;
 }
+<<<<<<< HEAD
 .button-container {
     grid-row: 5/4;
 } 
 
 
+=======
+>>>>>>> 78b29f1c9f65d80cf4bee1524277d1a251c0c13b
 .placement-button {
     border-radius: 15px;
     height: 61px;

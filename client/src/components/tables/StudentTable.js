@@ -42,7 +42,7 @@ const StudentTable = props => {
           {
             title: 'Phone Number',
             dataIndex: 'mobile_telephone',
-            key: 6,
+            key: 7,
         },
       ];
       
