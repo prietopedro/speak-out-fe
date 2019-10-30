@@ -18,16 +18,18 @@ margin-left: 10%;
 
 .row2{
     margin-left: 10%;
+    grid-row: 2;
 }
 .row3 {
     margin-left: 10%;
+    grid-row: 3;
 }
 
 .row4 {
     margin-left: 10%;
+    grid-row: 5;
 }
 .row5 {
-    /* border: 1px solid red; */
     grid-row: 6;
     margin-left: 10%;
 }
