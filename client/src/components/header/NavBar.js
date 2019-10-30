@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from "react-router";
 import { connect } from 'react-redux';
 import { logOut, loggedIn } from '../../actions/authenticationActions.js';
+import "./navbar.css"
 
 function NavBar(props) {
 
@@ -10,9 +11,15 @@ function NavBar(props) {
   }
 
   return (
-    <div>
-      Nav Bar
-      <button onClick={logout}>Logout</button>
+    <div className="nav">
+      <div className="navbar-left">
+        <a className="logo">SpeakOut</a>
+      </div>
+      <div className="navbar-right">
+        <a>Lorem</a>
+        <a>Ipsum</a>
+        <button onClick={logout}>Logout</button>
+      </div>
     </div>
   )
 }

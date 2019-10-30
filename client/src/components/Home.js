@@ -12,7 +12,6 @@ function Home(props) {
   
   return (
     <div>
-      <NavBar />
       {/* <Panel /> */}
       <Link to='/panel'>Panel </Link> <br/>
       <Link to='/students'>Student Table</Link>
