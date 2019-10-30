@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter } from "react-router-dom";
 import { reducer } from "./reducers/index";
+import 'antd/dist/antd.css';
 import 'semantic-ui-css/semantic.min.css';
 
 import './index.css';
