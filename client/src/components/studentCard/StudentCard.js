@@ -42,7 +42,7 @@ const StudentCard = props => {
             <h2>{props.studentById.student_id}, {props.studentById.first_name}</h2> */}
             <div className="student-card">
                 <div className="back-button">
-                    <FontAwesomeIcon icon='AngleRight' size='sm'/>
+                    <FontAwesomeIcon icon='angleleft' size='sm' color='gray'/>
                    {' '} Back
                     
                     </div>
