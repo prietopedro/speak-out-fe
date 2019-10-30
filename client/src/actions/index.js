@@ -22,6 +22,7 @@ export {
 } from './studentTableActions';
 
 export {
+  toggleEditComponent,
   getStudentById,
   FETCH_STUDENTBYID_START,
   FETCH_STUDENTBYID_SUCCESS,

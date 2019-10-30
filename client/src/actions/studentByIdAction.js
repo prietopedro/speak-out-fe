@@ -27,10 +27,15 @@ export const EDIT_STUDENTBYID_START = 'EDIT_STUDENTBYID_START';
 export const EDIT_STUDENTBYID_SUCCESS = 'EDIT_STUDENTBYID_SUCCESS';
 export const EDIT_STUDENTBYID_FAILURE = 'EDIT_STUDENTBYID_FAILURE';
 
-export const editStudentById = id => dispatch => {
+export const toggleEditComponent = () => dispatch => {
+    console.log('hey')
     dispatch({ type: EDIT_STUDENTBYID_START })
-    axios.put(`https://speak-out-be-staging.herokuapp.com/api/?table=students&where=id=${id}`)
+}
+
+export const editStudentById = (id, state) => dispatch => {
+    axios.put(`https://speak-out-be-staging.herokuapp.com/api/?table=students&where=id=${id}`, state)
     .then(res => {
+        console.log("res for editStudentById", res)
         dispatch({
             type: EDIT_STUDENTBYID_SUCCESS,
             payload: res.data.tableData[0]

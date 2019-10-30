@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getStudentById } from '../../actions';
+import { getStudentById, toggleEditComponent } from '../../actions';
 import { withRouter, Link } from 'react-router-dom';
 import StudentInformationTab from './StudentInfomationTab';
 import { Tab } from 'semantic-ui-react';
@@ -37,7 +37,11 @@ const StudentCard = props => {
 
     const goBack = () => {
         console.log("props", props)
-        props.history.goBack();
+        if(!props.isEditing){
+            props.history.goBack();
+        } else {
+            props.toggleEditComponent()
+        }
     }
 
     return (
@@ -57,6 +61,7 @@ const StudentCard = props => {
              <Tab menu={{ secondary: true, pointing: true }} panes={panes}  />
             </div>
         </div>
+        
     )
 }
 
@@ -64,14 +69,15 @@ const StudentCard = props => {
 const mapStateToProps = state => {
     return {
         isLoading: state.studentByIdReducer.isLoading,
-        studentById: state.studentByIdReducer.studentById
+        studentById: state.studentByIdReducer.studentById,
+        isEditing: state.studentByIdReducer.isEditting,
     };
 };
 
 export default withRouter(
     connect(
         mapStateToProps,
-        { getStudentById }
+        { getStudentById, toggleEditComponent }
     )(StudentCard)
 )
 
