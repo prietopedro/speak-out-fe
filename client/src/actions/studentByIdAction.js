@@ -20,4 +20,4 @@ export const getStudentById = id => dispatch => {
         payload: err.data
        }) 
     })
-} 
+}

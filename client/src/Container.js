@@ -9,7 +9,7 @@ import { withRouter } from "react-router";
 import Panel from "./components/main/Panel"
 
 import StudentTable from "./components/tables/StudentTable"
-import StudentCard from './components/StudentCard'
+import StudentCard from './components/studentCard/StudentCard'
 
 import './App.css';
 
