@@ -7,6 +7,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter } from "react-router-dom";
 import { reducer } from "./reducers/index";
 import 'semantic-ui-css/semantic.min.css';
+import 'antd/dist/antd.css';
 
 import './index.css';
 import App from './App';
