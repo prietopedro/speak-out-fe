@@ -1,0 +1,14 @@
+.side-bar{
+    width: 200px;
+    background-color: blue;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.sidebar-link{
+    text-align: left;
+    margin-left: 50px;
+}
