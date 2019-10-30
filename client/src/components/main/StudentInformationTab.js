@@ -1,99 +1,93 @@
-import React, {useState, useEffect } from 'react'
-import { connect } from 'react-redux';
-import { getStudentById } from '../../actions';
-import { withRouter, Link } from 'react-router-dom';
+import React, { useState } from 'react'
 import './StudentInformationTab.css'
 
 
 
-const StudentInformationTab = props => {
-    useEffect(() => {
-        props.getStudentById(props.match.params.id)
-    }, [])
+const StudentInformationTab = () => {
 
     return (
         <>
             <div className='grid-container'>
                 <div className='row1'>
                     <h4>First Name</h4>
-                    <p>{props.studentById.first_name}</p>
+                    <p>Amir</p>
                     </div>
                 <div className='row1'>
                     <h4>Additional Names</h4>
-                    <p>{props.studentById.additional_names}</p>
+                    <p>Amir Abas k Muhammed</p>
                     </div>
                 <div className='row1'>
                     <h4>Gender</h4>
-                    <p>{props.studentById.gender}</p>
+                    <p>Male</p>
                     </div>
                 <div className='row1'>
                     <h4>Birth date</h4>
-                    <p>{props.studentById.birthdate}</p>
+                    <p>02/24/97</p>
                     </div>
 
                 <div className='row2'>
                     <h4>Home Telephone</h4>
-                    <p>{props.studentById.home_telephone}</p>
+                    <p>000-000-0000</p>
                     </div>
                 <div className='row2'>
                     <h4>Mobile Telephone</h4>
-                    <p>{props.studentById.mobile_telephone}</p>
+                    <p>000-000-0000</p>
                 </div>
                 <div className='row2'>
                     <h4>Email</h4>
-                    <p>{props.studentById.email}</p>
+                    <p>student@gmail.com</p>
                     </div>
                 <div className='row2'>
                     <h4>Preferred Contact Method</h4>
-                    <p>{props.studentById.preferred_contact_method}</p>
+                    <p>Email</p>
                 </div>
 
                 <div className='row3'>
                     <h4>Location</h4>
-                    <p>Not done</p>
+                    <p>Busnias</p>
                     </div>
                 <div className='row3'>
                     <h4>Registration Date</h4>
-                    <p>{props.studentById.registration_date}</p>
+                    <p>11/02/18</p>
                     </div>
                 <div className='row3'>
                     <h4>Block</h4>
-                    <p>{props.studentById.block}</p>
+                    <p>Block 1</p>
                     </div>
                 <div className='row3'>
                     <h4>Road</h4>
-                    <p>{props.studentById.road}</p>
+                    <p>Yellow Brick</p>
                     </div>
                 <div className='row3'>
                     <h4>Flat</h4>
-                    <p>{props.studentById.flat}</p>
+                    <p>B#28</p>
                     </div>
                 <div className='row3'>
                     <h4>Building</h4>
-                    <p>{props.studentById.building}</p>
+                    <p>Assembly 2</p>
                     </div>
 
                 <div className='row4'>
                     <h4>No Call</h4>
-                    <p>{props.studentById.no_call}</p>
+                    <p>No</p>
                     </div>
                 <div className='row4'>
                     <h4>Delinquent Account</h4>
-                    <p>{props.studentById.delinquent_account}</p>
+                    <p>No</p>
                     </div>
                 <div className='row4'>
                     <h4>Expelled</h4>
-                    <p>{props.studentById.expelled}</p>
+                    <p>No</p>
                     </div>
 
                 <div className='row5'>
                     <h4>Notes</h4>
-                    <p>{props.studentById.notes}</p>
+                    <p>Enter any notes here...</p>
                     </div>
 
-                <div className='button-container'>
-                    <button className='placement-button'>Placement Examination</button>
-                </div>
+                {/* <div>
+                    <button>Placement Examination</button>
+                </div> */}
 
             </div>
            
@@ -102,16 +96,5 @@ const StudentInformationTab = props => {
 }
 
 
-const mapStateToProps = state => {
-    return {
-        isLoading: state.studentByIdReducer.isLoading,
-        studentById: state.studentByIdReducer.studentById
-    };
-  };
-  
-  export default withRouter(
-    connect(
-      mapStateToProps,
-      { getStudentById }
-  )(StudentInformationTab)
-  )
+
+export default StudentInformationTab;
