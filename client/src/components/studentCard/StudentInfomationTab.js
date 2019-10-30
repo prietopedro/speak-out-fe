@@ -11,7 +11,9 @@ const StudentInformationTab = props => {
         props.getStudentById(props.match.params.id)
     }, [])
 
-    
+    let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    let birthdate = new Date(props.studentById.birthdate).toLocaleDateString('en-US', options) 
+    let registration_date = new Date(props.studentById.registration_date).toLocaleDateString('en-US', options)
     return (
         <>
             <div className='grid-container'>
@@ -29,7 +31,7 @@ const StudentInformationTab = props => {
                     </div>
                 <div className='row1'>
                     <h4>Birth date</h4>
-                    <p>{props.studentById.birthdate}</p>
+                    <p>{birthdate}</p>
                     </div>
 
                 <div className='row2'>
@@ -55,7 +57,7 @@ const StudentInformationTab = props => {
                     </div>
                 <div className='row3'>
                     <h4>Registration Date</h4>
-                    <p>{props.studentById.registration_date}</p>
+                    <p>{registration_date}</p>
                     </div>
                 <div className='row3'>
                     <h4>Block</h4>

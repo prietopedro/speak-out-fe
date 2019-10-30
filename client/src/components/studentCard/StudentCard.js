@@ -43,7 +43,7 @@ const StudentCard = props => {
                 <div className='student-title'>
                     <h2>{props.studentById.first_name}</h2>
                     <p>CPR: {props.studentById.cpr}</p>
-                    <p>Student ID: {props.studentById.student_id}</p>
+                    <p>Student ID: {props.studentById.id}</p>
                 </div>
                 {/* <div className="student-card-tabs">
                 <h4>STUDENT INFORMATION</h4>
