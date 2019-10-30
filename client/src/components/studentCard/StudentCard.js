@@ -33,17 +33,22 @@ const StudentCard = props => {
         },
     ]
 
+    const goBack = () => {
+        console.log("props", props)
+        props.history.goBack();
+    }
+
     return (
         <div>
             <Link to='/students'>Student Table</Link>
             {/* <h1>Student Card</h1>
             <h2>{props.studentById.student_id}, {props.studentById.first_name}</h2> */}
             <div className="student-card">
-                <div className="back-button">Back</div>
+                <div className="back-button" onClick={goBack} style={{cursor:"pointer"}}>Back</div>
                 <div className='student-title'>
                     <h2>{props.studentById.first_name}</h2>
                     <p>CPR: {props.studentById.cpr}</p>
-                    <p>Student ID: {props.studentById.student_id}</p>
+                    <p>Student ID: {props.studentById.id}</p>
                 </div>
                 {/* <div className="student-card-tabs">
                 <h4>STUDENT INFORMATION</h4>

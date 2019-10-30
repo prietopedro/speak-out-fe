@@ -16,7 +16,7 @@ const StudentTable = props => {
     const columns = [
         {
               title: 'Student ID',
-              dataIndex: 'student_id',
+              dataIndex: 'id',
               key: 1,
           },
           {
@@ -42,12 +42,12 @@ const StudentTable = props => {
           {
             title: 'Phone Number',
             dataIndex: 'mobile_telephone',
-            key: 6,
+            key: 7,
         },
       ];
       
     const studentData = props.studentList.sort((a,b) => { 
-        return b.student_id - a.student_id }
+        return b.id - a.id }
     )
 
     return (
@@ -67,7 +67,7 @@ const StudentTable = props => {
               onRow={(record, rowIndex) => {
                 return {
                   onClick: event => {
-                    props.history.push(`/students/${record.student_id}`);
+                    props.history.push(`/students/${record.id}`);
                   }
                 };
               }}
