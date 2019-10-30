@@ -21,3 +21,46 @@ export const getStudentById = id => dispatch => {
        }) 
     })
 }
+
+
+export const EDIT_STUDENTBYID_START = 'EDIT_STUDENTBYID_START';
+export const EDIT_STUDENTBYID_SUCCESS = 'EDIT_STUDENTBYID_SUCCESS';
+export const EDIT_STUDENTBYID_FAILURE = 'EDIT_STUDENTBYID_FAILURE';
+
+export const editStudentById = id => dispatch => {
+    dispatch({ type: EDIT_STUDENTBYID_START })
+    axios.put(`https://speak-out-be-staging.herokuapp.com/api/?table=student&where=student_id=${id}`)
+    .then(res => {
+        dispatch({
+            type: EDIT_STUDENTBYID_SUCCESS,
+            payload: res.data.tableData[0]
+        })
+    })
+    .catch(err => {
+       dispatch({
+        type: EDIT_STUDENTBYID_FAILURE,
+        payload: err.data
+       }) 
+    })
+}
+
+export const DELETE_STUDENTBYID_START = 'DELETE_STUDENTBYID_START';
+export const DELETE_STUDENTBYID_SUCCESS = 'DELETE_STUDENTBYID_SUCCESS';
+export const DELETE_STUDENTBYID_FAILURE = 'DELETE_STUDENTBYID_FAILURE';
+
+export const deleteStudentById = id => dispatch => {
+    dispatch({ type: DELETE_STUDENTBYID_START })
+    axios.put(`https://speak-out-be-staging.herokuapp.com/api/?table=student&where=student_id=${id}`)
+    .then(res => {
+        dispatch({
+            type: DELETE_STUDENTBYID_SUCCESS,
+            payload: res.id
+        })
+    })
+    .catch(err => {
+       dispatch({
+        type: DELETE_STUDENTBYID_FAILURE,
+        payload: err.data
+       }) 
+    })
+}
