@@ -42,11 +42,9 @@ const StudentCard = props => {
 
     return (
         <div>
-            <Link to='/students'>Student Table</Link>
-            {/* <h1>Student Card</h1>
-            <h2>{props.studentById.student_id}, {props.studentById.first_name}</h2> */}
             <div className="student-card">
-                <div className="back-button">
+                <div className="back-button" onClick={goBack} style={{cursor:"pointer"}}
+>
                     <FontAwesomeIcon icon='AngleRight' size='sm'/>
                    {' '} Back
                     
@@ -56,20 +54,7 @@ const StudentCard = props => {
                     <p>CPR: {props.studentById.cpr}</p>
                     <p>Student ID: {props.studentById.id}</p>
                 </div>
-                {/* <div className="student-card-tabs">
-                <h4>STUDENT INFORMATION</h4>
-                <h4>ENROLLMENT</h4>
-                <h4>ATTENDANCE</h4>
-                <h4>BILLING</h4>
-            </div> */}
              <Tab menu={{ secondary: true, pointing: true }} panes={panes}  />
-                {/* <div class="ui pointing secondary menu">
-                    <a class="active item">Tab 1</a>
-                    <a class="item">Tab 2</a>
-                    <a class="item">Tab 3</a>
-                </div>
-                <div class="ui segment active tab">Tab 1 Content</div> */}
-                
             </div>
         </div>
     )
