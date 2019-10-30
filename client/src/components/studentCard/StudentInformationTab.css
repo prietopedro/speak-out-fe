@@ -34,7 +34,11 @@ margin-left: 10%;
     margin-left: 10%;
 }
 
+<<<<<<< HEAD
 .ui.segment.tab.active{
+=======
+.ui.tab.active{
+>>>>>>> f9f2e454a063d2c362bad4e792d8f7d97c155310
     border: none;
     padding: 0 0 0 0;
 }
@@ -42,10 +46,14 @@ margin-left: 10%;
     border-bottom: none;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> f9f2e454a063d2c362bad4e792d8f7d97c155310
 .button-container {
     grid-row: 5/4;
-} 
 
+}
 
 =======
 >>>>>>> 78b29f1c9f65d80cf4bee1524277d1a251c0c13b
@@ -59,4 +67,8 @@ margin-left: 10%;
 
 .placement-button:hover {
     background-color: #FFC8C8;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> f9f2e454a063d2c362bad4e792d8f7d97c155310

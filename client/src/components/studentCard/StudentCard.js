@@ -8,6 +8,8 @@ import 'antd/dist/antd.css';
 import './studentCard.css';
 import './StudentInformationTab.css';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 const StudentCard = props => {
     useEffect(() => {
@@ -44,7 +46,11 @@ const StudentCard = props => {
             {/* <h1>Student Card</h1>
             <h2>{props.studentById.student_id}, {props.studentById.first_name}</h2> */}
             <div className="student-card">
-                <div className="back-button" onClick={goBack} style={{cursor:"pointer"}}>Back</div>
+                <div className="back-button">
+                    <FontAwesomeIcon icon='AngleRight' size='sm'/>
+                   {' '} Back
+                    
+                    </div>
                 <div className='student-title'>
                     <h2>{props.studentById.first_name}</h2>
                     <p>CPR: {props.studentById.cpr}</p>
