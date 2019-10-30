@@ -32,27 +32,3 @@ margin-left: 10%;
     grid-row: 5;
     margin-left: 10%;
 }
-
-.ui.segment.tab.active{
-    border: none;
-    padding: 0 0 0 0;
-}
-.ui.secondary.pointing.menu{
-    border-bottom: none;
-}
-.button-container {
-    grid-row: 5/4;
-} 
-
-
-.placement-button {
-    border-radius: 15px;
-    height: 61px;
-    width: 246px;
-    margin-top: 10%;
-    margin-left: 10%;
-}
-
-.placement-button:hover {
-    background-color: #FFC8C8;
-}

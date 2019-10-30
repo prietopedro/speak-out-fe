@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getStudentById } from '../../actions';
+import { getStudentById, toggleEditComponent } from '../../actions';
 import { withRouter, Link } from 'react-router-dom';
 import StudentInformationTab from './StudentInfomationTab';
 import { Tab } from 'semantic-ui-react';
@@ -35,14 +35,21 @@ const StudentCard = props => {
         },
     ]
 
+    const goBack = () => {
+        console.log("props", props)
+        if(!props.isEditing){
+            props.history.goBack();
+        } else {
+            props.toggleEditComponent()
+        }
+    }
+
     return (
         <div>
-            <Link to='/students'>Student Table</Link>
-            {/* <h1>Student Card</h1>
-            <h2>{props.studentById.student_id}, {props.studentById.first_name}</h2> */}
             <div className="student-card">
-                <div className="back-button">
-                    <FontAwesomeIcon icon='angleleft' size='sm' color='gray'/>
+                <div className="back-button" onClick={goBack} style={{cursor:"pointer"}}
+>
+                    <FontAwesomeIcon icon='AngleRight' size='sm'/>
                    {' '} Back
                     
                     </div>
@@ -51,22 +58,10 @@ const StudentCard = props => {
                     <p>CPR: {props.studentById.cpr}</p>
                     <p>Student ID: {props.studentById.id}</p>
                 </div>
-                {/* <div className="student-card-tabs">
-                <h4>STUDENT INFORMATION</h4>
-                <h4>ENROLLMENT</h4>
-                <h4>ATTENDANCE</h4>
-                <h4>BILLING</h4>
-            </div> */}
              <Tab menu={{ secondary: true, pointing: true }} panes={panes}  />
-                {/* <div class="ui pointing secondary menu">
-                    <a class="active item">Tab 1</a>
-                    <a class="item">Tab 2</a>
-                    <a class="item">Tab 3</a>
-                </div>
-                <div class="ui segment active tab">Tab 1 Content</div> */}
-                
             </div>
         </div>
+        
     )
 }
 
@@ -74,14 +69,15 @@ const StudentCard = props => {
 const mapStateToProps = state => {
     return {
         isLoading: state.studentByIdReducer.isLoading,
-        studentById: state.studentByIdReducer.studentById
+        studentById: state.studentByIdReducer.studentById,
+        isEditing: state.studentByIdReducer.isEditting,
     };
 };
 
 export default withRouter(
     connect(
         mapStateToProps,
-        { getStudentById }
+        { getStudentById, toggleEditComponent }
     )(StudentCard)
 )
 
