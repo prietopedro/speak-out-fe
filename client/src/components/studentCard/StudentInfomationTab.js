@@ -85,9 +85,9 @@ const StudentInformationTab = () => {
                     <p>Enter any notes here...</p>
                     </div>
 
-                {/* <div>
-                    <button>Placement Examination</button>
-                </div> */}
+                <div className='button-container'>
+                    <button className='placement-button'>Placement Examination</button>
+                </div>
 
             </div>
            
