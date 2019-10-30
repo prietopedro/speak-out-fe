@@ -14,7 +14,8 @@ function Home(props) {
     <div>
       <NavBar />
       {/* <Panel /> */}
-      <Link to='/panel'>Panel </Link>
+      <Link to='/panel'>Panel </Link> <br/>
+      <Link to='/students'>Student Table</Link>
     </div>
   ) 
 }
