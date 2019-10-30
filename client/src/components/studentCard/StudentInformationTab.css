@@ -27,21 +27,26 @@ margin-left: 10%;
 
 .row4 {
     margin-left: 10%;
-    grid-row: 5;
+    grid-row: 4;
 }
 .row5 {
-    grid-row: 6;
+    grid-row: 5;
     margin-left: 10%;
 }
 
-/* .button-container {
-    display: flex;
-    width: 
-} */
+.button-container {
+    grid-row: 5/4;
+} 
 
 
-/* .placement-button {
+.placement-button {
     border-radius: 15px;
     height: 61px;
     width: 246px;
-} */
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+.placement-button:hover {
+    background-color: #FFC8C8;
+}
