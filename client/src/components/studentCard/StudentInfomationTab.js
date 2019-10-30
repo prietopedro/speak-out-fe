@@ -11,7 +11,7 @@ const StudentInformationTab = props => {
         props.getStudentById(props.match.params.id)
     }, [])
 
-    let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    let options = {  year: 'numeric', month: 'numeric', day: 'numeric' }; // 'long' 
     let birthdate = new Date(props.studentById.birthdate).toLocaleDateString('en-US', options) 
     let registration_date = new Date(props.studentById.registration_date).toLocaleDateString('en-US', options)
     return (
