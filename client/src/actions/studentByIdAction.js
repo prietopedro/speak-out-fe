@@ -33,6 +33,7 @@ export const toggleEditComponent = () => dispatch => {
 }
 
 export const editStudentById = (id, state) => dispatch => {
+    console.log("this is our state",state);
     axios.put(`https://speak-out-be-staging.herokuapp.com/api/?table=students&where=id=${id}`, state)
     .then(res => {
         console.log("res for editStudentById", res)
@@ -55,7 +56,7 @@ export const DELETE_STUDENTBYID_FAILURE = 'DELETE_STUDENTBYID_FAILURE';
 
 export const deleteStudentById = id => dispatch => {
     dispatch({ type: DELETE_STUDENTBYID_START })
-    axios.put(`https://speak-out-be-staging.herokuapp.com/api/?table=students&where=id=${id}`)
+    axios.delete(`https://speak-out-be-staging.herokuapp.com/api/?table=students&where=id=${id}`)
     .then(res => {
         dispatch({
             type: DELETE_STUDENTBYID_SUCCESS,

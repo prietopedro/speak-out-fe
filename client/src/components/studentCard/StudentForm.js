@@ -6,7 +6,6 @@ import './StudentForm.css'
 import './StudentInformationTab.css'
 
 
-
 //might need status 
 const StudentForm = (props) => {
     const studentId = props.match.params.id;
@@ -14,24 +13,28 @@ const StudentForm = (props) => {
 
 
     const [state, setState] = useState({
-        first_name: '',
-        additional_names: '',
-        gender: '',
-        birthdate: '',
-        home_telephone: '',
-        mobile_telephone: '',
-        email: '',
-        preferred_contact_method: '',
-        location: '',
-        registration_date: '',
-        block: '',
-        road: '',
-        flat: '',
-        building: '',
-        no_call: '',
-        delinquent_account: '',
-        expelled: '',
-        notes: ''
+        //id: studentId,
+        first_name: props.props.studentById.first_name,
+        additional_names: props.props.studentById.additional_names,
+        gender: props.props.studentById.gender,
+        // birthdate: "2011-09-05",
+        home_telephone: props.props.studentById.home_telephone,
+        mobile_telephone: props.props.studentById.mobile_telephone,
+        email: props.props.studentById.email,
+        contact_type_id: props.props.studentById.contact_type_id,
+        location_id: 1,
+        // registration_date: "2011-09-05",
+        block: props.props.studentById.block,
+        road: props.props.studentById.road,
+        flat: props.props.studentById.flat,
+        building: props.props.studentById.building,
+        no_call: props.props.studentById.no_call,
+        delinquent: props.props.studentById.delinquent,
+        expelled: props.props.studentById.expelled,
+        notes: props.props.studentById.notes,
+        school_grade_id: props.props.studentById.school_grade_id,
+        school_name: props.props.studentById.school_name,
+        // grade_updated: "2011-09-05",
     })
 
     const handleChange = e => {
@@ -44,12 +47,12 @@ const StudentForm = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        props.editStudentById(studentId, state)
+        props.editStudentById(studentId, state);
     }
 
     const cancelEditing = e => {
         e.preventDefault();
-        props.toggleEditComponent()
+        props.toggleEditComponent();
     }
 
     return (
@@ -63,7 +66,8 @@ const StudentForm = (props) => {
                     name='first_name'
                     placeholder='First Name'
                     onChange={handleChange}
-                    defaultValue={props.props.studentById.first_name}
+                    value={state.first_name}
+                    // defaultValue={props.props.studentById.first_name}
                     //value={state.first_name}
                 />
             </div>
@@ -74,7 +78,8 @@ const StudentForm = (props) => {
                     name='additional_names'
                     placeholder='Additional Names'
                     onChange={handleChange}
-                    defaultValue={props.props.studentById.additional_names}
+                    // defaultValue={props.props.studentById.additional_names}
+                    value={state.additional_names}
                 />
             </div>
             <div className='row1'>
@@ -84,19 +89,21 @@ const StudentForm = (props) => {
                     name='gender'
                     placeholder='Gender'
                     onChange={handleChange}
-                    defaultValue={props.props.studentById.gender}
+                    // defaultValue={props.props.studentById.gender}
+                    value={state.gender}
                 />
             </div>
-            <div className='row1'>
+            {/* <div className='row1'>
                 <label>Birth Date</label>
                 <input 
                     type='date'
                     name='birthdate'
-                    placeholder='Gender'
+                    placeholder='Birth Date'
                     onChange={handleChange}
-                    defaultValue={props.props.studentById.birthdate}
+                    // defaultValue={props.props.studentById.birthdate}
+                    value="2011-09-05"
                 />
-            </div>
+            </div> */}
             <div className='row2'>            
                 <label>Home Telephone</label>
                 <input 
@@ -104,7 +111,9 @@ const StudentForm = (props) => {
                     name='home_telephone'
                     placeholder='Home Telephone'
                     onChange={handleChange}
-                    defaultValue={props.props.studentById.home_telephone}
+                    value={state.first_name}
+                    // defaultValue={props.props.studentById.home_telephone}
+                    value={state.home_telephone}
                 />
             </div>
             <div className='row2'>
@@ -114,7 +123,8 @@ const StudentForm = (props) => {
                     name='mobile_telephone'
                     placeholder='Mobile Telephone'
                     onChange={handleChange}
-                    defaultValue={props.props.studentById.mobile_telephone}
+                    value={state.mobile_telephone}
+                    // defaultValue={props.props.studentById.mobile_telephone}
                 />
             </div>
             <div className='row2'>
@@ -124,17 +134,20 @@ const StudentForm = (props) => {
                     name='email'
                     placeholder='Email'
                     onChange={handleChange}
-                    defaultValue={props.props.studentById.email}
+                    value={state.email}
+                    // defaultValue={props.props.studentById.email}
                 />
             </div>
             <div className='row2'>
                 <label>Preferred Contact Method</label>
                 <input 
                     type='text'
-                    name='preferred_contact_method'
+                    name='contact_type_id'
                     placeholder='Preferred Contact Method'
                     onChange={handleChange}
-                    defaultValue={props.props.studentById.preferred_contact_method}
+                    value={state.contact_type_id}
+                    // defaultValue={props.props.studentById.contact_type_id}
+
                 />
             </div>
             <div className='row3'>
@@ -144,19 +157,21 @@ const StudentForm = (props) => {
                     name='location'
                     placeholder='Location'
                     onChange={handleChange}
-                    defaultValue={props.props.studentById.location}
+                    value={state.location_id}
+                    // defaultValue={props.props.studentById.location}
                 />
             </div>
-            <div className='row3'>
+            {/* <div className='row3'>
                 <label>Registration Date</label>
                 <input 
                     type='date'
                     name='registration'
                     placeholder='registration'
                     onChange={handleChange}
-                    defaultValue={props.props.studentById.registration_date}
+                    value="2011-09-05"
+                    // defaultValue={props.props.studentById.registration_date}
                 />
-            </div>
+            </div> */}
             <div className='row3'>
                 <label>Block</label>
                 <input 
@@ -164,7 +179,8 @@ const StudentForm = (props) => {
                     name='block'
                     placeholder='block'
                     onChange={handleChange}
-                    defaultValue={props.props.studentById.block}
+                    value={state.block}
+                    // defaultValue={props.props.studentById.block}
                 />
             </div>
             <div className='row3'>
@@ -174,7 +190,8 @@ const StudentForm = (props) => {
                     name='road'
                     placeholder='road'
                     onChange={handleChange}
-                    defaultValue={props.props.studentById.road}
+                    value={state.road}
+                    // defaultValue={props.props.studentById.road}
                 />
             </div>
             <div className='row3'>
@@ -184,7 +201,8 @@ const StudentForm = (props) => {
                     name='flat'
                     placeholder='flat'
                     onChange={handleChange}
-                    defaultValue={props.props.studentById.flat}
+                    value={state.flat}
+                    // defaultValue={props.props.studentById.flat}
                 />
             </div>
             <div className='row4'>
@@ -194,7 +212,8 @@ const StudentForm = (props) => {
                     name='building'
                     placeholder='building'
                     onChange={handleChange}
-                    defaultValue={props.props.studentById.building}
+                    value={state.building}
+                    // defaultValue={props.props.studentById.building}
                 />
             </div>
             <div className='row4'>
@@ -204,17 +223,19 @@ const StudentForm = (props) => {
                     name='no_call'
                     placeholder='No Call'
                     onChange={handleChange}
-                    defaultValue={props.props.studentById.no_call}
+                    value={state.no_call}
+                    // defaultValue={props.props.studentById.no_call}
                 />
             </div>
             <div className='row4'>
                  <label>Delinquent Account</label>
                 <input 
                     type='text'
-                    name='delinquent_account'
+                    name='delinquent'
                     placeholder='Delinquent Account'
                     onChange={handleChange}
-                    defaultValue={props.props.studentById.delinquent_account}
+                    value={state.delinquent}
+                    // defaultValue={props.props.studentById.delinquent}
                 />
             </div>
             <div className='row4'>
@@ -224,7 +245,8 @@ const StudentForm = (props) => {
                     name='expelled'
                     placeholder='Expelled'
                     onChange={handleChange}
-                    defaultValue={props.props.studentById.expelled}
+                    value={state.expelled}
+                    // defaultValue={props.props.studentById.expelled}
                 />
             </div>
             <div className='row4'>
@@ -234,19 +256,51 @@ const StudentForm = (props) => {
                 name='notes'
                 placeholder='Notes'
                 onChange={handleChange}
-                defaultValue={props.props.studentById.notes}
+                value={state.notes}
+                // defaultValue={props.props.studentById.notes}
                 />
             </div>
+            <div >
+                 <label>School grade</label>
+            <input 
+                type='text'
+                name='school_grade_id'
+                placeholder='School grade'
+                onChange={handleChange}
+                value={state.school_grade_id}
+                // defaultValue={props.props.studentById.school_grade_id}
+                />
             </div>
-            <button type='submit'>Save</button>
+            <div >
+                 <label>School name</label>
+            <input 
+                type='text'
+                name='school_name'
+                placeholder='School name'
+                onChange={handleChange}
+                value={state.school_name}
+                // defaultValue={props.props.studentById.school_name}
+                />
+            </div>
+            {/* <div >
+                 <label>Grade updated</label>
+            <input 
+                type='text'
+                name='grade_updated'
+                placeholder='Grade updated'
+                onChange={handleChange}
+                value="2011-09-05"
+                // defaultValue={props.props.studentById.grade_updated}
+                />
+            </div> */}
+            </div>
+            <button type='submit' onClick={handleSubmit}>Save</button>
             <button type='reset' onClick={cancelEditing}>Cancel</button>
            </form>
            
         </div>
     )
 }
-
-
 
 export default withRouter(
     connect(

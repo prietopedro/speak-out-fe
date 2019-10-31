@@ -13,7 +13,11 @@ const StudentInformationTab = props => {
         props.getStudentById(props.match.params.id)
     }, [])
 
-    const [edit, setEdit] = useState(false)
+    const editStudentInfo = e => {
+        console.log('hi')
+        e.preventDefault();
+        props.toggleEditComponent();
+   }
 
     let options = { year: 'numeric', month: 'numeric', day: 'numeric' }; //'long'
     let birthdate = new Date(props.studentById.birthdate).toLocaleDateString('en-US', options) 
@@ -104,14 +108,12 @@ const StudentInformationTab = props => {
 
             <div className='button-container'>
                 <button className='placement-button'>Placement Test</button>
+                <button className='placement-button' onClick={editStudentInfo}>Edit</button>
             </div>
             
 
         </div> : <StudentForm props={props}/>
         }
-            
-            
-            
         </>
     )
 }
