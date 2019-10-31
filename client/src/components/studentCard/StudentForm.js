@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import { editStudentById } from '../../actions';
 import { withRouter, Link } from 'react-router-dom';
@@ -10,9 +10,9 @@ import './StudentInformationTab.css'
 //might need status 
 const StudentForm = (props) => {
     const studentId = props.match.params.id;
-    console.log('props from studentInfoTab',props.props.studentById)
-    
-    
+    console.log('props from studentInfoTab', props.props.studentById)
+
+
     const [state, setState] = useState({
         first_name: '',
         additional_names: '',
@@ -47,7 +47,7 @@ const StudentForm = (props) => {
         props.editStudentById(studentId, state)
     }
 
-    return(
+    return (
         <div>
            <form onSubmit={handleSubmit}>
            <div className='grid-container'>
@@ -242,10 +242,10 @@ const StudentForm = (props) => {
 }
 
 
-  
-  export default withRouter(
+
+export default withRouter(
     connect(
-      null,
-      { editStudentById }
-  )(StudentForm)
-  )
+        null,
+        { editStudentById }
+    )(StudentForm)
+)
