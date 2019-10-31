@@ -49,8 +49,8 @@ const StudentCard = props => {
             <div className="student-card">
                 <div className="back-button" onClick={goBack} style={{cursor:"pointer"}}
 >
-                    <FontAwesomeIcon icon='AngleRight' size='sm'/>
-                   {' '} Back
+                    <FontAwesomeIcon icon='angle-left' size='lg' color='gray'/> {''}
+                    Back
                     
                     </div>
                 <div className='student-title'>
