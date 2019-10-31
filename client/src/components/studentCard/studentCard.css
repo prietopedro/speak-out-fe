@@ -28,3 +28,11 @@
      margin: 25px 20px 0 0;
      text-decoration: underline;
  }
+
+ .ui button {
+    margin-right: 20% ;
+ }
+
+ /* .tab{
+     display: flex;
+ } */

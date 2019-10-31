@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getStudentById, toggleEditComponent } from '../../actions';
 import { withRouter, Link } from 'react-router-dom';
 import StudentInformationTab from './StudentInfomationTab';
-import { Tab } from 'semantic-ui-react';
+import { Tab, Button } from 'semantic-ui-react';
 import 'antd/dist/antd.css';
 import './studentCard.css';
 import './StudentInformationTab.css';
@@ -15,6 +15,12 @@ const StudentCard = props => {
     useEffect(() => {
         props.getStudentById(props.match.params.id)
     }, [])
+
+    const editStudentInfo = e => {
+        console.log('hi')
+        e.preventDefault();
+        props.toggleEditComponent();
+   }
 
     const panes = [
         {
@@ -33,6 +39,11 @@ const StudentCard = props => {
             menuItem: 'BILLING',
             render: () => <Tab.Pane attached={false}>Tab 4 Content</Tab.Pane>,
         },
+
+      {
+          menuItem: <Button className='ui button'>Can you see me?</Button>
+      }
+    
     ]
 
     const goBack = () => {
@@ -51,14 +62,16 @@ const StudentCard = props => {
 >
                     <FontAwesomeIcon icon='angle-left' size='lg' color='gray'/> {''}
                     Back
-                    
                     </div>
                 <div className='student-title'>
                     <h2>{props.studentById.first_name}</h2>
                     <p>CPR: {props.studentById.cpr}</p>
                     <p>Student ID: {props.studentById.id}</p>
                 </div>
+               
+                {!props.isEditing ? <Button onClick={editStudentInfo} className='ui button'>Edit</Button> : null}
              <Tab menu={{ secondary: true, pointing: true }} panes={panes}  />
+           
             </div>
         </div>
         
@@ -77,6 +90,7 @@ const mapStateToProps = state => {
 export default withRouter(
     connect(
         mapStateToProps,
+        //destructuring mapDispatchToProps
         { getStudentById, toggleEditComponent }
     )(StudentCard)
 )

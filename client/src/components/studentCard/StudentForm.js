@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
-import { editStudentById } from '../../actions';
+import { editStudentById, toggleEditComponent } from '../../actions';
 import { withRouter, Link } from 'react-router-dom';
 import './StudentForm.css'
 import './StudentInformationTab.css'
@@ -45,6 +45,11 @@ const StudentForm = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         props.editStudentById(studentId, state)
+    }
+
+    const cancelEditing = e => {
+        e.preventDefault();
+        props.toggleEditComponent()
     }
 
     return (
@@ -234,7 +239,7 @@ const StudentForm = (props) => {
             </div>
             </div>
             <button type='submit'>Save</button>
-            <button type="reset" >Cancel</button>
+            <button type='reset' onClick={cancelEditing}>Cancel</button>
            </form>
            
         </div>
@@ -246,6 +251,6 @@ const StudentForm = (props) => {
 export default withRouter(
     connect(
         null,
-        { editStudentById }
+        { editStudentById, toggleEditComponent }
     )(StudentForm)
 )

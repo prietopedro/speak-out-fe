@@ -19,11 +19,7 @@ const StudentInformationTab = props => {
     let birthdate = new Date(props.studentById.birthdate).toLocaleDateString('en-US', options) 
     let registration_date = new Date(props.studentById.registration_date).toLocaleDateString('en-US', options)
     
-    const editStudentInfo = e => {
-        console.log('hi')
-        e.preventDefault();
-        props.toggleEditComponent();
-   }
+    
 
     return (
         <>
@@ -65,7 +61,7 @@ const StudentInformationTab = props => {
 
             <div className='row3'>
                 <h4>Location</h4>
-                <p>Not done</p>
+                <p>{props.studentById.location_id}</p>
                 </div>
             <div className='row3'>
                 <h4>Registration Date</h4>
@@ -107,8 +103,9 @@ const StudentInformationTab = props => {
                 </div>
 
             <div className='button-container'>
-                <button className='placement-button' onClick={editStudentInfo}>Edit</button>
+                <button className='placement-button'>Placement Test</button>
             </div>
+            
 
         </div> : <StudentForm props={props}/>
         }
