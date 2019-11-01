@@ -1,3 +1,7 @@
 .rowHover tr {
     cursor: pointer;
 }
+
+.ant-table-wrapper {
+    margin-left: 200px;
+}

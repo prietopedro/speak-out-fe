@@ -38,3 +38,10 @@ export {
   DELETE_STUDENTBYID_SUCCESS,
   DELETE_STUDENTBYID_FAILURE,
 } from './studentByIdAction'
+
+export {
+  getPlecementTestById,
+  FETCH_PLACEMENTTEST_START,
+  FETCH_PLACEMENTTEST_SUCCESS,
+  FETCH_PLACEMENTTEST_FAILURE,
+} from './pacementTestAction'

@@ -3,12 +3,18 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import { getStudentById, toggleEditComponent } from '../../actions';
 import { withRouter, Link } from 'react-router-dom';
+import { Modal } from 'antd';
+import 'antd/dist/antd.css';
 import StudentForm from './StudentForm';
+import PlacementTest from '../placementTest/PlacementTest'
 import './StudentInformationTab.css'
 
 
 
 const StudentInformationTab = props => {
+    const [studentId, setStudentId] = useState(null)
+    const [modalState, setModalState] = useState(false)
+
     useEffect(() => {
         props.getStudentById(props.match.params.id)
     }, [])
@@ -22,8 +28,13 @@ const StudentInformationTab = props => {
     let birthdate = new Date(props.studentById.birthdate).toLocaleDateString('en-US', options)
     let registration_date = new Date(props.studentById.registration_date).toLocaleDateString('en-US', options)
 
-
-console.log("Student info tab state: ", props.studentById)
+    const closeModal = () => {
+        setModalState(false)
+      }
+      const openModal = (id) => {
+        setStudentId(id)
+        setModalState(true)
+      }
     return (
         <>
             {
@@ -113,13 +124,22 @@ console.log("Student info tab state: ", props.studentById)
                         <p>{props.studentById.school_name || "-"}</p>
                     </div>
                     <div className='button-container'>
-                        <button className='placement-button'>Placement Test</button>
+                        <button className='placement-button' onClick={()=>setModalState(true)}>Placement Test</button>
                         <button className='placement-button' onClick={editStudentInfo}>Edit</button>
                     </div>
 
 
                 </div> : <StudentForm props={props} />
             }
+            <Modal          
+            title="Title"
+            visible={modalState}
+            onOk={closeModal}
+            onCancel={closeModal}
+            width="80%"
+          >
+            <PlacementTest student_id={studentId} />
+          </Modal>
         </>
     )
 }
