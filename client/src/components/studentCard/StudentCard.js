@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getStudentById } from '../../actions';
+import { getStudentById, toggleEditComponent } from '../../actions';
 import { withRouter, Link } from 'react-router-dom';
 import StudentInformationTab from './StudentInfomationTab';
 import { Tab, Button } from 'semantic-ui-react';
@@ -37,7 +37,7 @@ const StudentCard = props => {
 
     const goBack = () => {
         console.log("props", props)
-        if(!props.isEditing){
+        if (!props.isEditing) {
             props.history.goBack();
         } else {
             props.toggleEditComponent()
@@ -47,9 +47,8 @@ const StudentCard = props => {
     return (
         <div>
             <div className="student-card">
-                <div className="back-button" onClick={goBack} style={{cursor:"pointer"}}
->
-                    <FontAwesomeIcon icon='angle-left' size='lg' color='gray'/> {''}
+                <div className="back-button" onClick={goBack} style={{ cursor: "pointer" }}>
+                    <FontAwesomeIcon icon='angle-left' size='lg' color='gray' /> {''}
                     Back
                     </div>
                 <div className='student-title'>
@@ -57,11 +56,11 @@ const StudentCard = props => {
                     <p>CPR: {props.studentById.cpr}</p>
                     <p>Student ID: {props.studentById.id}</p>
                 </div>
-             <Tab menu={{ secondary: true, pointing: true }} panes={panes}  />
-           
+                <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+
             </div>
         </div>
-        
+
     )
 }
 
@@ -77,18 +76,9 @@ const mapStateToProps = state => {
 export default withRouter(
     connect(
         mapStateToProps,
-        //destructuring mapDispatchToProps
-        { getStudentById }
+        { getStudentById, toggleEditComponent }
     )(StudentCard)
 )
 
 
 
-
-
-
-// const TabExampleSecondaryPointing = () => (
- 
-// )
-
-// export default TabExampleSecondaryPointing

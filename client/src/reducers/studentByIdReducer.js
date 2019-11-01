@@ -28,7 +28,7 @@ export const studentByIdReducer = (state = initialState, action) => {
                 isLoading: true,
                 error: null,
             }
-        case  FETCH_STUDENTBYID_SUCCESS:
+        case FETCH_STUDENTBYID_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
@@ -41,52 +41,52 @@ export const studentByIdReducer = (state = initialState, action) => {
                 isLoading: false,
                 error: action.payload,
             }
-        
+
         // Edit by ID
         case EDIT_STUDENTBYID_START:
-                return {
-                    ...state,
-                    isEditting: !state.isEditting,
-                    error: null,
-                }
-            case  EDIT_STUDENTBYID_SUCCESS:
-                return {
-                    ...state,
-                    isEditting: false,
-                    isEditted: true,
-                    studentById: action.payload
-                }
-            case EDIT_STUDENTBYID_FAILURE:
-                return {
-                    ...state,
-                    isLoading: false,
-                    error: action.payload,
-                }
-            
-            // Delete by ID
+            return {
+                ...state,
+                isEditting: !state.isEditting,
+                error: null,
+            }
+        case EDIT_STUDENTBYID_SUCCESS:
+            return {
+                ...state,
+                isEditting: false,
+                isEditted: true,
+                studentById: action.payload
+            }
+        case EDIT_STUDENTBYID_FAILURE:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
 
-             case DELETE_STUDENTBYID_START:
-                return {
-                    ...state,
-                    isLoading: true,
-                    error: null,
-                }
-            case  DELETE_STUDENTBYID_SUCCESS:
-                return {
-                    ...state,
-                    isLoading: false,
-                    fetching: true,
-                    studentById: action.payload
-                }
-            case DELETE_STUDENTBYID_FAILURE:
-                return {
-                    ...state,
-                    isLoading: false,
-                    error: action.payload,
-                }
-            default:
-                return state
-        }
+        // Delete by ID
+
+        case DELETE_STUDENTBYID_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: null,
+            }
+        case DELETE_STUDENTBYID_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                fetching: true,
+                studentById: action.payload
+            }
+        case DELETE_STUDENTBYID_FAILURE:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+        default:
+            return state
+    }
 }
 
 
