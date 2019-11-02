@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getPlecementTestById } from '../../actions';
 import { withRouter, Link } from 'react-router-dom';
 
-import './placementTest.css'
+import './placementTest.scss'
 
 const PlacementTest = props => {
     console.log('props', props)

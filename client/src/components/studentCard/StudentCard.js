@@ -5,8 +5,8 @@ import { withRouter, Link } from 'react-router-dom';
 import StudentInformationTab from './StudentInfomationTab';
 import { Tab, Button } from 'semantic-ui-react';
 import 'antd/dist/antd.css';
-import './studentCard.css';
-import './StudentInformationTab.css';
+import './studentCard.scss';
+import './StudentInformationTab.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

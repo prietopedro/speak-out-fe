@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import { editStudentById, toggleEditComponent } from '../../actions';
 import { withRouter, Link } from 'react-router-dom';
-import './StudentForm.css'
-import './StudentInformationTab.css'
+import './StudentForm.scss'
+import './StudentInformationTab.scss'
 
 
 //might need status 

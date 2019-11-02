@@ -1,0 +1,21 @@
+.side-bar{
+    width: 200px;
+    background-color: #269FB0;
+    height: 100vh;
+    position: fixed;
+   
+    .sidebar-links{
+        height: 65vh; 
+        display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+         .sidebar-link{
+        text-align: left;
+        margin-left: 50px;
+        color: white;
+        font-size: 20px;
+    }
+    }
+   
+}
+

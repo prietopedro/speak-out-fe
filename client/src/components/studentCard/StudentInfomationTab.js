@@ -7,7 +7,7 @@ import { Modal } from 'antd';
 import 'antd/dist/antd.css';
 import StudentForm from './StudentForm';
 import PlacementTest from '../placementTest/PlacementTest'
-import './StudentInformationTab.css'
+import './StudentInformationTab.scss'
 
 
 

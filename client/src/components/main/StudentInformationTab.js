@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './StudentInformationTab.css'
+import './StudentInformationTab.scss'
 
 
 

@@ -10,7 +10,7 @@ import 'antd/dist/antd.css';
 import 'semantic-ui-css/semantic.min.css';
 import 'antd/dist/antd.css';
 
-import './index.css';
+import './index.scss';
 import App from './App';
 
 

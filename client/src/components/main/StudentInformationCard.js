@@ -1,5 +1,5 @@
 import React from 'react'
-import './StudentInformationCard.css'
+import './StudentInformationCard.scss'
 import StudentInformationTab from './StudentInformationTab'
 
 

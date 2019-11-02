@@ -4,7 +4,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { getStudentTable } from '../../actions';
 import { Table, Spin } from 'antd';
 import 'antd/dist/antd.css';
-import './StudentTable.css';
+import './StudentTable.scss';
 
 
 const StudentTable = props => {

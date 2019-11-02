@@ -11,7 +11,7 @@ import Panel from "./components/main/Panel"
 import StudentTable from "./components/tables/StudentTable"
 import StudentCard from './components/studentCard/StudentCard'
 
-import './App.css';
+import './App.scss';
 
 axios.defaults.withCredentials = true
 

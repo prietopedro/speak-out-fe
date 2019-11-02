@@ -2,7 +2,8 @@ import React from 'react';
 import { withRouter } from "react-router";
 import { connect } from 'react-redux';
 import { logOut, loggedIn } from '../../actions/authenticationActions.js';
-import "./navbar.css"
+import Logo from "../../assets/Logo.png"
+import "./navbar.scss"
 
 function NavBar(props) {
 
@@ -13,11 +14,11 @@ function NavBar(props) {
   return (
     <div className="nav">
       <div className="navbar-left">
-        <a className="logo">SpeakOut</a>
+        <a className="logo"><img className="logo-image" src={Logo}></img></a>
       </div>
       <div className="navbar-right">
-        <a>Lorem</a>
-        <a>Ipsum</a>
+        <a>Contact Us</a>
+       
         <button onClick={logout}>Logout</button>
       </div>
     </div>
