@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const StudentCard = props => {
     useEffect(() => {
       console.log('STUDENT CARD props: ', props)
-        props.getStudentById(props.match.params.id)
+        props.getStudentById(props.studentId)
     }, [])
 
     const panes = [
@@ -37,12 +37,13 @@ const StudentCard = props => {
     ]
 
     const goBack = () => {
-        console.log("props", props)
-        if(!props.isEditing){
-            props.history.goBack();
-        } else {
-            props.toggleEditComponent()
-        }
+        props.setStudentView('studentTable')
+        // console.log("props", props)
+        // if(!props.isEditing){
+        //     props.history.goBack();
+        // } else {
+        //     props.toggleEditComponent()
+        // }
     }
 
     return (

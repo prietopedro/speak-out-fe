@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import StudentRegistrationForm from './StudentRegistrationForm';
 
-const StudentTable = props => {
+const StudentTable = (props) => {
   const [search, setSearch] = useState('');
   const [form, setForm] = useState(false);
  
@@ -106,7 +106,8 @@ const StudentTable = props => {
               onRow={(record, rowIndex) => {
                 return {
                   onClick: event => {
-                    props.history.push(`/students/${record.id}`);
+                    props.setStudentId(record.id)
+                    props.setStudentView('studentInfo')
                   }
                 };
               }}
