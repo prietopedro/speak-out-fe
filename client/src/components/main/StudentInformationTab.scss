@@ -1,7 +1,7 @@
 .grid-container {
     display: grid;
     height: 600px;
-    border: 2px solid black;
+    width:100%;
     background-color: #F7F7F8;
     opacity: 0.9;
     margin-top: 3%;
@@ -25,7 +25,6 @@
     margin-left: 10%;
 }
 .row5 {
-    /* border: 1px solid red; */
     grid-row: 6;
     margin-left: 10%;
 }

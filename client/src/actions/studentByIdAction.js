@@ -33,22 +33,20 @@ export const toggleEditComponent = () => dispatch => {
 }
 
 export const editStudentById = (id, state) => dispatch => {
-    console.log("this is our state", state);
     axios.put(`https://speak-out-be-staging.herokuapp.com/api/?table=students&where=id=${id}`, state)
-        .then(res => {
-            console.log("res for editStudentById", res.data)
-            dispatch({
-                type: EDIT_STUDENTBYID_SUCCESS,
-                payload: res.data
-            })
+    .then(res => {
+        console.log("res for editStudentById", res)
+        dispatch({
+            type: EDIT_STUDENTBYID_SUCCESS,
+            payload: res.data.tableData[0]
         })
-        .catch(err => {
-            dispatch({
-                type: EDIT_STUDENTBYID_FAILURE,
-                payload: err
-            })
-        })
-  
+    })
+    .catch(err => {
+       dispatch({
+        type: EDIT_STUDENTBYID_FAILURE,
+        payload: err.data
+       }) 
+    })
 }
 
 export const DELETE_STUDENTBYID_START = 'DELETE_STUDENTBYID_START';
@@ -57,17 +55,17 @@ export const DELETE_STUDENTBYID_FAILURE = 'DELETE_STUDENTBYID_FAILURE';
 
 export const deleteStudentById = id => dispatch => {
     dispatch({ type: DELETE_STUDENTBYID_START })
-    axios.delete(`https://speak-out-be-staging.herokuapp.com/api/?table=students&where=id=${id}`)
-        .then(res => {
-            dispatch({
-                type: DELETE_STUDENTBYID_SUCCESS,
-                payload: res.id
-            })
+    axios.put(`https://speak-out-be-staging.herokuapp.com/api/?table=students&where=id=${id}`)
+    .then(res => {
+        dispatch({
+            type: DELETE_STUDENTBYID_SUCCESS,
+            payload: res.id
         })
-        .catch(err => {
-            dispatch({
-                type: DELETE_STUDENTBYID_FAILURE,
-                payload: err.data
-            })
-        })
+    })
+    .catch(err => {
+       dispatch({
+        type: DELETE_STUDENTBYID_FAILURE,
+        payload: err.data
+       }) 
+    })
 }

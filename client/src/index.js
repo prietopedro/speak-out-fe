@@ -7,8 +7,10 @@ import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter } from "react-router-dom";
 import { reducer } from "./reducers/index";
 import 'antd/dist/antd.css';
-import 'semantic-ui-css/semantic.min.css';
-import 'antd/dist/antd.css';
+// import 'semantic-ui-css/semantic.min.css';
+
+import { logIn, logOut, loggedIn } from './actions/authenticationActions';
+
 
 import './index.scss';
 import App from './App';
@@ -21,6 +23,7 @@ ReactDOM.render(
     <Provider store={store} >
         <BrowserRouter>
             <App />
+            {/* <Container /> */}
         </BrowserRouter>
     </Provider>, 
     document.getElementById('root')
