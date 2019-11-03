@@ -16,8 +16,6 @@ const PanelWrap = styled.div`
 const TabsWrap = styled.div`
   width: 20%;
   height: 100vh;
-  // height: 700px;
-  // border: 1px solid black;
 
   background: #3D7AD7;
 `
@@ -25,8 +23,6 @@ const DisplayWrap = styled.div`
   width: 80%;
   height: 100vh;
   width:100%;
-  // height: 100px;
-  // border: 1px solid black;
 
 `
 
