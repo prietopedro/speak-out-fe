@@ -7,6 +7,7 @@ import { Tab, Button } from 'semantic-ui-react';
 import 'antd/dist/antd.css';
 import './studentCard.scss';
 import './StudentInformation.scss';
+import StudentHeader from './StudentHeader'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -38,7 +39,13 @@ const StudentCard = props => {
     const goBack = () => {
         console.log("props", props)
         if (!props.isEditing) {
-            props.history.goBack();
+            if(props.studentView) 
+            { props.setStudentView('student')}
+            else if(props.mainView)
+            {props.setMainView('main')}
+            else if(props.courseView)
+            {props.setCoursesView('courses')}
+            
         } else {
             props.toggleEditComponent()
         }
@@ -51,11 +58,7 @@ const StudentCard = props => {
                     <FontAwesomeIcon icon='angle-left' size='lg' color='gray' /> {''}
                     Back
                     </div>
-                <div className='student-title'>
-                    <h2>{props.studentById.first_name}</h2>
-                    <p>CPR: {props.studentById.cpr}</p>
-                    <p>Student ID: {props.studentById.id}</p>
-                </div>
+                <StudentHeader studentById={props.studentById}/>
                 <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
 
             </div>

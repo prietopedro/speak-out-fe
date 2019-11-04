@@ -4,16 +4,16 @@ import StudentCard from '../../../components/students/studentCard/StudentCard'
 
 export default function Students() {
 
-      const [studentView, setStudentView] = useState("studentList")
+      const [studentView, setStudentView] = useState("student")
       const [studentId, setStudentId] = useState('')
 
     return (
         <div>
-           {studentView=== "studentList" ?
+           {studentView=== "student" ?
         <StudentList studentView= {studentView} setStudentView={setStudentView} studentId={studentId} setStudentId={setStudentId}/>
         :
         studentView === "studentInfo" ?
-        <StudentCard studentId={studentId} setStudentView={setStudentView}/> : null}
+        <StudentCard studentId={studentId} setStudentView={setStudentView} studentView={studentView}/> : null}
         </div>
     )
 }

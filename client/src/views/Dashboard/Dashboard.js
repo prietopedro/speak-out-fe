@@ -43,7 +43,7 @@ function Dashboard() {
           />
         </TabsWrap>
         <DisplayWrap>
-          <Display navigation={navigation} />
+          <Display navigation={navigation} setNavigation={setNavigation} />
         </DisplayWrap>
       </PanelWrap>
     </div>
