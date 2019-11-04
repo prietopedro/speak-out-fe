@@ -1,36 +1,32 @@
-import React, {useState} from "react";
-import { Link } from "react-router-dom";
-import "./sidebar.scss";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import Tab from './Tab';
+import { Link } from 'react-router-dom';
 
-export default function SideBar() {
+const TabsWrap = styled.div`
+  margin-top: 55px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 25px;
+  font-size: 18px;
+  text-align: center;
+  position: sticky;
+`
 
-  const [activeTab, setActiveTab] = useState("students")
+function SideBar({tabs, navigation, setNavigation, tabColor, setTabColor}) {
+  const [selected, setSelected] = useState(navigation);
+  useEffect(() => {
+
+  }, [selected])
 
   return (
-    <div className="side-bar">
-      <div className="sidebar-links">
-
-
-        {/* Main View will display the current users information, if they are parents, it will display their children students */}
-      <div className={`sidebar-link ${activeTab === "main" && "active-tab"}`}  onClick={()  => setActiveTab("main")}>
-         Main
-        </div>
-
-
-        {/* Students view will only be necessary for Staff */}
-        <div className={`sidebar-link ${activeTab === "students" && "active-tab"}`}  onClick={()  => setActiveTab("students")}>
-          Students
-        </div>
-
-
-        <div className={`sidebar-link ${activeTab === "courses" && "active-tab"}`} onClick={()  => setActiveTab("courses")}>Courses</div>
-
-        {/* Staff view will only be necessary for Staff */}
-
-        <div className={`sidebar-link ${activeTab === "staff" && "active-tab"}`} onClick={()  => setActiveTab("staff")}>Staff</div>
-        <div className={`sidebar-link ${activeTab === "billing" && "active-tab"}`} onClick={()  => setActiveTab("billing")}>Billing</div>
-        
-      </div>
-    </div>
-  );
+      <TabsWrap>
+        {tabs.map((tab, index) => {
+          return <div style={{textDecoration: 'none', color: 'black'}} ><Tab tab={tab}  selected={selected} setSelected={setSelected} tabColor={tabColor} navigation={navigation} setTabColor={setTabColor} setNavigation={setNavigation} /></div>
+        })}
+      </TabsWrap>
+  )
 }
+
+
+export default SideBar;

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Switch, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { tabs } from "../../data";
-import TabList from "./TabList";
+import SideBar from "./SideBar";
 import Display from "./Display";
 import NavBar from "../../components/header/NavBar";
 
@@ -36,7 +34,7 @@ function Dashboard() {
       <NavBar />
       <PanelWrap>
         <TabsWrap>
-          <TabList
+          <SideBar
             tabs={tabs}
             navigation={navigation}
             setNavigation={setNavigation}

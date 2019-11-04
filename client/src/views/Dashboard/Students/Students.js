@@ -1,16 +1,16 @@
 import React, {useState} from 'react'
-import StudentTable from '../../../components/students/StudentTable'
+import StudentList from '../../../components/students/StudentList'
 import StudentCard from '../../../components/students/studentCard/StudentCard'
 
 export default function Students() {
 
-      const [studentView, setStudentView] = useState("studentTable")
+      const [studentView, setStudentView] = useState("studentList")
       const [studentId, setStudentId] = useState('')
 
     return (
         <div>
-           {studentView=== "studentTable" ?
-        <StudentTable studentView= {studentView} setStudentView={setStudentView} studentId={studentId} setStudentId={setStudentId}/>
+           {studentView=== "studentList" ?
+        <StudentList studentView= {studentView} setStudentView={setStudentView} studentId={studentId} setStudentId={setStudentId}/>
         :
         studentView === "studentInfo" ?
         <StudentCard studentId={studentId} setStudentView={setStudentView}/> : null}

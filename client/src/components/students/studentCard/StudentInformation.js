@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 // import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getStudentById, toggleEditComponent } from '../../actions';
+import { getStudentById, toggleEditComponent } from '../../../actions';
 import { withRouter, Link } from 'react-router-dom';
 import { Modal } from 'antd';
 import 'antd/dist/antd.css';
 import StudentForm from './StudentForm';
-import PlacementTest from '../placementTest/PlacementTest'
-import './StudentInformationTab.scss'
+import PlacementTest from '../../placementTest/PlacementTest'
+import './StudentInformation.scss'
 
 
 
@@ -16,7 +16,7 @@ const StudentInformationTab = props => {
     const [modalState, setModalState] = useState(false)
 
     useEffect(() => {
-        props.getStudentById(props.match.params.id)
+        props.getStudentById(props.studentId)
     }, [])
 
     const editStudentInfo = e => {

@@ -4,8 +4,6 @@ import { withRouter } from "react-router";
 import { connect } from 'react-redux';
 import { logIn, loggedIn } from '../actions/authenticationActions.js';
 
-import  StudentInformationCard from '../components/main/StudentInformationCard';
-
 function Login(props) {
   const [user, setUser] = useState({
     username: '',

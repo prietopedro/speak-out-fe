@@ -1,10 +1,10 @@
 import React from 'react'
-import StudentInformationCard from '../../../components/main/StudentInformationCard'
+import StudentCard from '../../../components/students/studentCard/StudentCard'
 
 export default function Main() {
     return (
         <div>
-            <StudentInformationCard />
+            <StudentCard />
             
         </div>
     )

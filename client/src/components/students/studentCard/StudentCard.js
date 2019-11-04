@@ -2,25 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getStudentById, toggleEditComponent } from '../../../actions';
 import { withRouter, Link } from 'react-router-dom';
-import StudentInformationTab from './StudentInformationTab';
-import { Tab } from 'semantic-ui-react';
+import StudentInformation from './StudentInformation';
+import { Tab, Button } from 'semantic-ui-react';
 import 'antd/dist/antd.css';
-import './StudentCard.css';
-import './StudentInformationTab.css';
+import './studentCard.scss';
+import './StudentInformation.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const StudentCard = props => {
     useEffect(() => {
-      console.log('STUDENT CARD props: ', props)
         props.getStudentById(props.studentId)
     }, [])
 
     const panes = [
         {
             menuItem: 'STUDENT INFORMATION',
-            render: () => <Tab.Pane attached={false}><StudentInformationTab /></Tab.Pane>,
+            render: () => <Tab.Pane attached={false}><StudentInformation /></Tab.Pane>,
         },
         {
             menuItem: 'ENROLLMENT',
@@ -37,33 +36,31 @@ const StudentCard = props => {
     ]
 
     const goBack = () => {
-        props.setStudentView('studentTable')
-        // console.log("props", props)
-        // if(!props.isEditing){
-        //     props.history.goBack();
-        // } else {
-        //     props.toggleEditComponent()
-        // }
+        console.log("props", props)
+        if (!props.isEditing) {
+            props.history.goBack();
+        } else {
+            props.toggleEditComponent()
+        }
     }
 
     return (
         <div>
             <div className="student-card">
-                <div className="back-button" onClick={goBack} style={{cursor:"pointer"}}
->
-                    <FontAwesomeIcon icon='angle-left' size='lg' color='gray'/> {''}
+                <div className="back-button" onClick={goBack} style={{ cursor: "pointer" }}>
+                    <FontAwesomeIcon icon='angle-left' size='lg' color='gray' /> {''}
                     Back
-                    
                     </div>
                 <div className='student-title'>
                     <h2>{props.studentById.first_name}</h2>
                     <p>CPR: {props.studentById.cpr}</p>
                     <p>Student ID: {props.studentById.id}</p>
                 </div>
-             <Tab menu={{ secondary: true, pointing: true }} panes={panes}  />
+                <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+
             </div>
         </div>
-        
+
     )
 }
 
@@ -82,3 +79,6 @@ export default withRouter(
         { getStudentById, toggleEditComponent }
     )(StudentCard)
 )
+
+
+

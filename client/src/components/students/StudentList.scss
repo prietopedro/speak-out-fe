@@ -6,25 +6,27 @@
   display: flex;
   justify-content: space-between;
   margin: 30px 15px 15px 15px;
+  .row-above-input {
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    background: #F6F8FB;
+    width: 400px;
+    height: 26px;
+  }
+  .create-new-entry {
+    display: flex;
+    align-items: center;
+  }
 }
 
-.row-above-input {
-  outline: none;
-  border-radius: 3px;
-  border: 1px solid transparent;
-  background: #F6F8FB;
-  width: 400px;
-  height: 26px;
-}
-
-.create-new-entry {
-  display: flex;
-  align-items: center;
-}
 
 
 
-.myControlClassName {
+
+
+
+/* .myControlClassName {
   position: relative;
   overflow: hidden;
   border: 1px solid transparent;
@@ -54,4 +56,4 @@
 }
 .react-calendar__navigation button {
   min-width: 0px;
-}
+} */

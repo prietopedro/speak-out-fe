@@ -44,4 +44,4 @@ export {
   FETCH_PLACEMENTTEST_START,
   FETCH_PLACEMENTTEST_SUCCESS,
   FETCH_PLACEMENTTEST_FAILURE,
-} from './pacementTestAction'
+} from './placementTestAction'
