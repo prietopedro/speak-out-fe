@@ -16,7 +16,66 @@ export {
 
 export {
   getStudentTable,
-  FETCH_STUDENT_DATA_START,
-  FETCH_STUDENT_DATA_SUCCESS,
-  FETCH_STUDENT_DATA_FAILURE
-} from './studentTableActions';
+  FETCH_STUDENTS_START,
+  FETCH_STUDENTS_SUCCESS,
+  FETCH_STUDENTS_FAILURE
+} from './adminDashboardActions/studentTableActions.js';
+
+export {
+  toggleEditComponent,
+  getStudentById,
+  FETCH_STUDENTBYID_START,
+  FETCH_STUDENTBYID_SUCCESS,
+  FETCH_STUDENTBYID_FAILURE,
+
+  editStudentById,
+  EDIT_STUDENTBYID_START,
+  EDIT_STUDENTBYID_SUCCESS,
+  EDIT_STUDENTBYID_FAILURE,
+  
+  deleteStudentById,
+  DELETE_STUDENTBYID_START,
+  DELETE_STUDENTBYID_SUCCESS,
+  DELETE_STUDENTBYID_FAILURE,
+} from './adminDashboardActions/studentByIdAction.js'
+
+export {
+  getParentTable,
+  FETCH_PARENTS_START,
+  FETCH_PARENTS_SUCCESS,
+  FETCH_PARENTS_FAILURE,
+
+  getParentById,
+  FETCH_PARENTBYID_START,
+  FETCH_PARENTBYID_SUCCESS,
+  FETCH_PARENTBYID_FAILURE,
+
+  toggleEditParent,
+  editParentById,
+  EDIT_PARENTBYID_START,
+  EDIT_PARENTBYID_SUCCESS,
+  EDIT_PARENTBYID_FAILURE,
+} from './adminDashboardActions/parentAction.js'
+
+export {
+  getStaffTable,
+  FETCH_STAFF_START,
+  FETCH_STAFF_SUCCESS,
+  FETCH_STAFF_FAILURE,
+
+  getStaffById,
+  FETCH_STAFFBYID_START,
+  FETCH_STAFFBYID_SUCCESS,
+  FETCH_STAFFBYID_FAILURE,
+  
+  editStaffById,
+  toggleStaffEditComponent,
+  EDIT_STAFFBYID_START,
+  EDIT_STAFFBYID_SUCCESS,
+  EDIT_STAFFBYID_FAILURE,
+
+  addStaff,
+  ADD_STAFF_START,
+  ADD_STAFF_SUCCESS,
+  ADD_STAFF_FAILURE
+} from './adminDashboardActions/staffActions.js';
