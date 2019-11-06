@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ContactUs() {
+function AgeGroups() {
 
   return (
     <div>
@@ -9,4 +9,4 @@ function ContactUs() {
   )
 }
 
-export default ContactUs;
+export default AgeGroups;
