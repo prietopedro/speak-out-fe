@@ -43,9 +43,13 @@ export const authenticationReducer = (state = initialState, action) => {
     case LOGIN_SUCCESS:
       return {
         ...state,
+        login: {
+          isLoading: false,
+          error: null
+        },
         user: {
           authenticated: true,
-          username: 'username', //update the be login endpoint to return username
+          username: action.payload.username, //update the be login endpoint to return username
         }
       }
     case LOGIN_FAILURE:
@@ -53,7 +57,7 @@ export const authenticationReducer = (state = initialState, action) => {
         ...state,
         logIn: {
           isLoading: false,
-          error: 'Error' //update the be endpoint to return an error
+          error: action.payload //update the be endpoint to return an error
         }
       };
     case LOGOUT_START:
