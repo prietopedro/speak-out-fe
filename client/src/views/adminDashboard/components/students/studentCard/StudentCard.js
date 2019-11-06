@@ -3,31 +3,29 @@ import { connect } from 'react-redux';
 import { getStudentById, toggleEditComponent } from '../../../../../actions';
 import { withRouter, Link } from 'react-router-dom';
 import StudentInformationTab from './StudentInformationTab';
+import StudentCoursesTab from './StudentCoursesTab';
 import { Tab } from 'semantic-ui-react';
+import { Header, Image, Icon } from 'semantic-ui-react'
+
 import 'antd/dist/antd.css';
-import './StudentCard.css';
-import './StudentInformationTab.css';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import '../../mainStyle/mainCard.scss'
 
 const StudentCard = props => {
     useEffect(() => {
-      console.log('STUDENT CARD props: ', props)
-        props.getStudentById(props.match.params.id)
+        props.getStudentById(props.studentID)
     }, [])
 
     const panes = [
         {
             menuItem: 'STUDENT INFORMATION',
-            render: () => <Tab.Pane attached={false}><StudentInformationTab /></Tab.Pane>,
+            render: () => <Tab.Pane attached={false}><StudentInformationTab studentID={props.studentID} /></Tab.Pane>,
         },
         {
-            menuItem: 'ENROLLMENT',
-            render: () => <Tab.Pane attached={false}>Tab 2 Content</Tab.Pane>,
+            menuItem: 'COURSES',
+            render: () => <Tab.Pane attached={false}>{<StudentCoursesTab />}</Tab.Pane>,
         },
         {
-            menuItem: 'ATTENDANCE',
+            menuItem: 'PROGRESS',
             render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane>,
         },
         {
@@ -37,32 +35,39 @@ const StudentCard = props => {
     ]
 
     const goBack = () => {
-        console.log("props", props)
-        if(!props.isEditing){
-            props.history.goBack();
-        } else {
+        if (props.studentView === 'studentCardView') {
+            props.setStudentView('studentTableView')
+        }
+        if (props.isEditing) {
             props.toggleEditComponent()
+            props.setStudentView('studentCardView')
         }
     }
 
     return (
         <div>
-            <div className="student-card">
-                <div className="back-button" onClick={goBack} style={{cursor:"pointer"}}
->
-                    <FontAwesomeIcon icon='angle-left' size='lg' color='gray'/> {''}
+                <div className="back-button" onClick={goBack} style={{ cursor: "pointer", width: "10%" }}>
+                    <Icon name='angle left' />
                     Back
-                    
                     </div>
-                <div className='student-title'>
-                    <h2>{props.studentById.first_name}</h2>
-                    <p>CPR: {props.studentById.cpr}</p>
-                    <p>Student ID: {props.studentById.id}</p>
+                <div className='card-title'>
+
+                    <Image src='https://react.semantic-ui.com/images/wireframe/square-image.png' circular size='small' />
+
+                    <Header as='h2'>
+                        {props.studentById.first_name, props.studentById.additional_names}
+                        <div className="headerDiv">
+                            <div>
+                                <div className="headerSeparateDiv">CPR # {props.studentById.cpr}</div>
+                                <div className="headerSeparateDiv">STUDENT ID {props.studentById.id}</div>
+                            </div>
+                        </div>
+
+                    </Header>
                 </div>
-             <Tab menu={{ secondary: true, pointing: true }} panes={panes}  />
-            </div>
+                <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
         </div>
-        
+
     )
 }
 

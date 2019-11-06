@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from './header/NavBar';
-import Display from './main/Display';
 
-function Index() {
+function LandingPage() {
   const [navigation, setNavigation] = useState('');
   const [selected, setSelected] = useState(false);
   const [textDecoration, setTextDecoration] = useState('none');
@@ -10,10 +9,9 @@ function Index() {
 
   return (
     <div>
-      <NavBar setNavigation={setNavigation} selected={selected} setSelected={setSelected} textDecoration={textDecoration} textDecorationColor={textDecorationColor}/>
-      <Display navigation={navigation} />
+      <NavBar setNavigation={setNavigation} selected={selected} setSelected={setSelected} textDecoration={textDecoration} textDecorationColor={textDecorationColor} />
     </div>
   )
 }
 
-export default Index;
+export default LandingPage;

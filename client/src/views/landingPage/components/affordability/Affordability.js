@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CourseStructure() {
+function Affordability() {
 
   return (
     <div>
@@ -9,4 +9,4 @@ function CourseStructure() {
   )
 }
 
-export default CourseStructure;
+export default Affordability;

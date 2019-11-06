@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AboutUs() {
+function Special() {
 
   return (
     <div>
@@ -9,4 +9,4 @@ function AboutUs() {
   )
 }
 
-export default AboutUs;
+export default Special;
