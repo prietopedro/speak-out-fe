@@ -35,8 +35,13 @@ function Register() {
             <tr style={{textAlign: 'left', color: 'green'}}>
             options for the student placement test(s). 
             </tr>
-            </table>     
-
+            </table>
+            <br></br>     
+<button style={{width: '40px', height: '40px', position: 'relative', left: -470, backgroundColor: '#C73642', borderRadius: '50%', color: 'yellow'}}>✔</button>
+<div style={{width: '300px', position: 'relative',top: -16, left: 220, border: '1px solid #C73642', transform: 'matrix(1, 0, 0, 1, 0, 0)'}}></div>
+<button style={{width: '40px', height: '40px', position: 'relative', top: -40, left: -140, backgroundColor: '#FFFFFF', borderRadius: '50%', color: 'yellow', borderColor: '#C73642'}}></button>
+<div style={{width: '300px', position: 'relative',top: -60, left: 556, border: '1px solid #C73642', transform: 'matrix(1, 0, 0, 1, 0, 0)'}}></div>
+<button style={{width: '40px', height: '40px', position: 'relative', top: -86, left: 200, backgroundColor: '#FFFFFF', borderRadius: '50%', color: 'yellow', borderColor: '#C73642'}}></button>
 
 
     </div>
