@@ -75,7 +75,7 @@ function Register(props) {
             <h4>2. Enter student information</h4>
             </tr>
             <tr style={{textAlign: 'left'}}>
-            <h4>3. Review & Submit Registration</h4><td style={{position: 'relative', left: 270}}><button style={{borderColor: 'red', color: 'red', padding: 'red'}}>Schedule Appointment</button></td>
+            <h4>3. Review & Submit Registration</h4><td style={{position: 'relative', left: 270}}><button style={{borderColor: '#C73642', color: '#C73642', padding: '#C73642'}}>Schedule Appointment</button></td>
             </tr>
             <br></br>
             <tr style={{textAlign: 'left'}}>
@@ -176,15 +176,15 @@ function Register(props) {
               value={user.phone}
             />
             </div>
-            <span style={{ textDecoration: "underline", cursor: "pointer" }} onClick={() => { setModal(true) }}>Forgot password?</span>
-            <button type="submit">Sign in</button>
+            <span style={{ textDecoration: "underline", cursor: "pointer" }} onClick={() => { setModal(true) }}></span>
+            <button style={{position: 'relative', top: 0, left: 370, borderColor: '#C73642', color: '#C73642', padding: '#C73642'}} type="submit">Next Student Information</button>
           </fieldset>
         </form>
         {
           modal ?
             <form onSubmit={handleEmailSubmit}>
               <input type="email" name="email" placeholder="Email address" onChange={handleEmailChange} value={email} />
-              <button>Submit</button>
+              <button style={{position: 'relative', top: 0, left: 370, borderColor: '#C73642', color: '#C73642', padding: '#C73642'}}>Submit</button>
             </form> : null
         }
 
