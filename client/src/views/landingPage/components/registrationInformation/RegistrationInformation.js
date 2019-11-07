@@ -1,10 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 function RegistrationInformation() {
 
   return (
     <div>
-      Registration Information
+           <Link to={`/registration/`}>Registration Information</Link>
+ 
+      Registration Informationxx
     </div>
   )
 }
