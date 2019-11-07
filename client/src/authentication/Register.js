@@ -13,10 +13,11 @@ function Register() {
             </tr>
             <tr style={{textAlign: "left"}}>
            <h4> How to Register with Speak Out</h4><td style={{position: 'relative', left: 250}}>Address</td><td style={{position: 'relative', left: 253}}> Rd No 3949, Bani Jamra, Bahrain</td><td style={{position: 'relative', top: 20, left: 50}}>6F66+65 Bani Jamra, Bahrain</td>
+           <td style={{position: 'relative', top: 40, left: -294}}>Telephone</td><td style={{position: 'relative', top: 40, left: -198}}>+973 3561 7635</td>
             </tr>
             <br></br>
             <tr style={{textAlign: 'left'}}>
-            <h4>1. Enter your information</h4><td style={{position: 'relative', left: 250}}>Telephone</td><td style={{position: 'relative', left: 253}}>+973 3561 7635</td>
+            <h4>1. Enter your information</h4>
             </tr>
             <tr style={{textAlign: 'left'}}>
             <h4>2. Enter student information</h4>
