@@ -1,7 +1,59 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-function Register() {
-   
+function Register(props) {
+        const [user, setUser] = useState({
+          username: '',
+          password: '',
+          confirmpassword: '',
+          fathername: '',
+          mothername: '',
+          relationship: '',
+          email: '',
+          phone: ''
+        });
+      
+        const [formValid, setFormValid] = useState(true);
+        const [modal, setModal] = useState(false);
+      
+        const [email, setEmail] = useState('');
+      
+      
+        useEffect(() => {
+          console.log('LOGIN props: ', props)
+        }, [])
+      
+        const handleChange = e => {
+          setUser({
+            ...user, [e.target.name]: e.target.value,
+          });
+          e.target.focus()
+        };
+        
+        const handleSubmit = (e) => {
+          e.preventDefault();
+          if (user.username.length && user.password.length) {
+            props.logIn(user, props.history);
+            
+            setUser({
+              username: '',
+              password: ''
+            });
+          } else {
+            setFormValid(false)
+          }
+        };
+        
+        const handleEmailChange = e => {
+          setEmail(e.target.value)
+        }
+        
+        const handleEmailSubmit = e => {
+          e.preventDefault();
+          // Add logic to communicate with backend to send email
+          setEmail('');
+          setModal(false);
+        }
+         
     return (
         <div>
 <table style={{marginTop: '100px', marginLeft: '100px'}}>        
@@ -42,9 +94,101 @@ function Register() {
 <button style={{width: '40px', height: '40px', position: 'relative', top: -40, left: -146, backgroundColor: '#FFFFFF', borderRadius: '50%', color: 'yellow', borderColor: '#C73642'}}></button>
 <div style={{width: '300px', position: 'relative',top: -60, left: 560, border: '1px solid #C73642', transform: 'matrix(1, 0, 0, 1, 0, 0)'}}></div>
 <button style={{width: '40px', height: '40px', position: 'relative', top: -84, left: 192, backgroundColor: '#FFFFFF', borderRadius: '50%', color: 'yellow', borderColor: '#C73642'}}></button>
-<div style={{position: 'relative', top: -90, left: -470}}>Your Information</div>
-<div style={{position: 'relative', top: -106, left: -140}}>Student Information</div>
-<div style={{position: 'relative', top: -128, left: 190}}>Submit Registration</div>
+<div style={{position: 'relative', top: -90, left: -470, fontSize: '10px'}}>Your Information</div>
+<div style={{position: 'relative', top: -106, left: -140, fontSize: '10px'}}>Student Information</div>
+<div style={{position: 'relative', top: -128, left: 190, fontSize: '10px'}}>Submit Registration</div>
+<div style={{position: 'relative', top: -90, left: -470, color: 'green'}}>Your Information</div>
+
+<div>
+        <form onSubmit={handleSubmit} method="POST">
+          <fieldset>
+          <label htmlFor="username">User</label>
+            <input
+              style={{ marginBottom: "15px" }}
+              type="text"
+              name="username"
+              placeholder="Username"
+              onChange={handleChange}
+              value={user.username}
+            />
+            <label htmlFor="fathername">Father Name</label>
+            <input
+              style={{ marginBottom: "15px" }}
+              className="input-class"
+              type="text"
+              name="Fathername"
+              onChange={handleChange}
+              value={user.fathername}
+            />
+            <label htmlFor="mothername">Mother Name</label>
+            <input
+              style={{ marginBottom: "15px" }}
+              type="text"
+              name="mothername"
+              placeholder="Mothername"
+              onChange={handleChange}
+              value={user.mothername}
+            />
+            <label htmlFor="relationship">Relationship</label>
+            <input
+              style={{ marginBottom: "15px" }}
+              type="text"
+              name="relationship"
+              placeholder="Relationship"
+              onChange={handleChange}
+              value={user.relationship}
+            />
+            <div>
+            <label htmlFor="email">Email</label>
+            <input
+              style={{ marginBottom: "15px" }}
+              type="email"
+              name="email"
+              placeholder="Email"
+              onChange={handleChange}
+              value={user.email}
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              style={{ marginBottom: "15px" }}
+              className="input-class"
+              type="password"
+              name="password"
+              onChange={handleChange}
+              value={user.password}
+            />
+            <label htmlFor="confirmpassword">ConfirmPassword</label>
+            <input
+              style={{ marginBottom: "15px" }}
+              className="input-class"
+              type="password"
+              name="confirmpassword"
+              onChange={handleChange}
+              value={user.confirmpassword}
+            />
+            <label htmlFor="phone">Telephone</label>
+            <input
+              style={{ marginBottom: "15px" }}
+              className="input-class"
+              type="text"
+              name="phone"
+              onChange={handleChange}
+              value={user.phone}
+            />
+            </div>
+            <span style={{ textDecoration: "underline", cursor: "pointer" }} onClick={() => { setModal(true) }}>Forgot password?</span>
+            <button type="submit">Sign in</button>
+          </fieldset>
+        </form>
+        {
+          modal ?
+            <form onSubmit={handleEmailSubmit}>
+              <input type="email" name="email" placeholder="Email address" onChange={handleEmailChange} value={email} />
+              <button>Submit</button>
+            </form> : null
+        }
+
+      </div>
 
     </div>
     )
