@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import 'register.scss';
 
 function Register(props) {
         const [user, setUser] = useState({
@@ -56,14 +57,14 @@ function Register(props) {
          
     return (
         <div>
-<table style={{marginTop: '100px', marginLeft: '100px'}}>        
-    <tr style={{textAlign: 'left'}}>
+<table className='top'>        
+    <tr className='alignleft'>
            <td><h1> Register With Speak Out</h1></td><td style={{position: 'relative', left: 200}}><h4>Register In Person</h4></td>
             </tr>
-            <tr style={{textAlign: "left"}}>
+            <tr className='alignleft'>
             <br></br>
             </tr>
-            <tr style={{textAlign: "left"}}>
+            <tr className='alignleft'>
            <h4> How to Register with Speak Out</h4><td style={{position: 'relative', left: 250}}>Address</td><td style={{position: 'relative', left: 253}}> Rd No 3949, Bani Jamra, Bahrain</td><td style={{position: 'relative', top: 20, left: 50}}>6F66+65 Bani Jamra, Bahrain</td>
            <td style={{position: 'relative', top: 40, left: -294}}>Telephone</td><td style={{position: 'relative', top: 40, left: -198}}>+973 3561 7635</td>
             </tr>
