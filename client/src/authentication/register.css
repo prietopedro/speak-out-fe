@@ -1,0 +1,26 @@
+hr {
+	width: calc(100% + 20px);
+	margin-left: -10px;
+	border: none;
+	border-top-width: 1px;
+	border-top-style: solid;
+}
+.top {
+    margin-top: 100px;
+     margin-left: 100px
+}
+.alignleft {
+    text-align: left;
+}
+.left200 {
+	position: relative;
+	 left: 200;
+}
+.left250 {
+	position: relative;
+	 left: 250;
+}
+.left253 {
+	position: relative;
+	 left: 253;
+}
