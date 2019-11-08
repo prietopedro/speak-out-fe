@@ -12,42 +12,49 @@
 }
 .leftperson {
 	position: relative;
-	 left: 8%;
+	 left: 0%;
+	 top: -30px;
 }
 .leftaddress {
 	position: relative;
-	 top: -40px;
-	 left: 110%;
+	 top: 10px;
+	 left: 18%;
 }
 .leftroad {
 	position: relative;
-	top: -40px;
-	 left: 114%;
+	top: -7px;
+	 left: 38%;
 }
 .leftbahrain {
-	top: -20px;
+	top: -10px;
 	position: relative;
-	 left: 88%;
+	 left: 38%;
 }
 .leftphone {
 	position: relative;
-	 top: 20px;
-	  left: 53%;
+	 top: -4px;
+	  left: 18%;
   }
   .leftphonenum {
 	position: relative;
-	 top: 20px;
-	  left: 55%;
+	 top: -22px;
+	  left: 38%;
   }
   .leftschedule {
 	position: relative;
-	 top: 50px;
-	  left: 40%;
+	 top: -10px;
+	  left: 50%;
   }
   .persondiv {
-	border-color: #C73642;
+	border: 1px solid #C73642;
 	position: relative;
-	left: 0%;
+	left: 45%;
+	top: -80px;
+	width: 400px;
+}
+.instruct {
+	position: relative;
+	top: -140px;
 }
   .buttonred {
 	border-color: #C73642;
@@ -59,6 +66,7 @@
 	height: 40px;
 	position: relative;
 	left: -31%;
+	top: -150px;
 	background-color: #C73642;
 	border-radius: 50%;
 	color: yellow;
@@ -67,7 +75,7 @@
 	width: 40px;
 	height: 40px;
 	position: relative;
-	top: 10px;
+	top: -136px;
 	left: -9%;
 	background-color: #FFFFFF;
 	border-radius: 50%;
@@ -78,7 +86,7 @@
 	width: 40px;
 	height: 40px;
 	position: relative;
-	top: 9px;
+	top: -136px;
 	left: 12%;
 	background-color: #FFFFFF;
 	border-radius: 50%;
@@ -88,34 +96,52 @@
 .line1 {
 	width: 54%;
 	position: relative;
-	top: 34px;
+	top: -114px;
 	left: 14%;
-	border: 1px solid #C73642;
-	transform: matrix(1, 0, 0, 1, 0, 0);
-}
-.line2 {
-	width: 20%;
-	position: relative;
-	top: -60px;
-	left: 43%;
 	border: 1px solid #C73642;
 	transform: matrix(1, 0, 0, 1, 0, 0);
 }
 .buttonlabel1 {
 	position: relative;
-	top: 0px;
+	top: -150px;
 	left: -34%;
 	font-size: 10px;
 }
 .buttonlabel2 {
 	position: relative;
-	top: -20px;
+	top: -170px;
 	left: -9%;
 	font-size: 10px;
 }
 .buttonlabel3 {
 	position: relative;
-	top: -40px;
+	top: -190px;
 	left: 15%;
 	font-size: 10px;
+}
+.your {
+	position: relative;
+	top: -150px;
+	left: -30%;
+	color: green;	
+}
+.formdata {
+	position: relative;
+	top: -130px;
+}
+
+profile-pic {
+  float: left;
+  width: 250px;
+}
+@media screen and (max-width: 320px) {
+  .profile-pic {
+    width: 100px;
+    float: none;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .profile-pic {
+    float: right;
+  }
 }

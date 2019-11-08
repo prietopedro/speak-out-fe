@@ -57,46 +57,48 @@ function Register(props) {
          
     return (
         <div>
-<table className='top'>        
-    <tr>
-           <td className='alignleft'><h1> Register With Speak Out</h1></td>
-           <td className='leftperson'><h4>Register In Person</h4></td>
-            </tr>
-            <tr>
+<div className='top'>        
+    <div>
+           <div className='alignleft'><h1> Register With Speak Out</h1></div>
+           <div className='leftperson'><h4>Register In Person</h4></div>
+            </div>
+            <div>
             <br></br>
-            </tr>
-            <tr className='alignleft'>
+            </div>
+            <div className='alignleft'>
            <h4> How to Register with Speak Out</h4>
            <div className='persondiv'>
-           <td className='leftaddress'>Address</td>
-           <td className='leftroad'> Rd No 3949, Bani Jamra, Bahrain</td>
-           <td className='leftbahrain'>6F66+65 Bani Jamra, Bahrain</td>
-           <td className='leftphone'>Telephone</td>
-           <td className='leftphonenum'>+973 3561 7635</td>
-           <td className='leftschedule'><button className='buttonred'>Schedule Appointment</button></td>
+           <div className='leftaddress'>Address</div>
+           <div className='leftroad'> Rd No 3949, Bani Jamra, Bahrain</div>
+           <div className='leftbahrain'>6F66+65 Bani Jamra, Bahrain</div>
+           <div className='leftphone'>Telephone</div>
+           <div className='leftphonenum'>+973 3561 7635</div>
+           <div className='leftschedule'><button className='buttonred'>Schedule Appointment</button></div>
            </div>
-           </tr>
+           </div>
             <br></br>
-            <tr className='alignleft'>
+            <div className ='instruct'>
+            <div className='alignleft'>
             <h4>1. Enter your information</h4>
-            </tr>
-            <tr className='alignleft'>
+            </div>
+            <div className='alignleft'>
             <h4>2. Enter student information</h4>
-            </tr>
-            <tr className='alignleft'>
+            </div>
+            <div className='alignleft'>
             <h4>3. Review & Submit Registration</h4>
-            </tr>
+            </div>
             <br></br>
-            <tr className='alignleft'>
+            <div className='alignleft'>
             <p></p>
-            </tr>
-            <tr className='alignleftgreen'>
+            </div>
+            <div className='alignleftgreen'>
             After submitting registration, you will choose
-            </tr>
-            <tr className='alignleftgreen'>
+            </div>
+            <div className='alignleftgreen'>
             options for the student placement test(s). 
-            </tr>
-            </table>
+            </div>
+            </div>
+            </div>
             <br></br>     
 <div className='line1'></div>
 <button className='button1'>✔</button>
@@ -105,9 +107,9 @@ function Register(props) {
 <div className='buttonlabel1'>Your Information</div>
 <div className='buttonlabel2'>Student Information</div>
 <div className='buttonlabel3'>Submit Registration</div>
-<div style={{position: 'relative', top: -40, left: -470, color: 'green'}}>Your Information</div>
+<div className='your'>Your Information</div>
 
-<div>
+<div className='formdata'>
         <form onSubmit={handleSubmit} method="POST">
           <fieldset>
           <label htmlFor="username">User</label>
