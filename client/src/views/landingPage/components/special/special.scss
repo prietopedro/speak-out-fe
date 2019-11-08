@@ -4,6 +4,10 @@
 section.special {
     padding: 4% 0;
 
+    @media #{$tablet-small} {
+        padding: 8% 0;
+    }
+
     .flex {
         display: flex;
         justify-content: space-around;
@@ -15,6 +19,12 @@ section.special {
 
         > div {
             max-width: 450px;
+
+            &:first-child {
+                @media #{$tablet-small} {
+                    margin-bottom: 50px;
+                }
+            }
         }
     }
 
@@ -32,6 +42,10 @@ section.special {
         display: inline-block;
         padding: 0 0 10px;
         border-bottom: 2px solid $main-red;
+
+        @media #{$tablet-small} {
+            font-size: 2.6rem;
+        }
     }
 
     h3 {
@@ -39,12 +53,20 @@ section.special {
         font-family: $font-family;
         font-weight: 500;
         font-size: 2.85rem;
+
+        @media #{$tablet-small} {
+            font-size: 2rem;
+        }
     }
 
     p {
         color: $medium-blue;
         font-size: 1.7rem;
         font-family: $font-family;
+
+        @media #{$tablet-small} {
+            font-size: 1.2rem;
+        }
     }
 
     img {

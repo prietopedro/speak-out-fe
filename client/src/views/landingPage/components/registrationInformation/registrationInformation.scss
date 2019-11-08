@@ -2,10 +2,15 @@
 @import "../../../../styles/_mixins";
 
 section.registration {
-    padding: 4% 0;
+    padding: 68px 0;
     background-color: $light-grey;
     height: 420px;
     margin-bottom: 250px;
+
+    @media #{$tablet-small} {
+        padding: 40px 0;
+        height: 385px;
+    }
 
     h2 {
         color: $dark-grey;
@@ -13,11 +18,20 @@ section.registration {
         font-weight: 400;
         font-size: 3.4rem;
         margin-bottom: 35px;
+
+        @media #{$tablet-small} {
+            font-size: 3rem;
+        }
     }
 
     img {
         position: relative;
         margin-top: 71px;
+
+        @media #{$tablet-small} {
+            max-width: 450px;
+            margin-top: 85px;
+        }
     }
 
     button {

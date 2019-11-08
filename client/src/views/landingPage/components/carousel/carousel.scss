@@ -3,6 +3,10 @@
 
 section.carousel {
     padding: 4% 0;
+
+    @media #{$tablet-small} {
+        padding: 8% 2%;
+    }
     
     .wrap {
         max-width: 1400px;
@@ -22,5 +26,9 @@ section.carousel {
         display: inline-block;
         padding: 0 0 10px;
         border-bottom: 2px solid $main-red;
+
+        @media #{$tablet-small} {
+            font-size: 2.6rem;
+        }
     }
 }
