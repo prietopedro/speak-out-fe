@@ -8,7 +8,6 @@ function Register(props) {
           confirmpassword: '',
           fathername: '',
           mothername: '',
-          relationship: '',
           email: '',
           phone: ''
         });
@@ -112,6 +111,7 @@ function Register(props) {
 <div className='formdata'>
         <form onSubmit={handleSubmit} method="POST">
           <fieldset>
+            <div className='alignleft0'>
           <label htmlFor="username">User</label>
             <input
               style={{ marginBottom: "15px" }}
@@ -121,6 +121,8 @@ function Register(props) {
               onChange={handleChange}
               value={user.username}
             />
+            </div>
+            <div className='alignleft0'>
             <label htmlFor="fathername">Father Name</label>
             <input
               style={{ marginBottom: "15px" }}
@@ -130,6 +132,8 @@ function Register(props) {
               onChange={handleChange}
               value={user.fathername}
             />
+            </div>
+            <div className='alignleft0'>
             <label htmlFor="mothername">Mother Name</label>
             <input
               style={{ marginBottom: "15px" }}
@@ -139,16 +143,9 @@ function Register(props) {
               onChange={handleChange}
               value={user.mothername}
             />
-            <label htmlFor="relationship">Relationship</label>
-            <input
-              style={{ marginBottom: "15px" }}
-              type="text"
-              name="relationship"
-              placeholder="Relationship"
-              onChange={handleChange}
-              value={user.relationship}
-            />
+            </div>
             <div>
+            <div className='alignleft0'>
             <label htmlFor="email">Email</label>
             <input
               style={{ marginBottom: "15px" }}
@@ -158,6 +155,8 @@ function Register(props) {
               onChange={handleChange}
               value={user.email}
             />
+            </div>
+            <div className='alignleft0'>
             <label htmlFor="password">Password</label>
             <input
               style={{ marginBottom: "15px" }}
@@ -167,6 +166,8 @@ function Register(props) {
               onChange={handleChange}
               value={user.password}
             />
+            </div>
+            <div className='alignleft0'>
             <label htmlFor="confirmpassword">ConfirmPassword</label>
             <input
               style={{ marginBottom: "15px" }}
@@ -176,6 +177,8 @@ function Register(props) {
               onChange={handleChange}
               value={user.confirmpassword}
             />
+            </div>
+            <div className='alignleft0'>
             <label htmlFor="phone">Telephone</label>
             <input
               style={{ marginBottom: "15px" }}
@@ -186,8 +189,9 @@ function Register(props) {
               value={user.phone}
             />
             </div>
+            </div>
             <span style={{ textDecoration: "underline", cursor: "pointer" }} onClick={() => { setModal(true) }}></span>
-            <button style={{position: 'relative', top: 0, left: 370, borderColor: '#C73642', color: '#C73642', padding: '#C73642'}} type="submit">Next Student Information</button>
+            <button style={{borderColor: '#C73642', color: '#C73642', padding: '#C73642'}} type="submit">Next Student Information</button>
           </fieldset>
         </form>
         {
