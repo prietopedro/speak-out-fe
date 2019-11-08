@@ -1,0 +1,26 @@
+@import "../../../../styles/_variables";
+@import "../../../../styles/_mixins";
+
+section.carousel {
+    padding: 4% 0;
+    
+    .wrap {
+        max-width: 1400px;
+        margin: 0 auto;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    h2 {
+        color: $medium-blue;
+        font-family: $font-family;
+        font-weight: 400;
+        font-size: 3.4rem;
+        margin-bottom: 50px;
+        display: inline-block;
+        padding: 0 0 10px;
+        border-bottom: 2px solid $main-red;
+    }
+}

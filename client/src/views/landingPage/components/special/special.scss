@@ -1,0 +1,53 @@
+@import "../../../../styles/_variables";
+@import "../../../../styles/_mixins";
+
+section.special {
+    padding: 4% 0;
+
+    .flex {
+        display: flex;
+        justify-content: space-around;
+
+        @media #{$tablet-small} {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        > div {
+            max-width: 450px;
+        }
+    }
+
+    .wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    h2 {
+        color: $medium-blue;
+        font-family: $font-family;
+        font-weight: 400;
+        font-size: 3.4rem;
+        margin-bottom: 50px;
+        display: inline-block;
+        padding: 0 0 10px;
+        border-bottom: 2px solid $main-red;
+    }
+
+    h3 {
+        color: $medium-blue;
+        font-family: $font-family;
+        font-weight: 500;
+        font-size: 2.85rem;
+    }
+
+    p {
+        color: $medium-blue;
+        font-size: 1.7rem;
+        font-family: $font-family;
+    }
+
+    img {
+        border-radius: 10%;
+    }
+}

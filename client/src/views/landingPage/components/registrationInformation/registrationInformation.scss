@@ -1,0 +1,38 @@
+@import "../../../../styles/_variables";
+@import "../../../../styles/_mixins";
+
+section.registration {
+    padding: 4% 0;
+    background-color: $light-grey;
+    height: 420px;
+    margin-bottom: 250px;
+
+    h2 {
+        color: $dark-grey;
+        font-family: $font-family;
+        font-weight: 400;
+        font-size: 3.4rem;
+        margin-bottom: 35px;
+    }
+
+    img {
+        position: relative;
+        margin-top: 71px;
+    }
+
+    button {
+        font-family: $font-family;
+        font-size: 1.3rem;
+        font-weight: 600;
+        border: none;
+        color: white;
+        background-color: #C73642;
+        padding: 18px;
+        margin-right: 20px;
+        border-radius: 7px;
+        display: block;
+        max-width: 420px;
+        width: 85%;
+        margin: 0 auto;
+    }
+}

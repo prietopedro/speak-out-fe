@@ -1,0 +1,59 @@
+@import "../../../../styles/_variables";
+@import "../../../../styles/_mixins";
+
+
+
+section.hero {
+    margin-top: 100px;
+    height: calc(100vh - 100px);
+    background: linear-gradient(rgba(8, 46, 62, 0.75) 10%, transparent 30%), url('../../../../assets/hero-image.jpg');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .wrap {
+        width: 90%;
+        height: 100%;
+        margin: 0 auto;
+        position: relative;
+
+        div.content-box {
+            text-align: left;
+            position: absolute;
+            right: 0;
+            top: 50%;
+
+            div.flex {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    }
+
+    h1 {
+        font-family: $font-family;
+        color: $fog;
+        font-size: 6.4rem;
+        font-weight: 500;;
+        text-align: left;
+        position: absolute;
+        top: 10%;
+    }
+
+    h2 {
+        font-family: $font-family;
+        color: #fff;
+        font-size: 3.4rem;
+    }
+
+    button {
+        font-family: $font-family;
+        color: white;
+        font-size: 1.3rem;
+        font-weight: 600;
+        border: none;
+        background-color: $deep-red;
+        padding: 17px 10%;
+        border-radius: 7px
+    }
+}

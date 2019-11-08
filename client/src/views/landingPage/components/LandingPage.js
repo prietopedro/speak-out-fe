@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from './header/NavBar';
+import Header from './header/Header';
+import Special from './special/Special';
+import Affordability from './affordability/Affordability';
+import AgeGroups from './ageGroups/AgeGroups';
+import Carousel from './carousel/Carousel';
+import RegistrationInformation from './registrationInformation/RegistrationInformation';
 
 function LandingPage() {
   const [navigation, setNavigation] = useState('');
@@ -8,9 +14,15 @@ function LandingPage() {
   const [textDecorationColor, setTextDecorationColor] = useState('transparent');
 
   return (
-    <div>
+    <>
       <NavBar setNavigation={setNavigation} selected={selected} setSelected={setSelected} textDecoration={textDecoration} textDecorationColor={textDecorationColor} />
-    </div>
+      <Header />
+      <Special />
+      <Affordability />
+      <AgeGroups />
+      <Carousel />
+      <RegistrationInformation />
+    </>
   )
 }
 
