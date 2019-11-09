@@ -12,14 +12,10 @@ function Register(props) {
           phone: ''
         });
       
-        const [formValid, setFormValid] = useState(true);
-        const [modal, setModal] = useState(false);
-      
-        const [email, setEmail] = useState('');
-      
+        const [formValid, setFormValid] = useState(true);      
       
         useEffect(() => {
-          console.log('LOGIN props: ', props)
+          console.log('Register props: ', props)
         }, [])
       
         const handleChange = e => {
@@ -31,7 +27,7 @@ function Register(props) {
         
         const handleSubmit = (e) => {
           e.preventDefault();
-          if (user.username.length && user.password.length) {
+          if (user.username.length && user.password.length && (user.password === user.confirmpassword)) {
             props.logIn(user, props.history);
             
             setUser({
@@ -42,17 +38,6 @@ function Register(props) {
             setFormValid(false)
           }
         };
-        
-        const handleEmailChange = e => {
-          setEmail(e.target.value)
-        }
-        
-        const handleEmailSubmit = e => {
-          e.preventDefault();
-          // Add logic to communicate with backend to send email
-          setEmail('');
-          setModal(false);
-        }
          
     return (
         <div>
@@ -126,9 +111,9 @@ function Register(props) {
             <label htmlFor="fathername">Father Name</label>
             <input
               style={{ marginBottom: "15px" }}
-              className="input-class"
               type="text"
-              name="Fathername"
+              name="fathername"
+              placeholder="Fathername"
               onChange={handleChange}
               value={user.fathername}
             />
@@ -190,17 +175,9 @@ function Register(props) {
             />
             </div>
             </div>
-            <span style={{ textDecoration: "underline", cursor: "pointer" }} onClick={() => { setModal(true) }}></span>
             <button style={{borderColor: '#C73642', color: '#C73642', padding: '#C73642'}} type="submit">Next Student Information</button>
           </fieldset>
         </form>
-        {
-          modal ?
-            <form onSubmit={handleEmailSubmit}>
-              <input type="email" name="email" placeholder="Email address" onChange={handleEmailChange} value={email} />
-              <button style={{position: 'relative', top: 0, left: 370, borderColor: '#C73642', color: '#C73642', padding: '#C73642'}}>Submit</button>
-            </form> : null
-        }
 
       </div>
 
