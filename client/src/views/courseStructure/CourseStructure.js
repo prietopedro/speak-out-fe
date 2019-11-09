@@ -13,7 +13,7 @@ function CourseStructure(props) {
         <header>
           <h1>Course Structure</h1>
           <div className="link-container">
-            <Link className="link" to="#">
+            <Link className="link" to="/kindergarten">
               Kindergarten
             </Link>
             <Link className="link" to="#">
