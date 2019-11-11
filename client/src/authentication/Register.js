@@ -148,6 +148,7 @@ function Register(props) {
               className="input-class"
               type="password"
               name="password"
+              placeholder="Password"
               onChange={handleChange}
               value={user.password}
             />
@@ -159,6 +160,7 @@ function Register(props) {
               className="input-class"
               type="password"
               name="confirmpassword"
+              placeholder="Password"
               onChange={handleChange}
               value={user.confirmpassword}
             />
@@ -170,6 +172,7 @@ function Register(props) {
               className="input-class"
               type="text"
               name="phone"
+              placeholder="Telephone"
               onChange={handleChange}
               value={user.phone}
             />
