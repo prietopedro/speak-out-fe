@@ -97,7 +97,7 @@ function Register(props) {
         <form onSubmit={handleSubmit} method="POST">
           <fieldset>
             <div className='alignleft0'>
-          <label htmlFor="username">________Username</label>
+          <label htmlFor="username">Username________</label>
             <input
               style={{ marginBottom: "15px" }}
               type="text"
@@ -108,7 +108,7 @@ function Register(props) {
             />
             </div>
             <div className='alignleft0'>
-            <label htmlFor="fathername">_____Father Name</label>
+            <label htmlFor="fathername">Father Name_____</label>
             <input
               style={{ marginBottom: "15px" }}
               type="text"
@@ -119,7 +119,7 @@ function Register(props) {
             />
             </div>
             <div className='alignleft0'>
-            <label htmlFor="mothername">____Mother Name</label>
+            <label htmlFor="mothername">Mother Name____</label>
             <input
               style={{ marginBottom: "15px" }}
               type="text"
@@ -131,7 +131,7 @@ function Register(props) {
             </div>
             <div>
             <div className='alignleft0'>
-            <label htmlFor="email">______________Email</label>
+            <label htmlFor="email">Email______________</label>
             <input
               style={{ marginBottom: "15px" }}
               type="email"
@@ -142,7 +142,7 @@ function Register(props) {
             />
             </div>
             <div className='alignleft0'>
-            <label htmlFor="password">_________Password</label>
+            <label htmlFor="password">Password_________</label>
             <input
               style={{ marginBottom: "15px" }}
               className="input-class"
@@ -164,7 +164,7 @@ function Register(props) {
             />
             </div>
             <div className='alignleft0'>
-            <label htmlFor="phone">________Telephone</label>
+            <label htmlFor="phone">Telephone________</label>
             <input
               style={{ marginBottom: "15px" }}
               className="input-class"
