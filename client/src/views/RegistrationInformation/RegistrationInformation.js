@@ -45,7 +45,7 @@ function RegistrationInformation(props) {
           <h3>Middle and Secondary</h3>
           <p>121.5 BHD: General Courses</p>
           <p>
-            Cost includes registration, books, stationary, and three sessions.
+            Cost includes registration, books, stationery, and three sessions.
           </p>
           <button>Register Now</button>
         </div>

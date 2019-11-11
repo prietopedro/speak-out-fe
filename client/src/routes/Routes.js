@@ -11,7 +11,7 @@ import CourseStructure from "../views/courseStructure/CourseStructure";
 import Kindergarten from "../views/courseStructure/Kindergarten";
 import Primary from "../views/courseStructure/Primary";
 import MiddleSecondary from "../views/courseStructure/MiddleSecondary";
-import RegistrationInformation from "../views/RegistrationInformation/RegistrationInformation";
+import RegistrationInformation from "../views/registrationInformation/RegistrationInformation";
 
 function Routes(props) {
   useEffect(() => {
