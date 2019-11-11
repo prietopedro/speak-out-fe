@@ -26,6 +26,18 @@ position: relative;
 left: 0px;
 }
 }
+.alignleft02 {
+	text-align: left;
+}
+
+@media screen and (max-width: 920px) {
+	.alignleft02 {
+	text-align: left;
+	font-size: 24px;
+position: relative;
+left: 0px;
+}
+}
 .alignleftgreen {
 	color: green;
 	text-align: left;

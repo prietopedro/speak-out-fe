@@ -43,7 +43,7 @@ function Register(props) {
         <div>
 <div className='top'>        
     <div>
-           <div className='alignleft'><h1> Register With Speak Out</h1></div>
+           <div><h1 className='alignleft02'> Register With Speak Out</h1></div>
            <div className='leftperson'><h4>Register In Person</h4></div>
             </div>
             <div>
