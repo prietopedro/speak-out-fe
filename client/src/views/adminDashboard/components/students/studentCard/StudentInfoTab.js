@@ -500,7 +500,7 @@ function StudentInfoTab(props) {
         <Label>School grade updated</Label>
         <Data>
           <Input 
-              style={{border: '1px solid transparent'}}
+              style={{border: `${edit ? '1px solid #dedbdb' : '1px solid transparent'}`}}
               type={disabled ? 'text' : student.schoolGradeUpdated ? 'text' : 'date'}
               name="schoolGradeUpdated"
               value={student.schoolGradeUpdated}
