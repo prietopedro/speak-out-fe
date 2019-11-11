@@ -10,6 +10,7 @@ import DashboardView from "../views";
 import CourseStructure from "../views/courseStructure/CourseStructure";
 import Kindergarten from "../views/courseStructure/Kindergarten";
 import Primary from "../views/courseStructure/Primary";
+import MiddleSecondary from "../views/courseStructure/MiddleSecondary";
 
 function Routes(props) {
   useEffect(() => {
@@ -28,6 +29,7 @@ function Routes(props) {
         <Route path="/course" render={() => <CourseStructure />} />
         <Route path="/kindergarten" render={() => <Kindergarten />} />
         <Route path="/primary" render={() => <Primary />} />
+        <Route path="/middle-secondary" render={() => <MiddleSecondary />} />
       </Switch>
     </div>
   );

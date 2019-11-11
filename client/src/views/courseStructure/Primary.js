@@ -16,7 +16,7 @@ function Primary(props) {
           <Link className="link red" to="#">
             Primary
           </Link>
-          <Link className="link" to="#">
+          <Link className="link" to="/middle-secondary">
             Middle and Secondary
           </Link>
         </div>
