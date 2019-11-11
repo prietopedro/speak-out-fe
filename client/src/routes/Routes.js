@@ -11,6 +11,7 @@ import CourseStructure from "../views/courseStructure/CourseStructure";
 import Kindergarten from "../views/courseStructure/Kindergarten";
 import Primary from "../views/courseStructure/Primary";
 import MiddleSecondary from "../views/courseStructure/MiddleSecondary";
+import RegistrationInformation from "../views/RegistrationInformation/RegistrationInformation";
 
 function Routes(props) {
   useEffect(() => {
@@ -30,6 +31,10 @@ function Routes(props) {
         <Route path="/kindergarten" render={() => <Kindergarten />} />
         <Route path="/primary" render={() => <Primary />} />
         <Route path="/middle-secondary" render={() => <MiddleSecondary />} />
+        <Route
+          path="/registration-information"
+          render={() => <RegistrationInformation />}
+        />
       </Switch>
     </div>
   );

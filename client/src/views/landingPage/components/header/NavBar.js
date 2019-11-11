@@ -33,6 +33,7 @@ function NavBar(props) {
   const handleRegistration = () => {
     props.setNavigation("registration");
     setSelected("registration");
+    props.history.push("/registration-information");
   };
 
   const handleAbout = () => {
