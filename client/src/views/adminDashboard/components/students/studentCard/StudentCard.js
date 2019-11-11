@@ -5,7 +5,6 @@ import { getStudentById, resetForm }
 import { withRouter } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './StudentCard.css';
-import './StudentInformationTab.css';
 import { studentCardTabs } from '../../../../../data';
 import DisplayContent from './DisplayContent';
 import styled from 'styled-components';

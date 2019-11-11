@@ -54,27 +54,21 @@ export const studentsReducer = (state = initialState, action) => {
       case FETCH_STUDENTS_START:
           return {
               ...state,
-              // studentList: {
               listIsLoading: true,
               listError: null
-            // }
           };
       case FETCH_STUDENTS_SUCCESS:
           return {
               ...state,
-              // studentList: {
               listIsLoading: false,
               listError: null,
               studentList: action.payload
-            // }
           };
       case FETCH_STUDENTS_FAILURE:
           return {
               ...state,
-              // studentList: {
               listIsLoading: false,
               listError: action.payload
-            // }
           }
       case FETCH_STUDENTBYID_START:
           return {
@@ -196,80 +190,4 @@ export const studentsReducer = (state = initialState, action) => {
       default: return state;
 
   }
-}
-
-
-export const studentByIdReducer = (state = initialState, action) => {
-  switch (action.type) {
-      // case FETCH_STUDENTBYID_START:
-      //     return {
-      //         ...state,
-        
-      //         cardIsLoading: true,
-      //         cardError: null
-      //     }
-      // case  FETCH_STUDENTBYID_SUCCESS:
-      //     return {
-      //         ...state,
-
-      //         cardIsLoading: false,
-      //         cardFetching: true,
-      //         studentById: action.payload
-      //     }
-      // case FETCH_STUDENTBYID_FAILURE:
-      //     return {
-      //         ...state,
-      //         cardIsLoading: false,
-      //         cardError: action.payload
-      //     }
-      
-      // Edit by ID
-      case EDIT_STUDENTBYID_START:
-              return {
-                  ...state,
-
-                  cardIsEditting: !state.isEditting,
-                  cardError: null
-              }
-          case  EDIT_STUDENTBYID_SUCCESS:
-              return {
-                  ...state,
-                  cardIsEditting: false,
-                  cardIsEditted: true,
-                  studentById: action.payload
-              }
-          case EDIT_STUDENTBYID_FAILURE:
-              return {
-                  ...state,
-                  cardIsLoading: false,
-                  cardError: action.payload
-              }
-          
-          // Delete by ID
-
-           case DELETE_STUDENTBYID_START:
-              return {
-                  ...state,
-          
-                  cardIsLoading: true,
-                  cardError: null
-              }
-          case  DELETE_STUDENTBYID_SUCCESS:
-              return {
-                  ...state,
-
-                  cardIsLoading: false,
-                  cardFetching: true,
-                  studentById: action.payload
-              }
-          case DELETE_STUDENTBYID_FAILURE:
-              return {
-                  ...state,
-        
-                  cardIsLoading: false,
-                  cardError: action.payload
-              }
-          default:
-              return state
-      }
 }
