@@ -12,8 +12,31 @@ section.carousel {
         max-width: 1400px;
         margin: 0 auto;
 
-        img {
+        img.placeholder {
             width: 100%;
+        }
+
+        .slick-prev, .slick-next {
+            height: auto;
+            width: auto;
+            z-index: 9;
+        }
+
+        .slick-slide {
+            img {
+                transform: scale(0.9);
+                transition: transform 0.7s linear;
+                width: 100%;
+            }
+            
+        }
+
+        .slick-slide.slick-active {
+            img {
+                transform: scale(1);
+                padding: 0 2%;
+            }
+            
         }
     }
 
