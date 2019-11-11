@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
+import { withRouter } from "react-router";
+import { connect } from 'react-redux';
+import { logIn, loggedIn } from '../actions/authenticationActions.js';
 import './register.scss';
 
 function Register(props) {
@@ -16,7 +20,7 @@ function Register(props) {
       
         useEffect(() => {
           console.log('Register props: ', props)
-        }, [])
+        }, [props])
       
         const handleChange = e => {
           setUser({
@@ -27,7 +31,10 @@ function Register(props) {
         
         const handleSubmit = (e) => {
           e.preventDefault();
+          console.log('e is',e)
+          console.log('user is',user)
           if (user.username.length && user.password.length && (user.password === user.confirmpassword)) {
+//            return <Redirect to='/register' />
             props.logIn(user, props.history);
             
             setUser({
@@ -188,4 +195,13 @@ function Register(props) {
     )
 }
 
-export default Register;
+const mapStateToProps = state => {
+  return {
+    state: state
+  };
+};
+
+export default withRouter(connect(
+  mapStateToProps,
+  { logIn, loggedIn }
+)(Register));
