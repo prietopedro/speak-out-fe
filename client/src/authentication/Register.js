@@ -34,8 +34,8 @@ function Register(props) {
           console.log('e is',e)
           console.log('user is',user)
           if (user.username.length && user.password.length && (user.password === user.confirmpassword)) {
-//            return <Redirect to='/register' />
-            props.logIn(user, props.history);
+          //  return <Redirect to='/register' />
+            // props.logIn(user, props.history);
             
             setUser({
               username: '',
