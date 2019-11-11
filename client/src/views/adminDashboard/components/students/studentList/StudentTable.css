@@ -5,7 +5,8 @@
 .row-above {
   display: flex;
   justify-content: flex-end;
-  margin: 30px 15px 15px 15px;
+  margin: 30px 15px 35px 15px;
+  font-size: 18px;
 }
 
 .create-new-entry {
@@ -35,27 +36,9 @@
   padding: 1px 0px 0px 1px; 
 }
 
-/* .dropdownRoot .edit div{
-  border: 1px solid red;
-  padding: 1px 0px 0px 1px; 
-} */
 
 /* ========================== */
 
-
-
-.react-calendar {
-  z-index: 5;
-  position: absolute;
-  border: 0px solid transparent;
-}
-
-.react-calendar__navigation {
-  justify-content: center;
-}
-.react-calendar__navigation button {
-  min-width: 0px;
-}
 
 .ant-table-body {
   overflow-x: scroll;

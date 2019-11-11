@@ -9,10 +9,10 @@ function DisplayContent({navigation, studentData, resetForm}) {
 
   {if (navigation === "Student Information") {
     return <StudentInfoTab studentData={studentData} resetForm={resetForm}/>
-  } else if (navigation === "Enrollment") {
-    return <div>Enrollment</div>
-  } else if (navigation === "Attandance") {
-    return <div>Attandance</div>
+  } else if (navigation === "Courses") {
+    return <div>Courses</div>
+  } else if (navigation === "Progress") {
+    return <div>Progress</div>
   } else if (navigation === "Billing") {
     return <div>Billling</div>
   }

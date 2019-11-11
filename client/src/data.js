@@ -28,8 +28,8 @@ export const staffDashboardTabs = [
 
 export const studentCardTabs = [
   {key: "Student Information"},
-  {key: "Enrollment"},
-  {key: "Attandance"},
+  {key: "Courses"},
+  {key: "Progress"},
   {key: "Billing"}
 ]
 

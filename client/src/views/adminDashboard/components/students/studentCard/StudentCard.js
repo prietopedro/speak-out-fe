@@ -62,7 +62,7 @@ const StudentCard = props => {
 
     return (
         <CardWrap>
-            <ButtonWrap onClick={goBack} style={{cursor:"pointer"}}>
+            <ButtonWrap onClick={goBack} style={{cursor:"pointer", paddingTop: '20px'}}>
                 <FontAwesomeIcon icon={faAngleLeft} size='lg' color='gray' style={{marginRight: '5px'}}/> {''}
                 BACK
             </ButtonWrap>
@@ -108,7 +108,7 @@ function Tab(props) {
     props.setNavigation(props.tab.key);
   }
   return (
-    <a onClick={handleTabClick} style={{marginRight: '60px', fontSize: '18px', color: '#269FB0', cursor: 'pointer', borderBottom: `${props.selected === props.tab.key ? '2px solid #269FB0' : '2px solid transparent'}`}}>
+    <a onClick={handleTabClick} style={{marginRight: '60px', fontSize: '22px', color: '#269FB0', cursor: 'pointer', borderBottom: `${props.selected === props.tab.key ? '2px solid #269FB0' : '2px solid transparent'}`}}>
       {props.tab.key}
     </a>
   )

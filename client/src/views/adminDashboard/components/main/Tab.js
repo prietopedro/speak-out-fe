@@ -12,7 +12,8 @@ const TabWrap = styled.div`
   // color: #269FB0;
   // color: #B4B1B5;
   color: #89878a;
-  margin: 0 0 30px 0;
+  margin: 0 0 20px 0;
+  font-size: 18px;
 `
 
 function Tab(props) {
