@@ -28,3 +28,20 @@
    margin: 25px 20px 0 0;
    text-decoration: underline;
 }
+
+.ui.secondary.pointing.menu {
+  display: flex;
+}
+
+.ui.secondary.pointing.menu a {
+  /* margin: 20px; */
+  color: #269FB0;
+  font-size: 18px;
+}
+.ui.secondary.pointing.menu a:hover {
+  text-decoration: underline;
+}
+
+.active {
+  text-decoration: underline;
+}

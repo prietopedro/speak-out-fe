@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from 'react'
 // import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getStudentById, toggleEditComponent } from '../../../../../actions';
+import { getStudentById, toggleEditComponent } from '../../../../../actions/adminDashboardActions/students/studentsActions';
 import { withRouter, Link } from 'react-router-dom';
 import StudentForm from './StudentForm';
 import './StudentInformationTab.css'
@@ -122,9 +122,9 @@ const StudentInformationTab = props => {
 
 const mapStateToProps = state => {
     return {
-        isLoading: state.studentByIdReducer.isLoading,
-        studentById: state.studentByIdReducer.studentById,
-        isEditing: state.studentByIdReducer.isEditting,
+        isLoading: state.studentsReducer.cardIsLoading,
+        studentById: state.studentsReducer.studentById,
+        isEditing: state.studentsReducer.cardIsEditting,
     };
   };
 

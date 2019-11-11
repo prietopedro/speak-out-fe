@@ -1,5 +1,5 @@
 import React from 'react';
-import StudentTable from '../students/StudentTable';
+import StudentTable from '../students/studentList/StudentTable';
 import Calendar from '../calendar/Calendar';
 import Schedule from '../schedule/Schedule';
 import Payments from '../payments/Payments';

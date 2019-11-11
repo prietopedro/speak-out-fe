@@ -1,83 +1,144 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getStudentById, toggleEditComponent } from '../../../../../actions';
-import { withRouter, Link } from 'react-router-dom';
-import StudentInformationTab from './StudentInformationTab';
-import { Tab } from 'semantic-ui-react';
+import { getStudentById, resetForm } 
+       from '../../../../../actions/adminDashboardActions/students/studentsActions';
+import { withRouter } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './StudentCard.css';
 import './StudentInformationTab.css';
-
+import { studentCardTabs } from '../../../../../data';
+import DisplayContent from './DisplayContent';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import 'react-dropdown/style.css'
 
+
+const CardWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+`
+
+const ButtonWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-self: flex-start;
+  
+`
+
+const TitleWrap = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 40px;
+  margin-bottom: 60px;
+`
+
+const TabsWrap = styled.div`
+  display: flex;
+  flex-direction: flex-start;
+`
+
+const DisplayWrap = styled.div`
+  display: flex;
+`
 
 const StudentCard = props => {
-    useEffect(() => {
-      console.log('STUDENT CARD props: ', props)
-        props.getStudentById(props.match.params.id)
-    }, [])
+  const [navigation, setNavigation] = useState('Student Information');
+  const [selected, setSelected] = useState(navigation);
+  const [resetForm, setResetForm] = useState(false);
 
-    const panes = [
-        {
-            menuItem: 'STUDENT INFORMATION',
-            render: () => <Tab.Pane attached={false}><StudentInformationTab /></Tab.Pane>,
-        },
-        {
-            menuItem: 'ENROLLMENT',
-            render: () => <Tab.Pane attached={false}>Tab 2 Content</Tab.Pane>,
-        },
-        {
-            menuItem: 'ATTENDANCE',
-            render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane>,
-        },
-        {
-            menuItem: 'BILLING',
-            render: () => <Tab.Pane attached={false}>Tab 4 Content</Tab.Pane>,
-        },
-    ]
+  
+  useEffect(() => {
+    props.getStudentById(props.id)  
+  }, [])
 
-    const goBack = () => {
-        console.log("props", props)
-        if(!props.isEditing){
-            props.history.goBack();
-        } else {
-            props.toggleEditComponent()
-        }
-    }
+  const goBack = () => {
+      props.setStudentId(undefined);
+      props.resetForm();
+      setResetForm(true);
+  }
+
+
 
     return (
-        <div>
-            <div className="student-card">
-                <div className="back-button" onClick={goBack} style={{cursor:"pointer"}}
->
-                    <FontAwesomeIcon icon='angle-left' size='lg' color='gray'/> {''}
-                    Back
-                    
-                    </div>
-                <div className='student-title'>
-                    <h2>{props.studentById.first_name}</h2>
-                    <p>CPR: {props.studentById.cpr}</p>
-                    <p>Student ID: {props.studentById.id}</p>
+        <CardWrap>
+            <ButtonWrap onClick={goBack} style={{cursor:"pointer"}}>
+                <FontAwesomeIcon icon={faAngleLeft} size='lg' color='gray' style={{marginRight: '5px'}}/> {''}
+                BACK
+            </ButtonWrap>
+            <TitleWrap>
+                <div style={{width: '130px', height: '130px', borderRadius: '50%', background: '#d6d5d6'}}>
                 </div>
-             <Tab menu={{ secondary: true, pointing: true }} panes={panes}  />
-            </div>
-        </div>
+                <div style={{display: 'flex', flexDirection: 'column', marginLeft: '20px', textAlign: 'left'}}>
+                  <h1 style={{fontSize: '34px', marginBottom: '0px'}}>{props.studentById.first_name}</h1>
+                  <p>CPR: {props.studentById.cpr}</p>
+                  <p>Student ID: {props.studentById.id}</p>
+                </div>
+            </TitleWrap>
+            <TabsWrap>
+              <TabList tabs={studentCardTabs} setNavigation={setNavigation} setSelected={setSelected} 
+                       selected={selected} setStudentId={props.setStudentId}/>
+            </TabsWrap>
+            <DisplayWrap>
+              <DisplayContent navigation={navigation} studentData={props.studentById} />
+            </DisplayWrap>
+        </CardWrap>
         
     )
 }
 
 
+
+function TabList({tabs, setNavigation, setSelected, selected, setStudentId }) {
+
+  return (
+    <div style={{display: 'flex'}}>
+      {tabs.map((tab, index) => {
+        return <Tab key={index} tab={tab} selected={selected} setNavigation={setNavigation} 
+                setSelected={setSelected}  setStudentId={setStudentId}/>
+      })}
+    </div>
+  )
+}
+
+function Tab(props) {
+
+  const handleTabClick = () => {
+    props.setSelected(props.tab.key);
+    props.setNavigation(props.tab.key);
+  }
+  return (
+    <a onClick={handleTabClick} style={{marginRight: '60px', fontSize: '18px', color: '#269FB0', cursor: 'pointer', borderBottom: `${props.selected === props.tab.key ? '2px solid #269FB0' : '2px solid transparent'}`}}>
+      {props.tab.key}
+    </a>
+  )
+}
+
 const mapStateToProps = state => {
-    return {
-        isLoading: state.studentByIdReducer.isLoading,
-        studentById: state.studentByIdReducer.studentById,
-        isEditing: state.studentByIdReducer.isEditting,
-    };
+  return {
+      cardIsLoading: state.studentsReducer.cardIsLoading,
+      studentById: state.studentsReducer.studentById,
+      cardIsEditing: state.studentsReducer.cardIsEditting,
+      resetForm: state.studentsReducer.resetForm
+  };
 };
 
 export default withRouter(
-    connect(
-        mapStateToProps,
-        { getStudentById, toggleEditComponent }
-    )(StudentCard)
+  connect(
+      mapStateToProps,
+      { getStudentById, resetForm }
+  )(StudentCard)
 )
+
+
+
+
+
+
+
+
+
+
+
+

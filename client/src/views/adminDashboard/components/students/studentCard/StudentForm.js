@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
-import { editStudentById } from '../../../../../actions';
+import { editStudentById } from '../../../../../actions/adminDashboardActions/students/studentsActions';
 import { withRouter, Link } from 'react-router-dom';
 import './StudentForm.css'
 import './StudentInformationTab.css'

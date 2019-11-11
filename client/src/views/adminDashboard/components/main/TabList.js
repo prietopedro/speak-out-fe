@@ -8,6 +8,7 @@ const TabsWrap = styled.div`
   flex-direction: column;
   overflow: scroll;
   padding-top: 25px;
+  color: #269FB0;
 `
 
 function TabList({tabs, navigation, setNavigation, tabColor, setTabColor}) {

@@ -1,0 +1,67 @@
+.rowHover tr {
+  cursor: pointer;
+}
+
+.row-above {
+  display: flex;
+  justify-content: flex-end;
+  margin: 30px 15px 15px 15px;
+}
+
+.create-new-entry {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+
+
+
+
+/* ====================== 
+   React Dropdown custom styles *important
+*/
+
+.dropdownRoot {
+  position: relative;
+}
+
+.dropdownRoot span {
+  margin: -3px 0px 0px 1px; 
+}
+
+.dropdownRoot div {
+  border: 1px solid transparent;
+  padding: 1px 0px 0px 1px; 
+}
+
+/* .dropdownRoot .edit div{
+  border: 1px solid red;
+  padding: 1px 0px 0px 1px; 
+} */
+
+/* ========================== */
+
+
+
+.react-calendar {
+  z-index: 5;
+  position: absolute;
+  border: 0px solid transparent;
+}
+
+.react-calendar__navigation {
+  justify-content: center;
+}
+.react-calendar__navigation button {
+  min-width: 0px;
+}
+
+.ant-table-body {
+  overflow-x: scroll;
+}
+
+.ant-table-thead th {
+  white-space: nowrap;
+  min-width: 40px;
+}
