@@ -17,7 +17,7 @@ function Kindergarten(props) {
             <Link className="link red" to="#">
               Kindergarten
             </Link>
-            <Link className="link" to="#">
+            <Link className="link" to="/primary">
               Primary
             </Link>
             <Link className="link" to="#">

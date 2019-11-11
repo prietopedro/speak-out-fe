@@ -9,6 +9,7 @@ import LandingPage from "../views/landingPage/components/LandingPage";
 import DashboardView from "../views";
 import CourseStructure from "../views/courseStructure/CourseStructure";
 import Kindergarten from "../views/courseStructure/Kindergarten";
+import Primary from "../views/courseStructure/Primary";
 
 function Routes(props) {
   useEffect(() => {
@@ -26,6 +27,7 @@ function Routes(props) {
         <Route exact path="/" render={() => <LandingPage />} />
         <Route path="/course" render={() => <CourseStructure />} />
         <Route path="/kindergarten" render={() => <Kindergarten />} />
+        <Route path="/primary" render={() => <Primary />} />
       </Switch>
     </div>
   );

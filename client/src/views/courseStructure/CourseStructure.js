@@ -16,7 +16,7 @@ function CourseStructure(props) {
             <Link className="link" to="/kindergarten">
               Kindergarten
             </Link>
-            <Link className="link" to="#">
+            <Link className="link" to="/primary">
               Primary
             </Link>
             <Link className="link" to="#">
