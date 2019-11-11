@@ -97,7 +97,7 @@ function Register(props) {
         <form onSubmit={handleSubmit} method="POST">
           <fieldset>
             <div className='alignleft0'>
-          <label htmlFor="username">User</label>
+          <label htmlFor="username">.......Username</label>
             <input
               style={{ marginBottom: "15px" }}
               type="text"
@@ -108,7 +108,7 @@ function Register(props) {
             />
             </div>
             <div className='alignleft0'>
-            <label htmlFor="fathername">Father Name</label>
+            <label htmlFor="fathername">....Father Name</label>
             <input
               style={{ marginBottom: "15px" }}
               type="text"
@@ -119,7 +119,7 @@ function Register(props) {
             />
             </div>
             <div className='alignleft0'>
-            <label htmlFor="mothername">Mother Name</label>
+            <label htmlFor="mothername">....Mother Name</label>
             <input
               style={{ marginBottom: "15px" }}
               type="text"
@@ -131,7 +131,7 @@ function Register(props) {
             </div>
             <div>
             <div className='alignleft0'>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">..........Email</label>
             <input
               style={{ marginBottom: "15px" }}
               type="email"
@@ -142,7 +142,7 @@ function Register(props) {
             />
             </div>
             <div className='alignleft0'>
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">.......Password</label>
             <input
               style={{ marginBottom: "15px" }}
               className="input-class"
@@ -164,7 +164,7 @@ function Register(props) {
             />
             </div>
             <div className='alignleft0'>
-            <label htmlFor="phone">Telephone</label>
+            <label htmlFor="phone">......Telephone</label>
             <input
               style={{ marginBottom: "15px" }}
               className="input-class"
