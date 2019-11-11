@@ -315,3 +315,14 @@ profile-pic {
     float: right;
   }
 }
+.label {
+	position: relative;
+	top: 0px;
+	}
+@media screen and (max-width: 920px) {
+	.label {
+		position: relative;
+		top: 0px;
+		left: 500px;
+		}
+}
