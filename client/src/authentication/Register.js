@@ -97,7 +97,7 @@ function Register(props) {
         <form onSubmit={handleSubmit} method="POST">
           <fieldset>
             <div className='alignleft0'>
-          <label htmlFor="username">Username________</label>
+          <label className='label' htmlFor="username">Username________</label>
             <input
               style={{ marginBottom: "15px" }}
               type="text"
@@ -108,7 +108,7 @@ function Register(props) {
             />
             </div>
             <div className='alignleft0'>
-            <label htmlFor="fathername">Father Name_____</label>
+            <label className='label' htmlFor="fathername">Father Name_____</label>
             <input
               style={{ marginBottom: "15px" }}
               type="text"
@@ -119,7 +119,7 @@ function Register(props) {
             />
             </div>
             <div className='alignleft0'>
-            <label htmlFor="mothername">Mother Name____</label>
+            <label className='label' htmlFor="mothername">Mother Name____</label>
             <input
               style={{ marginBottom: "15px" }}
               type="text"
@@ -131,7 +131,7 @@ function Register(props) {
             </div>
             <div>
             <div className='alignleft0'>
-            <label htmlFor="email">Email______________</label>
+            <label className='label' htmlFor="email">Email______________</label>
             <input
               style={{ marginBottom: "15px" }}
               type="email"
@@ -142,7 +142,7 @@ function Register(props) {
             />
             </div>
             <div className='alignleft0'>
-            <label htmlFor="password">Password_________</label>
+            <label className='label' htmlFor="password">Password_________</label>
             <input
               style={{ marginBottom: "15px" }}
               className="input-class"
@@ -153,7 +153,7 @@ function Register(props) {
             />
             </div>
             <div className='alignleft0'>
-            <label htmlFor="confirmpassword">ConfirmPassword</label>
+            <label className='label' htmlFor="confirmpassword">ConfirmPassword</label>
             <input
               style={{ marginBottom: "15px" }}
               className="input-class"
@@ -164,7 +164,7 @@ function Register(props) {
             />
             </div>
             <div className='alignleft0'>
-            <label htmlFor="phone">Telephone________</label>
+            <label className='label' htmlFor="phone">Telephone________</label>
             <input
               style={{ marginBottom: "15px" }}
               className="input-class"

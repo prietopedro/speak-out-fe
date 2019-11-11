@@ -315,13 +315,5 @@ profile-pic {
   }
 }
 .label {
-	position: relative;
-	top: 0px;
+	text-decoration-line: underline;
 	}
-@media screen and (max-width: 920px) {
-	.label {
-		position: relative;
-		top: 0px;
-		left: 500px;
-		}
-}
