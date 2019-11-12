@@ -30,16 +30,30 @@ export const register = (user, family, history) => {
         .then(resu => {
           dispatch({ type: RLOGGEDIN_SUCCESS, payload: resu.data })
           family.user_id=resu.data.tableData[0].user_id
-            axios
-            .post('https://speak-out-be-staging.herokuapp.com/api/?table=family', family)
-            .then(result => {
-              dispatch({ type: FAMILY_SUCCESS, payload: result.data })
+          // user.id=resu.data.tableData[0].id
+          console.log('family',family)
+          console.log('user',user)
+          console.log('resu',resu.data.tableData)
+          axios
+            .get('https://speak-out-be-staging.herokuapp.com/api/?table=users&where=user_id='+family.user_id, user)
+            .then(res => {
+              dispatch({ type: RLOGIN_SUCCESS, payload: res.data })
               history.push('/dashboard')
-              return null;
-                })
+              axios
+              .post('https://speak-out-be-staging.herokuapp.com/api/?table=family', family)
+              .then(result => {
+                dispatch({ type: FAMILY_SUCCESS, payload: result.data })
+                history.push('/dashboard')
+                return null;
+                  })
+              .catch(err => {
+                console.log('ERROR', err)
+                dispatch({ type: FAMILY_FAILURE, payload: 'Error' })
+                  })  
+                  })
             .catch(err => {
               console.log('ERROR', err)
-              dispatch({ type: FAMILY_FAILURE, payload: 'Error' })
+              dispatch({ type: RLOGIN_FAILURE, payload: 'Error' })
                 })  
               })
         .catch(err => {
