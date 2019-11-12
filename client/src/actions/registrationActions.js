@@ -30,7 +30,7 @@ export const register = (user, family, history) => {
         .then(resu => {
           dispatch({ type: RLOGGEDIN_SUCCESS, payload: resu.data })
           family.user_id=resu.data.tableData[0].user_id
-          // user.id=resu.data.tableData[0].id
+          user.password=resu.data.tableData[0].password
           console.log('family',family)
           console.log('user',user)
           console.log('resu',resu.data.tableData)
