@@ -23,22 +23,17 @@ export const register = (user, family, history) => {
     return dispatch => {
     dispatch( {type: REGISTER_START} );
     axios
-    .post('https://speak-out-be-staging.herokuapp.com/login', {"username": "parent1", "password": "password"})
-    .then(res => {
-        dispatch({ type: RLOGIN_SUCCESS, payload: res.data })
-        console.log('RLOGIN SUCCESS: ', res)
-        console.log('RLOGIN user: ', user)
-        axios 
-        .get('https://speak-out-be-staging.herokuapp.com/user', {"username": "parent1", "password": "password"})
+    .post('https://speak-out-be-staging.herokuapp.com/register', user)
+    .then(resul => {
+      dispatch({ type: REGISTER_SUCCESS, payload: resul.data })
+      console.log('REGISTER SUCCESS: ', resul)
+      console.log('family is',family)
+      axios 
+        .get('https://speak-out-be-staging.herokuapp.com/api/?table=users&where=username='+user.username)
         .then(resu => {
           dispatch({ type: RLOGGEDIN_SUCCESS, payload: resu.data })
-          axios
-          .post('https://speak-out-be-staging.herokuapp.com/api/?table=users', user)
-          .then(resul => {
-            dispatch({ type: REGISTER_SUCCESS, payload: resul.data })
-            console.log('REGISTER SUCCESS: ', resul)
-            family.user_id=resul.data[0].user_id
-            console.log('family is',family)
+          console.log('get user id',resu)
+          family.user_id=resu.data.tableData[0].user_id
             axios
             .post('https://speak-out-be-staging.herokuapp.com/api/?table=family', family)
             .then(result => {
@@ -52,11 +47,6 @@ export const register = (user, family, history) => {
               dispatch({ type: FAMILY_FAILURE, payload: 'Error' })
                 })  
               })
-          .catch(err => {
-            console.log('ERROR', err)
-            dispatch({ type: REGISTER_FAILURE, payload: 'Error' })
-               })  
-              })  
         .catch(err => {
           console.log('ERROR', err)
           dispatch({ type: RLOGGEDIN_FAILURE, payload: 'Error' })
@@ -64,7 +54,7 @@ export const register = (user, family, history) => {
          })  
          .catch(err => {
           console.log('ERROR', err)
-          dispatch({ type: RLOGIN_FAILURE, payload: 'Error' })
+          dispatch({ type: REGISTER_FAILURE, payload: 'Error' })
              })  
         }
       }
