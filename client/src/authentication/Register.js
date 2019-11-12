@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { withRouter } from "react-router";
 import { connect } from 'react-redux';
-import { logIn, loggedIn } from '../actions/authenticationActions.js';
+import { register } from '../actions/registrationActions.js';
 import './register.scss';
 
 function Register(props) {
@@ -26,6 +26,8 @@ function Register(props) {
           setUser({
             ...user, [e.target.name]: e.target.value,
           });
+          // console.log('name value',e.target.name,e.target.value)
+          // console.log('...user',user)
           e.target.focus()
         };
         
@@ -34,13 +36,18 @@ function Register(props) {
           console.log('e is',e)
           console.log('user is',user)
           if (user.username.length && user.password.length && (user.password === user.confirmpassword)) {
-          //  return <Redirect to='/register' />
-            // props.logIn(user, props.history);
+console.log('users',user)
+props.register({"username": user.username, "password": user.password, "email": user.email, "user_type": "parent"},{"father_name": user.fathername,"mother_name": user.mothername,"primary_telephone": user.phone,"secondary_telephone": user.phone}, props.history);
             
-            setUser({
-              username: '',
-              password: ''
-            });
+            // setUser({
+            //   username: '',
+            //   password: '',
+            //   confirmpassword: '',
+            //   fathername: '',
+            //   mothername: '',
+            //   email: '',
+            //   phone: ''
+            //     });
           } else {
             setFormValid(false)
           }
@@ -203,5 +210,5 @@ const mapStateToProps = state => {
 
 export default withRouter(connect(
   mapStateToProps,
-  { logIn, loggedIn }
+  { register}
 )(Register));
