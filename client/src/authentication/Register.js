@@ -26,17 +26,12 @@ function Register(props) {
           setUser({
             ...user, [e.target.name]: e.target.value,
           });
-          // console.log('name value',e.target.name,e.target.value)
-          // console.log('...user',user)
           e.target.focus()
         };
         
         const handleSubmit = (e) => {
           e.preventDefault();
-          console.log('e is',e)
-          console.log('user is',user)
           if (user.username.length && user.password.length && (user.password === user.confirmpassword)) {
-console.log('users',user)
 props.register({"username": user.username, "password": user.password, "email": user.email, "user_type": "parent"},{"father_name": user.fathername,"mother_name": user.mothername,"primary_telephone": user.phone,"secondary_telephone": user.phone}, props.history);
             
             // setUser({

@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { registrationReducer } from './registrationReducer';
 import { authenticationReducer } from './authenticationReducer';
 import { studentTableReducer } from './adminDashboardReducers/studentTableReducer';
 import { studentByIdReducer } from './adminDashboardReducers/studentByIdReducer';
@@ -8,6 +9,7 @@ import { staffByIdReducer } from './adminDashboardReducers/staffByIdReducer';
 
 
 export const reducer = combineReducers({
+  registrationReducer,
   authenticationReducer,
   studentTableReducer,
   studentByIdReducer,

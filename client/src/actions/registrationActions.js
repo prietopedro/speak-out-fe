@@ -20,6 +20,7 @@ export const RLOGGEDIN_FAILURE = 'RLOGGEDIN_FAILURE';
 export const register = (user, family, history) => {
     return dispatch => {
     dispatch( {type: REGISTER_START} );
+    user.user_type='parent'
     axios
     .post('https://speak-out-be-staging.herokuapp.com/register', user)
     .then(resul => {
