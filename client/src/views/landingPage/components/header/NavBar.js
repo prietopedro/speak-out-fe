@@ -39,6 +39,7 @@ function NavBar(props) {
   const handleAbout = () => {
     props.setNavigation("about");
     setSelected("about");
+    props.history.push("/about-us");
   };
 
   const handleContact = () => {
