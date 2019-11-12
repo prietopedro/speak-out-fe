@@ -13,6 +13,7 @@ import Primary from "../views/courseStructure/Primary";
 import MiddleSecondary from "../views/courseStructure/MiddleSecondary";
 import RegistrationInformation from "../views/registrationInformation/RegistrationInformation";
 import AboutUs from "../views/aboutUs/AboutUs";
+import ContactUs from "../views/contactUs/ContactUs";
 
 function Routes(props) {
   useEffect(() => {
@@ -37,6 +38,7 @@ function Routes(props) {
           render={() => <RegistrationInformation />}
         />
         <Route path="/about-us" render={() => <AboutUs />} />
+        <Route path="/contact-us" render={() => <ContactUs />} />
       </Switch>
     </div>
   );
