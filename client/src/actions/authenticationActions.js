@@ -20,8 +20,8 @@ export const loggedIn = (history) => {
     axios 
       .get('https://speak-out-be-staging.herokuapp.com/user')
       .then(res => {
-       return null;
-       dispatch({ type: LOGGEDIN_SUCCESS, payload: res.data })
+        return null
+        dispatch({ type: LOGGEDIN_SUCCESS, payload: res.data })
        
        if (!res.data.authenticated) {
           history.push('/')
