@@ -8,7 +8,8 @@ import Queries from '../queries/Queries';
 import Documents from '../documents/Documents';
 import MainUserPage from '../mainUserPage/Main';
 import Parents from '../parents/Parents';
-import Courses from '../courses/Courses';
+import CourseTable from '../courses/courseList/CourseTable';
+import StaffTable from '../staff/StaffTable';
 
 function Display({ navigation }) {
 
@@ -22,9 +23,9 @@ function Display({ navigation }) {
         <StudentTable />
       </div>
     )
-  } else if (navigation === 'parents') {
+  } else if (navigation === 'staff') {
     return (
-      <Parents />
+      <StaffTable />
     )
   // } 
   // else if (navigation === 'calendar') {
@@ -47,7 +48,7 @@ function Display({ navigation }) {
     )
   } else if (navigation === 'courses') {
     return (
-      <Courses />
+      <CourseTable />
     )
   } 
   // else if (navigation === 'tables') {

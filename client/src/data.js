@@ -1,11 +1,11 @@
 export const adminDashboardTabs = [
-  {key: "Main"},
+  // {key: "Main"},
   {key: "Students"},
-  {key: "Parents"},
+  // {key: "Parents"},
   {key: "Courses"},
   // {key: "Calendar"},
   // {key: "Schedule"},
-  {key: "Payments"},
+  {key: "Staff"},
   // {key: "Tables"},
   // {key: "Queries"},
   // {key: "Documents"},
@@ -154,4 +154,53 @@ export const studentTableColumns = [
     dataIndex: 'family_id',
     key: 24,
   }
+];
+
+
+export const courseCardTabs = [
+  {key: "Course Information"},
+  {key: "Enrolled Students"}
+]
+
+
+export const courseTableColumns = [
+      {
+        title: 'Course ID',
+        dataIndex: 'id',
+        key: 1,
+      },
+      {
+        title: 'Term',
+        dataIndex: 'term',
+        key: 2,
+      },
+      {
+        title: 'Course Type',
+        dataIndex: 'course_type',
+        key: 4,
+      },
+      {
+        title: 'Group Type',
+        dataIndex: 'group_type',
+        key: 5,
+      },
+      {
+        title: 'School Grade',
+        dataIndex: 'school_grade',
+        key: 6,
+      },
+      {
+        title: 'Level',
+        dataIndex: 'level',
+        key: 7,
+      },
+      {
+        title: 'Course Schedule',
+        dataIndex: 'course_schedule',
+        key: 8,
+      },{
+        title: 'Teacher',
+        dataIndex: 'teacher',
+        key: 9,
+      },
 ];

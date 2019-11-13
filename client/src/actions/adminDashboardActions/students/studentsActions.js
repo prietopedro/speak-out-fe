@@ -169,3 +169,17 @@ export const createNewStudent = (newStudent, setNewRecord, newRecord, displaySuc
 export const resetSuccessMessage = () => {
   return { type: 'RESET_SUCCESS_MESSAGE' }
 }
+
+export const FETCH_COURSES_BY_STUDENT_START = 'FETCH_COURSES_BY_STUDENT_START';
+export const FETCH_COURSES_BY_STUDENT_SUCCESS = 'FETCH_COURSES_BY_STUDENT_SUCCESS';
+export const FETCH_COURSES_BY_STUDENT_FAILURE = 'FETCH_COURSES_BY_STUDENT_FAILURE';
+
+export const getCoursesByStudent = (id) => dispatch => {
+  dispatch({type: FETCH_COURSES_BY_STUDENT_START})
+  axios.get(`https://speak-out-be-staging.herokuapp.com/api?table=course_result_view&where=student_id=${id}`)
+      .then(res => {
+         dispatch({type: FETCH_COURSES_BY_STUDENT_SUCCESS, payload:res.data.tableData})
+      }).catch(err=> {
+          dispatch({type: FETCH_COURSES_BY_STUDENT_FAILURE, payload: err.payload})
+      });
+};

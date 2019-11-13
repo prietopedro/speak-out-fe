@@ -14,6 +14,9 @@ import {
   CREATE_NEW_STUDENT_START,
   CREATE_NEW_STUDENT_SUCCESS,
   CREATE_NEW_STUDENT_FAILURE,
+  FETCH_COURSES_BY_STUDENT_START,
+  FETCH_COURSES_BY_STUDENT_SUCCESS,
+  FETCH_COURSES_BY_STUDENT_FAILURE,
 
 } from '../../../actions/adminDashboardActions/students/studentsActions';
 
@@ -45,7 +48,11 @@ const initialState = {
 
     editStudentIsLoading: false,
     editStudentError: null,
-    edited: false
+    edited: false,
+
+    coursesListIsLoading: false,
+    coursesListError: null,
+    courseList: []
 
 }
 
@@ -186,6 +193,25 @@ export const studentsReducer = (state = initialState, action) => {
           return {
             ...state,
             edited: false
+          }
+      case FETCH_COURSES_BY_STUDENT_START:
+          return {
+              ...state,
+              coursesListIsLoading: true,
+              coursesListError: null
+          };
+      case FETCH_COURSES_BY_STUDENT_SUCCESS:
+          return {
+              ...state,
+              coursesListIsLoading: false,
+              coursesListError: null,
+              courseList: action.payload
+          };
+      case FETCH_COURSES_BY_STUDENT_FAILURE:
+          return {
+              ...state,
+              coursesListIsLoading: false,
+              coursesListError: action.payload
           }
       default: return state;
 
