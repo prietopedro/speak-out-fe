@@ -10,7 +10,10 @@ import {
   REGISTER_FAILURE,
   FAMILY_START,
   FAMILY_SUCCESS,
-  FAMILY_FAILURE
+  FAMILY_FAILURE,
+  RUSER_START,
+  RUSER_SUCCESS,
+  RUSER_FAILURE
 } from '../actions';
 
 const initialState = {
@@ -31,6 +34,10 @@ const initialState = {
     error: null
   },
   family: {
+    isLoading: false,
+    error: null
+  },
+  ruser: {
     isLoading: false,
     error: null
   }
@@ -123,7 +130,35 @@ export const registrationReducer = (state = initialState, action) => {
                 error: 'Error' //display proper error
               }
             };
-            case RLOGGEDIN_START:
+            case RUSER_START:
+              return {
+                ...state,
+                ruser: {
+                  isLoading: true,
+                  error: null
+                }
+              };
+            case RUSER_SUCCESS:
+              return {
+                ...state,
+                ruser: {
+                  isLoading: false,
+                  error: null
+                },
+                user: {
+                  authenticated: false,
+                  username: null,
+                }
+              };
+            case RUSER_FAILURE:
+              return {
+                ...state,
+                ruser: {
+                  isLoading: false,
+                  error: 'Error' //display proper error
+                }
+              };
+              case RLOGGEDIN_START:
       return {
         ...state,
         loggedIn: {
