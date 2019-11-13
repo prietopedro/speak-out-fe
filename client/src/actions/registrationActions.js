@@ -25,7 +25,11 @@ export const register = (user, family, history) => {
     .post('https://speak-out-be-staging.herokuapp.com/register', user)
     .then(resul => {
       dispatch({ type: REGISTER_SUCCESS, payload: resul.data })
-      axios 
+      axios
+      .post('https://speak-out-be-staging.herokuapp.com/login', user)
+      .then(results => {
+        dispatch({ type: REGISTER_SUCCESS, payload: results.data })
+        axios 
         .get('https://speak-out-be-staging.herokuapp.com/api/?table=users&where=username='+user.username)
         .then(resu => {
           dispatch({ type: RLOGGEDIN_SUCCESS, payload: resu.data })
@@ -61,10 +65,15 @@ export const register = (user, family, history) => {
           console.log('ERROR', err)
           dispatch({ type: RLOGGEDIN_FAILURE, payload: 'Error' })
              })  
-         })  
-         .catch(err => {
-          console.log('ERROR', err)
-          dispatch({ type: REGISTER_FAILURE, payload: 'Error' })
-             })  
-        }
+            })  
+            .catch(err => {
+             console.log('ERROR', err)
+             dispatch({ type: REGISTER_FAILURE, payload: 'Error' })
+                })  
+              })  
+              .catch(err => {
+               console.log('ERROR', err)
+               dispatch({ type: REGISTER_FAILURE, payload: 'Error' })
+                  })  
+                }
       }
