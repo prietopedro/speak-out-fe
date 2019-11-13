@@ -35,8 +35,9 @@ export const register = (user, family, history) => {
           console.log('user',user)
           console.log('resu',resu.data.tableData)
           axios
-            .put('https://speak-out-be-staging.herokuapp.com/?table=users&where=user_id='+family.user_id, user)
-            .then(res => {
+          .put('https://speak-out-be-staging.herokuapp.com/?table=users&where=user_id='+family.user_id, user)
+          // .put('http://localhost:3300/?table=users&where=user_id='+family.user_id, user)
+          .then(res => {
               dispatch({ type: RLOGIN_SUCCESS, payload: res.data })
               history.push('/dashboard')
               axios
