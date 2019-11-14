@@ -115,7 +115,7 @@ export const filterStaffTable = (searchTerm) => dispatch => {
                 if (staff.gender && staff.gender.toLowerCase().match(searchTerm)) {
                     return true;
                 }
-                if (staff.birthdate && staff.birthdate.toLowerCase().match(searchTerm)) {
+                if (staff.birthdate && staff.birthdate.match(searchTerm)) {
                     return true;
                 }
                 return false
