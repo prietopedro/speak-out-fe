@@ -16,6 +16,7 @@ import CourseStructureMain from '../views/landingPage/components/courseStructure
 import Kindergarten from '../views/landingPage/components/courseStructure/Kindergarten';
 import Primary from '../views/landingPage/components/courseStructure/Primary';
 import MiddleAndSecondary from '../views/landingPage/components/courseStructure/MiddleAndSecondary';
+import Register from '../authentication/Register';
 
 
 function Routes(props) {
@@ -34,7 +35,18 @@ function Routes(props) {
                 <DashboardView />
               } /> 
             }
-        <Route  path='/login' render={() => <Login />} />
+        <Route  path='/login' render={() => 
+          <>
+            <Login />
+            <Footer />
+          </>
+          } />
+        <Route  path='/register' render={() => 
+          <>
+            <Register />
+            <Footer />
+          </>
+          } />
         <Route exact path="/" render={() => 
           <> 
             <LandingMain />

@@ -43,6 +43,8 @@ function NavBar(props) {
     setSelected('contact');
   }
 
+  const signInText = props.loggedIn ? 'Dashboard' : 'Sign In'
+
   return (
     <div className="nav">
       <div className="navbar-left">
@@ -53,7 +55,7 @@ function NavBar(props) {
         <Link to='/registration-information' onClick={handleRegistration} style={{borderBottom: `${selected === 'registration' ? '2px solid #C73642' : '2px solid transparent'}`}}>Registration Information</Link>
         <Link to='/about-us' onClick={handleAbout} style={{borderBottom: `${selected === 'about' ? '2px solid #C73642' : '2px solid transparent'}`}}>About Us</Link>
         <Link to='/contact-us' onClick={handleContact} style={{borderBottom: `${selected === 'contact' ? '2px solid #C73642' : '2px solid transparent'}`}}>Contact Us</Link>
-        <button onClick={signIn}>Sign In</button>
+        <button onClick={signIn}>{signInText}</button>
       </div>
     </div>
   )
@@ -62,7 +64,8 @@ function NavBar(props) {
 
 const mapStateToProps = state => {
   return {
-    reset: state.landingPageReducer.reset
+    reset: state.landingPageReducer.reset,
+    loggedIn: state.authenticationReducer.user.authenticated
   };
 };
 
