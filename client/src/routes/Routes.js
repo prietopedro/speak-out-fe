@@ -21,9 +21,8 @@ import Register from '../authentication/Register';
 
 function Routes(props) {
 
-
   useEffect(() => {
-    props.loggedIn(props.history);
+    props.loggedIn(props.history, props.location);
   }, [])
 
   return (

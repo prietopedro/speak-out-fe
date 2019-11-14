@@ -40,7 +40,10 @@ function NavBar(props) {
       </div>
       <div className="navbar-right">
       <div class="dropdown" ref={wrapperRef}>
-        <FontAwesomeIcon onClick={displayDropdown} icon={faUserCircle} size='lg' color='gray' style={{marginRight: '20px', width: '50px', height: '50px', color: '#b1afb1'}}/> 
+        <div style={{display: 'flex', alignItems: 'center'}}>
+          {/* <div style={{marginRight: '10px'}}>Hello, Victoria</div> */}
+          <FontAwesomeIcon onClick={displayDropdown} icon={faUserCircle} size='lg' color='gray' style={{marginRight: '20px', width: '50px', height: '50px', color: '#b1afb1'}}/> 
+        </div>
         <div id="myDropdown" class="dropdown-content" style={{display: display}} >
           <a onClick={logout}>Sign out</a>
         </div>

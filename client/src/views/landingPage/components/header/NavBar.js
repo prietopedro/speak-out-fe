@@ -10,7 +10,6 @@ function NavBar(props) {
   const [selected, setSelected] = useState(false);
 
   useEffect(() => {
-
   }, [selected])
 
   const handleLogo = () => {
