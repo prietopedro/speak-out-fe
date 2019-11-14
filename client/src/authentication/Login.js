@@ -32,6 +32,8 @@ function Login(props) {
   };
 
   const handleSubmit = e => {
+    console.log("LOGIN user: ", user);
+
     e.preventDefault();
     if (user.username.length && user.password.length) {
       props.logIn(user, props.history);
@@ -155,9 +157,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { logIn, loggedIn }
-  )(Login)
-);
+export default withRouter(connect(mapStateToProps, { logIn, loggedIn })(Login));

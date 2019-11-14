@@ -50,9 +50,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { loggedIn }
-  )(Routes)
-);
+export default withRouter(connect(mapStateToProps, { loggedIn })(Routes));

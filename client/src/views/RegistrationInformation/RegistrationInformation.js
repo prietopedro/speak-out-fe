@@ -47,7 +47,9 @@ function RegistrationInformation(props) {
           <p>
             Cost includes registration, books, stationery, and three sessions.
           </p>
-          <button>Register Now</button>
+          <Link to="/register">
+            <button>Register Now</button>
+          </Link>
         </div>
       </div>
     </div>
