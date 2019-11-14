@@ -89,10 +89,6 @@ function CourseInfoTab(props) {
   const [edited, setEdited] = useState(props.edited);
 
   useEffect(() => {
-    // let options = { year: 'numeric', month: 'numeric', day: 'numeric' }; 
-    // let birthdate = new Date(props.studentById.birthdate).toLocaleDateString('en-US', options) 
-    // let registration_date = new Date(props.studentById.registration_date).toLocaleDateString('en-US', options)
-    // let schoolGradeUpdatedDate = new Date(props.studentById.grade_updated).toLocaleDateString('en-US', options)
  
     //display dropdown value based on the incoming data
     for (let i = 0; i < statusArr.length; i++) {
@@ -135,8 +131,6 @@ function CourseInfoTab(props) {
         setLevel(key);
       }
     }
-
-    console.log('HERE LEVEL: ', props.courseById.level_id, props.levelListIdLookup)
 
     //display dropdown value based on the incoming data
     for (let key in props.courseScheduleIdLookup) {
@@ -182,11 +176,6 @@ function CourseInfoTab(props) {
 
   const handleEdit = () => {
     if (edit) {
-      // const birthdate = moment(student.birthdate).toDate();
-      // const birthdateISO = birthdate.toISOString();
-
-      // const schoolGradeUpdated = moment(student.birthdate).toDate();
-      // const schoolGradeUpdatedISO = schoolGradeUpdated.toISOString();
 
       const editCourse  = {
         id: props.courseById.id,

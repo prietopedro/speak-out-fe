@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getStudentById, resetForm } 
-       from '../../../../../actions/adminDashboardActions/students/studentsActions';
+import { getStaffById, resetForm } 
+       from '../../../../../actions/adminDashboardActions/staff/staffActions';
 import { withRouter } from 'react-router-dom';
 import 'antd/dist/antd.css';
-import './StudentCard.css';
-import { studentCardTabs } from '../../../../../data';
+import './StaffCard.css';
+import { staffCardTabs } from '../../../../../data';
 import DisplayContent from './DisplayContent';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -42,18 +42,18 @@ const DisplayWrap = styled.div`
   display: flex;
 `
 
-const StudentCard = props => {
-  const [navigation, setNavigation] = useState('Student Information');
+const StaffCard = props => {
+  const [navigation, setNavigation] = useState('Staff Information');
   const [selected, setSelected] = useState(navigation);
   const [resetForm, setResetForm] = useState(false);
 
   
   useEffect(() => {
-    props.getStudentById(props.id)  
+    props.getStaffById(props.id)  
   }, [])
 
   const goBack = () => {
-      props.setStudentId(undefined);
+      props.setStaffId(undefined);
       props.resetForm();
       setResetForm(true);
   }
@@ -70,20 +70,20 @@ const StudentCard = props => {
                 <div style={{width: '130px', height: '130px', borderRadius: '50%', background: '#d6d5d6'}}>
                 </div>
                 <div style={{display: 'flex', flexDirection: 'column', marginLeft: '20px', textAlign: 'left'}}>
-                  <h1 style={{fontSize: '34px', marginBottom: '0px'}}>{props.studentById.first_name}</h1>
+                  <h1 style={{fontSize: '34px', marginBottom: '0px'}}>{props.staffById.name}</h1>
                   <div style={{display: 'grid', textAlign: 'center', gridTemplateColumns: '1fr',
                          gridGap: '10px'}}>
-                    <p style={{backgroundColor: '#CDD5E9', padding: '5px 10px 5px 10px', marginBottom: '0px', fontWeight: '500'}}>CPR #   {props.studentById.cpr}</p>
-                    <p style={{backgroundColor: '#CDD5E9', padding: '5px 10px 5px 10px', marginBottom: '0px', fontWeight: '500'}}>STUDENT ID   {props.studentById.id}</p>
+                    <p style={{backgroundColor: '#CDD5E9', padding: '5px 10px 5px 10px', marginBottom: '0px', fontWeight: '500'}}>CPR: {props.staffById.cpr}</p>
+                    <p style={{backgroundColor: '#CDD5E9', padding: '5px 10px 5px 10px', marginBottom: '0px', fontWeight: '500'}}>Accent: {props.staffById.accent}</p>
                   </div>
                 </div>
             </TitleWrap>
             <TabsWrap>
-              <TabList tabs={studentCardTabs} setNavigation={setNavigation} setSelected={setSelected} 
-                       selected={selected} setStudentId={props.setStudentId}/>
+              <TabList tabs={staffCardTabs} setNavigation={setNavigation} setSelected={setSelected} 
+                       selected={selected} setStaffId={props.setStaffId}/>
             </TabsWrap>
             <DisplayWrap>
-              <DisplayContent navigation={navigation} studentData={props.studentById} />
+              <DisplayContent navigation={navigation} staffData={props.staffById} />
             </DisplayWrap>
         </CardWrap>
         
@@ -92,13 +92,13 @@ const StudentCard = props => {
 
 
 
-function TabList({tabs, setNavigation, setSelected, selected, setStudentId }) {
+function TabList({tabs, setNavigation, setSelected, selected, setStaffId }) {
 
   return (
     <div style={{display: 'flex'}}>
       {tabs.map((tab, index) => {
         return <Tab key={index} tab={tab} selected={selected} setNavigation={setNavigation} 
-                setSelected={setSelected}  setStudentId={setStudentId}/>
+                setSelected={setSelected}  setStaffId={setStaffId}/>
       })}
     </div>
   )
@@ -119,18 +119,18 @@ function Tab(props) {
 
 const mapStateToProps = state => {
   return {
-      cardIsLoading: state.studentsReducer.cardIsLoading,
-      studentById: state.studentsReducer.studentById,
-      cardIsEditing: state.studentsReducer.cardIsEditting,
-      resetForm: state.studentsReducer.resetForm
+      cardIsLoading: state.staffReducer.cardIsLoading,
+      staffById: state.staffReducer.staffById,
+      cardIsEditing: state.staffReducer.cardIsEditting,
+      resetForm: state.staffReducer.resetForm
   };
 };
 
 export default withRouter(
   connect(
       mapStateToProps,
-      { getStudentById, resetForm }
-  )(StudentCard)
+      { getStaffById, resetForm }
+  )(StaffCard)
 )
 
 

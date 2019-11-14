@@ -4,11 +4,13 @@ import { studentsReducer } from './adminDashboardReducers/students/studentsReduc
 import { landingPageReducer } from './landingPageReducers/landingPageReducers';
 // import { studentByIdReducer } from './adminDashboardReducers/studentByIdReducer';
 import { coursesReducer } from './adminDashboardReducers/courses/coursesReducer';
+import { staffReducer } from './adminDashboardReducers/staff/staffReducer';
 export const reducer = combineReducers({
   authenticationReducer,
   studentsReducer,
   landingPageReducer,
-  coursesReducer
+  coursesReducer,
+  staffReducer
   // studentByIdReducer,
 });
 
