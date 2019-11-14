@@ -37,7 +37,7 @@ function MiddleSecondary(props) {
             In these courses, children bring their textbooks used in public
             schools to review lessons with our teachers.
           </p>
-          <button>Register Now</button>
+          <Link to="/register" className="button">Register Now</Link>
         </div>
       </div>
     </div>

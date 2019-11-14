@@ -53,7 +53,7 @@ function Primary(props) {
             Perfect for children going into school or those who are struggling
             with their English literacy.
           </p>
-          <button>Register Now</button>
+          <Link to="/register" className="button">Register Now</Link>
         </div>
       </div>
     </div>
