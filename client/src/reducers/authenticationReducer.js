@@ -8,7 +8,7 @@ import {
   LOGOUT_START,
   LOGOUT_SUCCESS,
   LOGOUT_FAILURE
-} from '../actions';
+} from "../actions";
 
 const initialState = {
   user: {
@@ -29,7 +29,6 @@ const initialState = {
   }
 };
 
-
 export const authenticationReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_START:
@@ -49,9 +48,9 @@ export const authenticationReducer = (state = initialState, action) => {
         },
         user: {
           authenticated: true,
-          username: action.payload.username, //update the be login endpoint to return username
+          username: action.payload.username //update the be login endpoint to return username
         }
-      }
+      };
     case LOGIN_FAILURE:
       return {
         ...state,
@@ -77,7 +76,7 @@ export const authenticationReducer = (state = initialState, action) => {
         },
         user: {
           authenticated: false,
-          username: null,
+          username: null
         }
       };
     case LOGOUT_FAILURE:
@@ -85,7 +84,7 @@ export const authenticationReducer = (state = initialState, action) => {
         ...state,
         logOut: {
           isLoading: false,
-          error: 'Error' //display proper error
+          error: "Error" //display proper error
         }
       };
     case LOGGEDIN_START:
@@ -105,7 +104,7 @@ export const authenticationReducer = (state = initialState, action) => {
         },
         user: {
           authenticated: action.payload.authenticated,
-          username: action.payload.username || 'undefined'
+          username: action.payload.username || "undefined"
         }
       };
     case LOGGEDIN_FAILURE:
@@ -113,9 +112,9 @@ export const authenticationReducer = (state = initialState, action) => {
         ...state,
         loggedIn: {
           isLoading: false,
-          error: 'Error' //display proper error
+          error: "Error" //display proper error
         }
-      }
+      };
     default:
       return state;
   }
