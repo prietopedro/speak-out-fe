@@ -6,6 +6,7 @@ import { familyRegister } from "../actions/registrationActions";
 import Dropdown from "react-dropdown";
 import "./register.scss";
 import { callbackify } from "util";
+import { toggle } from "../actions/landingPageActions/landingPageActions";
 
 
 
@@ -18,7 +19,7 @@ function Register(props) {
 
   
   useEffect(() => {
-
+    props.toggle();
   }, [props.success])
 
   const [user, setUser] = useState({
@@ -404,11 +405,11 @@ const mapStateToProps = state => {
   return {
     state: state,
     success: state.registrationReducer.familyRegister.success,
-    student: state.registrationReducer.student.first_name
+    student: state.registrationReducer.student.first_name,
 
   };
 };
 
 export default withRouter(
-  connect(mapStateToProps, { familyRegister })(Register)
+  connect(mapStateToProps, { familyRegister, toggle })(Register)
 );

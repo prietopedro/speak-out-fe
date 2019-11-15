@@ -26,6 +26,9 @@ function NavBar(props) {
     if (props.location.pathname === "/") {
       setSelected(false);
     }
+    if (props.location.pathname === "/register") {
+      setSelected(false);
+    }
   }, [selected, props.toggle])
 
   const handleLogo = () => {
