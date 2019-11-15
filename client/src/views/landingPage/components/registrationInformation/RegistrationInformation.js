@@ -14,17 +14,6 @@ function RegistrationInformation(props) {
     <div className="registration-information">
       <header>
         <h1>Registration</h1>
-        {/* <div className="link-container">
-          <Link className="link" to="/kindergarten">
-            Kindergarten
-          </Link>
-          <Link className="link" to="/primary">
-            Primary
-          </Link>
-          <Link className="link red" to="#">
-            Middle and Secondary
-          </Link>
-        </div> */}
       </header>
       <div className="body">
         <div className="body-left">
@@ -53,7 +42,7 @@ function RegistrationInformation(props) {
           <p>
             Cost includes registration, books, stationery, and three sessions.
           </p>
-          <button>Register Now</button>
+          <Link to="/register" className="button">Register Now</Link>
         </div>
       </div>
     </div>
