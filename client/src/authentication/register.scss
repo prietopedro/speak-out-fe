@@ -1,3 +1,4 @@
+@import "../styles/_variables.scss";
 .parent-reg {
   // position: absolute;
   top: 120px;
@@ -173,3 +174,17 @@
     }
   }
 }
+.success-message {
+  .button {
+    font-family: $font-family;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    color: white;
+    background-color: $deep-red;
+    padding: 5px 20px;
+    border-radius: 7px;
+    margin-top: 20px;
+  }
+}
+

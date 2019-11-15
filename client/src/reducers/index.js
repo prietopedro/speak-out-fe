@@ -5,12 +5,13 @@ import { landingPageReducer } from './landingPageReducers/landingPageReducers';
 // import { studentByIdReducer } from './adminDashboardReducers/studentByIdReducer';
 import { coursesReducer } from './adminDashboardReducers/courses/coursesReducer';
 import { staffReducer } from './adminDashboardReducers/staff/staffReducer';
+import { registrationReducer } from './registrationReducer';
 export const reducer = combineReducers({
   authenticationReducer,
   studentsReducer,
   landingPageReducer,
   coursesReducer,
-  staffReducer
-  // studentByIdReducer,
+  staffReducer,
+  registrationReducer
 });
 
