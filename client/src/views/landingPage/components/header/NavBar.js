@@ -10,7 +10,23 @@ function NavBar(props) {
   const [selected, setSelected] = useState(false);
 
   useEffect(() => {
-  }, [selected])
+    console.log('NAVBAR HEREEE: ', props)
+    if (props.location.pathname === "/about-us") {
+      setSelected('about');
+    }
+    if (props.location.pathname === "/contact-us") {
+      setSelected('contact');
+    }
+    if (props.location.pathname === "/registration-information") {
+      setSelected('registration')
+    }
+    if (props.location.pathname === "/course-structure") {
+      setSelected('course');
+    }
+    if (props.location.pathname === "/") {
+      setSelected(false);
+    }
+  }, [selected, props.toggle])
 
   const handleLogo = () => {
     props.history.push('/')
@@ -69,7 +85,8 @@ function NavBar(props) {
 const mapStateToProps = state => {
   return {
     reset: state.landingPageReducer.reset,
-    loggedIn: state.authenticationReducer.user.authenticated
+    loggedIn: state.authenticationReducer.user.authenticated,
+    toggle: state.landingPageReducer.toggle
   };
 };
 

@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import "./registrationInformation.scss";
+import { toggle } from "../../../../actions/landingPageActions/landingPageActions";
+import { connect } from 'react-redux';
 
 function RegistrationInformation(props) {
+  useEffect(() => {
+    props.toggle();
+  }, [toggle])
+
   return (
     <div className="registration-information">
       <header>
@@ -54,6 +60,15 @@ function RegistrationInformation(props) {
   );
 }
 
-const RegistrationInformationWithRouter = withRouter(RegistrationInformation);
+const mapStateToProps = state => {
+  return {
+    toggle: state.landingPageReducer.toggle
+  };
+};
 
-export default RegistrationInformationWithRouter;
+export default withRouter(
+  connect(
+      mapStateToProps,
+      { toggle }
+  )(RegistrationInformation)
+)
