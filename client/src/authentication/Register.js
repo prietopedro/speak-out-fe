@@ -351,13 +351,13 @@ function Register(props) {
                 onChange={handleStudentChange}
               />
               <div style={{borderBottom: `1px solid ${errorLocation}`, width: '250px'}}>
-              <Dropdown
-                onChange={handleLocationDropdown}
-                controlClassName="myControlClassName"
-                className="dropdownRoot"
-                options={locationArr}
-                value={location}
-              />
+                <Dropdown
+                  onChange={handleLocationDropdown}
+                  controlClassName="myControlClassName"
+                  className="dropdownRoot"
+                  options={locationArr}
+                  value={location}
+                />
               </div>
             </fieldset>
           )}
@@ -456,13 +456,15 @@ function Register(props) {
                 value={student.birthdate}
                 onChange={handleStudentChange}
               />
-              <Dropdown
-                onChange={handleLocationDropdown}
-                controlClassName="myControlClassName"
-                className="dropdownRoot"
-                options={locationArr}
-                value={location}
-              />
+              <div style={{borderBottom: `1px solid ${errorLocation}`, width: '250px'}}>
+                <Dropdown
+                  onChange={handleLocationDropdown}
+                  controlClassName="myControlClassName"
+                  className="dropdownRoot"
+                  options={locationArr}
+                  value={location}
+                />
+              </div>
             </fieldset>
           )}
           <div style={{display: 'flex', justifyContent: 'space-between'}}>
