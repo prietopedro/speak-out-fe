@@ -167,7 +167,7 @@
         line-height: 18px;
         color: #c73642;
         background: white;
-        margin-left: 70%;
+        // margin-left: 70%;
         margin-top: 50px;
         margin-bottom: 20px;
       }
@@ -188,3 +188,28 @@
   }
 }
 
+/* ====================== 
+   React Dropdown custom styles *important
+*/
+
+.dropdownRoot {
+  position: relative;
+  border-bottom: 1px solid transparent;
+  margin-right: 30px;
+  font-size: 24px;
+  color: #595759;
+  line-height: 31px;
+  width: 250px; 
+}
+
+.dropdownRoot span {
+  margin: -3px 0px 0px 1px; 
+}
+
+.dropdownRoot div {
+  border: 1px solid transparent;
+  padding: 1px 0px 0px 1px; 
+}
+
+
+/* ========================== */

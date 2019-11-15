@@ -17,6 +17,22 @@ function Register(props) {
   const locationArr = ["Select Location", "Bani Jamra", "Hamad Town"];
   const [location, setLocation] = useState(locationArr[0]);
 
+  // handle required fields (make them all required for now)
+  const [errorBorderUsername, setErrorBorderUsername] = useState('#595759'); //error #C73642
+  const [errorBorderPassword, setErrorBorderPassword] = useState('#595759'); //error #C73642
+  const [errorBorderConfirmPassword, setErrorBorderConfirmPassword] = useState('#595759'); //error #C73642
+  const [errorBorderEmail, setErrorBorderEmail] = useState('#595759'); //error #C73642
+  const [errorBorderFatherName, setErrorBorderFatherName] = useState('#595759'); //error #C73642
+  const [errorBorderMotherName, setErrorBorderMotherName] = useState('#595759'); //error #C73642
+  const [errorBorderPrimaryTelephone, setErrorBorderPrimaryTelephone] = useState('#595759'); //error #C73642
+  const [errorBorderSecondaryTelephone, setErrorBorderSecondaryTelephone] = useState('#595759'); //error #C73642
+
+  const [errorBorderFirstName, setErrorBorderFirstName] = useState('#595759'); //error #C73642
+  const [errorBorderAdditionalNames, setErrorBorderAdditionalNames] = useState('#595759'); //error #C73642
+  const [errorBorderCpr, setErrorBorderCpr] = useState('#595759'); //error #C73642
+  const [errorBorderStudentEmail, setErrorBorderStudentEmail] = useState('#595759'); //error #C73642
+  const [errorBorderBirthdate, setErrorBorderBirthdate] = useState('#595759'); //error #C73642
+  const [errorLocation, setErrorLocation] = useState('#595759'); //error 
   
   useEffect(() => {
     props.toggle();
@@ -44,6 +60,7 @@ function Register(props) {
     birthdate: "",
     location_id: ""
   });
+
 
   function handleLocationDropdown(e) {
     let index;
@@ -76,6 +93,69 @@ function Register(props) {
     e.preventDefault();
     setStep(step + 1);
   };
+
+  const nextStepStudentInfoBtn = e => {
+    e.preventDefault();
+    //check for required fields
+    if (user.username === '' || user.password === '' || confirmPassword === '' || user.email === ''
+        || family.father_name === '' || family.primary_telephone === '') {
+          if (user.username === '') {
+            setErrorBorderUsername('#C73642');
+          }
+          if (user.password === '') {
+            setErrorBorderPassword('#C73642');
+          }
+          if (confirmPassword === '') {
+            setErrorBorderConfirmPassword('#C73642');
+          }
+          if (user.email === '') {
+            setErrorBorderEmail('#C73642');
+          }
+          if (family.father_name === '' && family.mother_name === '') {
+            setErrorBorderFatherName('#C73642');
+            setErrorBorderMotherName('#C73642');
+          }
+          if (family.primary_telephone === '' && family.secondary_telephone === '') {
+            setErrorBorderPrimaryTelephone('#C73642');
+          }
+    } 
+    else if (user.password !== confirmPassword) {
+      setErrorBorderPassword('#C73642');
+      setErrorBorderConfirmPassword('#C73642');
+    } 
+    else {
+      setStep(step + 1);
+    }
+  }
+
+  const nextStepReviewRegistrationBtn = e => {
+    e.preventDefault();
+    //check for required fields
+
+    if (student.first_name === '' || student.additional_names === '' || student.cpr === '' || student.email === ''
+        || student.birthdate === '' || student.location_id === '') {
+          if (student.first_name === '') {
+            setErrorBorderFirstName('#C73642');
+          }
+          if (student.additional_names === '') {
+            setErrorBorderAdditionalNames('#C73642');
+          }
+          if (student.cpr === '') {
+            setErrorBorderCpr('#C73642');
+          }
+          if (student.email === '') {
+            setErrorBorderStudentEmail('#C73642');
+          }
+          if (student.birthdate === '') {
+            setErrorBorderBirthdate('#C73642');
+          }
+          if (student.location_id === '') {
+            setErrorLocation('#C73642');
+          }
+    } else {
+      setStep(step + 1);
+    }
+  }
 
   const prevStep = e => {
     e.preventDefault();
@@ -160,14 +240,18 @@ function Register(props) {
         <form>
           {step === 1 && (
             <fieldset>
+
               <input
+                style={{borderBottom: `1px solid ${errorBorderUsername}`}}
                 type="text"
                 name="username"
                 placeholder="Username"
                 value={user.username}
                 onChange={handleUserChange}
               />
+              
               <input
+                style={{borderBottom: `1px solid ${errorBorderFatherName}`}}
                 type="text"
                 name="father_name"
                 placeholder="Father's Name"
@@ -175,6 +259,7 @@ function Register(props) {
                 onChange={handleFamilyChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderMotherName}`}}
                 type="text"
                 name="mother_name"
                 placeholder="Mother's Name"
@@ -182,6 +267,7 @@ function Register(props) {
                 onChange={handleFamilyChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderEmail}`}}
                 type="email"
                 name="email"
                 placeholder="Email"
@@ -189,6 +275,7 @@ function Register(props) {
                 onChange={handleUserChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderPrimaryTelephone}`}}
                 type="text"
                 name="primary_telephone"
                 placeholder="Primary Telephone"
@@ -196,6 +283,7 @@ function Register(props) {
                 onChange={handleFamilyChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderSecondaryTelephone}`}}
                 type="text"
                 name="secondary_telephone"
                 placeholder="Secondary Telephone"
@@ -203,6 +291,7 @@ function Register(props) {
                 onChange={handleFamilyChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderPassword}`}}
                 type="password"
                 name="password"
                 placeholder="Password"
@@ -210,6 +299,7 @@ function Register(props) {
                 onChange={handleUserChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderConfirmPassword}`}}
                 type="password"
                 name="confirmPassword"
                 placeholder="Confirm Password"
@@ -221,6 +311,7 @@ function Register(props) {
           {step === 2 && (
             <fieldset>
               <input
+                style={{borderBottom: `1px solid ${errorBorderFirstName}`}}
                 type="text"
                 name="first_name"
                 placeholder="First Name"
@@ -228,6 +319,7 @@ function Register(props) {
                 onChange={handleStudentChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderAdditionalNames}`}}
                 type="text"
                 name="additional_names"
                 placeholder="Surname"
@@ -235,6 +327,7 @@ function Register(props) {
                 onChange={handleStudentChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderCpr}`}}
                 type="text"
                 name="cpr"
                 placeholder="Student CPR ID"
@@ -242,6 +335,7 @@ function Register(props) {
                 onChange={handleStudentChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderStudentEmail}`}}
                 type="email"
                 name="email"
                 placeholder="Email"
@@ -249,12 +343,14 @@ function Register(props) {
                 onChange={handleStudentChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderBirthdate}`}}
                 type="date"
                 name="birthdate"
                 placeholder="Student Birthday"
                 value={student.birthdate}
                 onChange={handleStudentChange}
               />
+              <div style={{borderBottom: `1px solid ${errorLocation}`, width: '250px'}}>
               <Dropdown
                 onChange={handleLocationDropdown}
                 controlClassName="myControlClassName"
@@ -262,6 +358,7 @@ function Register(props) {
                 options={locationArr}
                 value={location}
               />
+              </div>
             </fieldset>
           )}
           {step === 3 && (
@@ -368,21 +465,36 @@ function Register(props) {
               />
             </fieldset>
           )}
-          {step === 2 && (
-            <button onClick={prevStep}>Back: Your Information </button>
-          )}
-          {step === 3 && (
-            <button onClick={prevStep}>Back: Student Information </button>
-          )}
-          {step === 1 && (
-            <button onClick={nextStep}>Next: Student Information</button>
-          )}
-          {step === 2 && (
-            <button onClick={nextStep}>Next: Review Registration </button>
-          )}
-          {step === 3 && (
-            <button onClick={handleSubmit}>Submit Registration </button>
-          )}
+          <div style={{display: 'flex', justifyContent: 'space-between'}}>
+         
+            {step === 2 && (
+              <button onClick={prevStep}>Back: Your Information </button>
+            )}
+ 
+            
+            {step === 3 && (
+              <button onClick={prevStep}>Back: Student Information </button>
+            )}
+
+            {step === 1 && (
+              <button style={{visibility: 'hidden'}} ></button>
+            )}
+            
+            {step === 1 && (
+              <button onClick={nextStepStudentInfoBtn}>Next: Student Information</button>
+            )}
+            
+            
+            {step === 2 && (
+              <button onClick={nextStepReviewRegistrationBtn}>Next: Review Registration </button>
+            )}
+            
+            
+            {step === 3 && (
+              <button onClick={handleSubmit}>Submit Registration </button>
+            )}
+            
+          </div>
         </form>
       </div>
     </div>
