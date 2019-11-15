@@ -11,7 +11,6 @@ import groupSong from '../../../../assets/group-singsong.jpg';
 import cardGame from '../../../../assets/kids-playing-card-match-game.jpg';
 import prevArrow from '../../../../assets/prev-arrow.png';
 import nextArrow from '../../../../assets/next-arrow.png';
-import gallery from '../../../../assets/gallery-carousel-placeholder.png';
 
 // Assets
 
@@ -53,7 +52,6 @@ function Carousel() {
         <section className="carousel">
             <div className="wrap">
                 <h2>Gallery</h2>
-                <img className="placeholder" src={gallery} />
                 <Slider {...settings}>
                     <div>
                         <img src={boysOutside} />

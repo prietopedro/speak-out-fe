@@ -16,28 +16,25 @@ section.carousel {
             width: 100%;
         }
 
-        .slick-prev, .slick-next {
-            height: auto;
-            width: auto;
-            z-index: 9;
+        .slick-slider {
+            max-width: 1200px;
+            margin: 0 auto;
+
+            .slick-prev, .slick-next {
+                height: auto;
+                width: auto;
+                z-index: 9;
+            }
+    
+            .slick-slide {
+                img {
+                    width: 100%;
+                    padding: 0 2%;
+                }
+                
+            }
         }
 
-        .slick-slide {
-            img {
-                transform: scale(0.9);
-                transition: transform 0.7s linear;
-                width: 100%;
-            }
-            
-        }
-
-        .slick-slide.slick-active {
-            img {
-                transform: scale(1);
-                padding: 0 2%;
-            }
-            
-        }
     }
 
     h2 {
