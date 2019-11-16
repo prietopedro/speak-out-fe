@@ -15,12 +15,15 @@ function NavBar(props) {
     }
     if (props.location.pathname === "/course-structure/kindergarten") {
       setSelected('kindergarten');
+      setHeader('Kindergarten');
     }
     if (props.location.pathname === "/course-structure/primary") {
-      setSelected('primary')
+      setSelected('primary');
+      setHeader('Primary');
     }
     if (props.location.pathname === "/course-structure/middle-and-secondary") {
-      setSelected('middle-and-secondary')
+      setSelected('middle-and-secondary');
+      setHeader('Middle & Secondary');
     }
 
   }, [selected, props.toggle])

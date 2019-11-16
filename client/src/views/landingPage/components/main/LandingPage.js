@@ -7,11 +7,12 @@ import Carousel from './carousel/Carousel';
 import RegistrationInformation from './registrationInformation/RegistrationInformation';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
-import { toggle } from "../../../../actions/landingPageActions/landingPageActions";
+import { toggle, resetNav } from "../../../../actions/landingPageActions/landingPageActions";
 
 function LandingPage(props) {
 useEffect(() => {
   props.toggle();
+  props.resetNav(false);
 }, [])
   return (
     <>
@@ -34,6 +35,6 @@ const mapStateToProps = state => {
 export default withRouter(
   connect(
       mapStateToProps,
-      { toggle }
+      { toggle, resetNav }
   )(LandingPage)
 )

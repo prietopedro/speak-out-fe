@@ -164,15 +164,88 @@ function Register(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.familyRegister(
-      { user: user, family: family, student: student },
-      props.history
+
+    //final fields check
+    if (user.username === '' || user.password === '' || confirmPassword === '' || user.email === ''
+        || family.father_name === '' || family.primary_telephone === '', student.first_name === '' || student.additional_names === '' || student.cpr === '' || student.email === ''
+        || student.birthdate === '' || student.location_id === '') {
+      if (user.username === '') {
+        setErrorBorderUsername('#C73642');
+      }
+      if (user.password === '') {
+        setErrorBorderPassword('#C73642');
+      }
+      if (confirmPassword === '') {
+        setErrorBorderConfirmPassword('#C73642');
+      }
+      if (user.email === '') {
+        setErrorBorderEmail('#C73642');
+      }
+      if (family.father_name === '' && family.mother_name === '') {
+        setErrorBorderFatherName('#C73642');
+        setErrorBorderMotherName('#C73642');
+      }
+      if (family.primary_telephone === '' && family.secondary_telephone === '') {
+        setErrorBorderPrimaryTelephone('#C73642');
+      }
+      if (student.first_name === '') {
+        setErrorBorderFirstName('#C73642');
+      }
+      if (student.additional_names === '') {
+        setErrorBorderAdditionalNames('#C73642');
+      }
+      if (student.cpr === '') {
+        setErrorBorderCpr('#C73642');
+      }
+      if (student.email === '') {
+        setErrorBorderStudentEmail('#C73642');
+      }
+      if (student.birthdate === '') {
+        setErrorBorderBirthdate('#C73642');
+      }
+      if (student.location_id === '') {
+        setErrorLocation('#C73642');
+      }
+    } 
+    else if (user.password !== confirmPassword) {
+      setErrorBorderPassword('#C73642');
+      setErrorBorderConfirmPassword('#C73642');
+    } 
+    else {
+      props.familyRegister(
+        { user: user, family: family, student: student },
+        props.history
     );
-    console.log("REG OBJECT: ", {
-      user: user,
-      family: family,
-      student: student
-    });
+
+      //reset form fields
+      setUser({
+        username: "",
+        password: "",
+        email: "",
+        user_type: "parent"
+      });
+    
+      setFamily({
+        father_name: "",
+        mother_name: "",
+        primary_telephone: "",
+        secondary_telephone: ""
+      });
+    
+      setStudent({
+        first_name: "",
+        additional_names: "",
+        cpr: "",
+        email: "",
+        birthdate: "",
+        location_id: ""
+      });
+    }
+    // console.log("REG OBJECT: ", {
+    //   user: user,
+    //   family: family,
+    //   student: student
+    // });
   };
 
   {if (!props.success) {

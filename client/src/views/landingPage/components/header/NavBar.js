@@ -23,6 +23,15 @@ function NavBar(props) {
     if (props.location.pathname === "/course-structure") {
       setSelected('course');
     }
+    if (props.location.pathname === "/course-structure/kindergarten") {
+      setSelected('course');
+    }
+    if (props.location.pathname === "/course-structure/primary") {
+      setSelected('course');
+    }
+    if (props.location.pathname === "/course-structure/middle-and-secondary") {
+      setSelected('course');
+    }
     if (props.location.pathname === "/") {
       setSelected(false);
     }
