@@ -98,7 +98,7 @@ function Register(props) {
     e.preventDefault();
     //check for required fields
     if (user.username === '' || user.password === '' || confirmPassword === '' || user.email === ''
-        || family.father_name === '' || family.primary_telephone === '') {
+        || family.father_name === '' || family.mother_name === '' || family.primary_telephone === '') {
           if (user.username === '') {
             setErrorBorderUsername('#C73642');
           }
@@ -111,8 +111,11 @@ function Register(props) {
           if (user.email === '') {
             setErrorBorderEmail('#C73642');
           }
-          if (family.father_name === '' && family.mother_name === '') {
+          if (family.father_name === '') {
             setErrorBorderFatherName('#C73642');
+            setErrorBorderMotherName('#C73642');
+          }
+          if (family.mother_name === '') {
             setErrorBorderMotherName('#C73642');
           }
           if (family.primary_telephone === '' && family.secondary_telephone === '') {
@@ -133,7 +136,7 @@ function Register(props) {
     //check for required fields
 
     if (student.first_name === '' || student.additional_names === '' || student.cpr === '' || student.email === ''
-        || student.birthdate === '' || student.location_id === '') {
+        || student.birthdate === '' || student.location_id === '' || student.location_id === 0) {
           if (student.first_name === '') {
             setErrorBorderFirstName('#C73642');
           }
@@ -149,11 +152,24 @@ function Register(props) {
           if (student.birthdate === '') {
             setErrorBorderBirthdate('#C73642');
           }
-          if (student.location_id === '') {
+          if (student.location_id === '' || student.location_id === 0) {
             setErrorLocation('#C73642');
           }
     } else {
       setStep(step + 1);
+      setErrorBorderFirstName('#595759');
+      setErrorBorderAdditionalNames('#595759');
+      setErrorBorderCpr('#595759');
+      setErrorBorderStudentEmail('#595759');
+      setErrorBorderBirthdate('#595759');
+      setErrorLocation('#595759');
+      setErrorBorderUsername('#595759');
+      setErrorBorderPassword('#595759');
+      setErrorBorderConfirmPassword('#595759');
+      setErrorBorderEmail('#595759');
+      setErrorBorderFatherName('#595759');
+      setErrorBorderMotherName('#595759');
+      setErrorBorderPrimaryTelephone('#595759');
     }
   }
 
@@ -167,8 +183,8 @@ function Register(props) {
 
     //final fields check
     if (user.username === '' || user.password === '' || confirmPassword === '' || user.email === ''
-        || family.father_name === '' || family.primary_telephone === '', student.first_name === '' || student.additional_names === '' || student.cpr === '' || student.email === ''
-        || student.birthdate === '' || student.location_id === '') {
+        || family.father_name === '' || family.mother_name === '' || family.primary_telephone === '', student.first_name === '' || student.additional_names === '' || student.cpr === '' || student.email === ''
+        || student.birthdate === '' || student.location_id === '' || student.location_id === 0) {
       if (user.username === '') {
         setErrorBorderUsername('#C73642');
       }
@@ -181,8 +197,10 @@ function Register(props) {
       if (user.email === '') {
         setErrorBorderEmail('#C73642');
       }
-      if (family.father_name === '' && family.mother_name === '') {
+      if (family.father_name === '') {
         setErrorBorderFatherName('#C73642');
+      }
+      if (family.mother_name === '') {
         setErrorBorderMotherName('#C73642');
       }
       if (family.primary_telephone === '' && family.secondary_telephone === '') {
@@ -203,7 +221,7 @@ function Register(props) {
       if (student.birthdate === '') {
         setErrorBorderBirthdate('#C73642');
       }
-      if (student.location_id === '') {
+      if (student.location_id === '' || student.location_id === 0) {
         setErrorLocation('#C73642');
       }
     } 
@@ -327,7 +345,7 @@ function Register(props) {
                 style={{borderBottom: `1px solid ${errorBorderFatherName}`}}
                 type="text"
                 name="father_name"
-                placeholder="Father's Name"
+                placeholder="Father's Name or n/a"
                 value={family.father_name}
                 onChange={handleFamilyChange}
               />
@@ -335,7 +353,7 @@ function Register(props) {
                 style={{borderBottom: `1px solid ${errorBorderMotherName}`}}
                 type="text"
                 name="mother_name"
-                placeholder="Mother's Name"
+                placeholder="Mother's Name or n/a"
                 value={family.mother_name}
                 onChange={handleFamilyChange}
               />
