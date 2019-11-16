@@ -427,7 +427,7 @@ function Register(props) {
                 <Dropdown
                   onChange={handleLocationDropdown}
                   controlClassName="myControlClassName"
-                  className="dropdownRoot"
+                  className="dropdownRoot register"
                   options={locationArr}
                   value={location}
                 />
@@ -546,7 +546,7 @@ function Register(props) {
                 <Dropdown
                   onChange={handleLocationDropdown}
                   controlClassName="myControlClassName"
-                  className="dropdownRoot"
+                  className="dropdownRoot register"
                   options={locationArr}
                   value={location}
                 />
