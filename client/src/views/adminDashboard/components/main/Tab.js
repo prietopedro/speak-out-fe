@@ -19,7 +19,7 @@ const TabWrap = styled.div`
 `
 
 function Tab(props) {
-  const [icon, setIcon] = useState();
+  const [icon, setIcon] = useState(faUserGraduate)
 
   useEffect(() => {
     if (props.tab.key === 'Students') {
@@ -37,7 +37,7 @@ function Tab(props) {
     props.resetForm();
   }
   return (
-    <a style={{cursor: "pointer"}} onClick={() => handleClick(props.tab.key)}>
+    <div style={{cursor: "pointer"}} onClick={() => handleClick(props.tab.key)}>
     <TabWrap style={{color: `${props.tab.key.toLowerCase() === props.selected ? "#269FB0" : "#89878a"}`, 
                      display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
       <FontAwesomeIcon icon={icon} size='lg' color='gray' style={{marginRight: '10px', 
@@ -45,7 +45,7 @@ function Tab(props) {
                        height: '15px', width: '15px'}}/>
       {props.tab.key}
     </TabWrap>
-    </a>
+    </div>
   )
 }
 

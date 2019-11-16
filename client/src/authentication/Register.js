@@ -438,6 +438,7 @@ function Register(props) {
             <fieldset>
               <h4>Your Information</h4>
               <input
+                style={{borderBottom: `1px solid ${errorBorderUsername}`}}
                 type="text"
                 name="username"
                 placeholder="Username"
@@ -445,6 +446,7 @@ function Register(props) {
                 onChange={handleUserChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderFatherName}`}}
                 type="text"
                 name="father_name"
                 placeholder="Father's Name"
@@ -452,6 +454,7 @@ function Register(props) {
                 onChange={handleFamilyChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderMotherName}`}}
                 type="text"
                 name="mother_name"
                 placeholder="Mother's Name"
@@ -459,6 +462,7 @@ function Register(props) {
                 onChange={handleFamilyChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderEmail}`}}
                 type="email"
                 name="email"
                 placeholder="Email"
@@ -466,6 +470,7 @@ function Register(props) {
                 onChange={handleUserChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderPrimaryTelephone}`}}
                 type="text"
                 name="primary_telephone"
                 placeholder="Primary Telephone"
@@ -473,6 +478,7 @@ function Register(props) {
                 onChange={handleFamilyChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderSecondaryTelephone}`}}
                 type="text"
                 name="secondary_telephone"
                 placeholder="Secondary Telephone"
@@ -480,6 +486,7 @@ function Register(props) {
                 onChange={handleFamilyChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderPassword}`}}
                 type="password"
                 name="password"
                 placeholder="Password"
@@ -487,6 +494,7 @@ function Register(props) {
                 onChange={handleUserChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderConfirmPassword}`}}
                 type="password"
                 name="confirmPassword"
                 placeholder="Confirm Password"
@@ -495,6 +503,7 @@ function Register(props) {
               />
               <h4>Student Information</h4>
               <input
+                style={{borderBottom: `1px solid ${errorBorderFirstName}`}}
                 type="text"
                 name="first_name"
                 placeholder="First Name"
@@ -502,6 +511,7 @@ function Register(props) {
                 onChange={handleStudentChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderAdditionalNames}`}}
                 type="text"
                 name="additional_names"
                 placeholder="Surname"
@@ -509,6 +519,7 @@ function Register(props) {
                 onChange={handleStudentChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderCpr}`}}
                 type="text"
                 name="cpr"
                 placeholder="Student CPR ID"
@@ -516,6 +527,7 @@ function Register(props) {
                 onChange={handleStudentChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderStudentEmail}`}}
                 type="email"
                 name="email"
                 placeholder="Email"
@@ -523,6 +535,7 @@ function Register(props) {
                 onChange={handleStudentChange}
               />
               <input
+                style={{borderBottom: `1px solid ${errorBorderBirthdate}`}}
                 type="date"
                 name="birthdate"
                 placeholder="Student Birthday"

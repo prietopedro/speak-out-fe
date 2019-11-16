@@ -39,12 +39,12 @@ function NavBar(props) {
         <a onClick={pushToHome} className="logo"><img className="logo-image" src={Logo}></img></a>
       </div>
       <div className="navbar-right">
-      <div class="dropdown" ref={wrapperRef}>
+      <div className="dropdown" ref={wrapperRef}>
         <div style={{display: 'flex', alignItems: 'center'}}>
           {/* <div style={{marginRight: '10px'}}>Hello, Victoria</div> */}
           <FontAwesomeIcon onClick={displayDropdown} icon={faUserCircle} size='lg' color='gray' style={{marginRight: '20px', width: '50px', height: '50px', color: '#b1afb1'}}/> 
         </div>
-        <div id="myDropdown" class="dropdown-content" style={{display: display}} >
+        <div id="myDropdown" className="dropdown-content" style={{display: display}} >
           <a onClick={logout}>Sign out</a>
         </div>
       </div>
