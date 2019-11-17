@@ -10,19 +10,22 @@ const DashboardWrap = styled.div`
 `
 
 const TabsWrap = styled.div`
-  width: 20%;
+  width: 15%;
   height: 100vh;
   overflow: scroll;
-  background: #269FB0;
+  // background: #269FB0;
+  // color: #269FB0;
+  border-right: 0.2px solid #B4B1B5;
 `
 const DisplayWrap = styled.div`
-  width: 80%;
+  width: 85%;
   height: 100vh;
-  overflow: scroll;
+  // overflow: scroll;
+  overflow-y: scroll;
 `
 
 function Dashboard() {
-const [navigation, setNavigation] = useState("main");
+const [navigation, setNavigation] = useState("navigation");
 const [tabColor, setTabColor] = useState("transparent");
 
 

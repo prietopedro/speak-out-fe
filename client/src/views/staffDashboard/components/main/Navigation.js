@@ -1,12 +1,12 @@
 import React from 'react';
 
-function Attendance() {
+function Navigation() {
 
   return (
     <div>
-      Attendance
+      Content
     </div>
   )
 }
 
-export default Attendance;
+export default Navigation;

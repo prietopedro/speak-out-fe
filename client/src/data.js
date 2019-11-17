@@ -17,9 +17,9 @@ export const parentDashboardTabs = [
   {key: "Payments"},
 ]
 export const staffDashboardTabs = [
-  {key: "Main"},
-  {key: "Students"},
-  {key: "Courses"},
+  {key: "Navigation"},
+  // {key: "Students"},
+  // {key: "Courses"},
   // {key: "Work Log"},
 ]
 export const studentCardTabs = [
