@@ -48,8 +48,16 @@ export const toggleEditParent = () => dispatch => {
 
 
 export const editParentById = (id, state) => dispatch => {
-    axios.put(`https://speak-out-be-staging.herokuapp.com/api/?table=family&where=id=${id}`, state)
+
+const { block_code} = state
+console.log(block_code)
+let newObj = {
+    ...state,
+    block_code: block_code.label
+}
+    axios.put(`https://speak-out-be-staging.herokuapp.com/api/?table=family&where=id=${id}`, newObj)
     .then(res => {
+        console.log('EDIT PARENT ACTION', res.data)
         dispatch({
             type: EDIT_PARENTBYID_SUCCESS,
             payload: res.data
@@ -62,6 +70,26 @@ export const editParentById = (id, state) => dispatch => {
        }) 
     })
 }
+
+export const EDIT_PARENTDROPDOWN_START = 'EDIT_PARENTDROPDOWN_START';
+export const EDIT_PARENTDROPDOWN_SUCCESSTABLE4 = 'EDIT_PARENTDROPDOWN_SUCCESSTABLE4';
+export const EDIT_PARENTDROPDOWN_FAILURE = 'EDIT_PARENTDROPDOWN_FAILURE';
+export const editParentDropDown = () => dispatch => {
+    dispatch({ type: EDIT_PARENTDROPDOWN_START})
+    axios.get(`https://speak-out-be-staging.herokuapp.com/api/?table=block`)
+    .then(res => {
+            console.log('EDIT PARENT DROPDOWN ACTION', res.data)
+            dispatch({type: EDIT_PARENTDROPDOWN_SUCCESSTABLE4, payload: res.data.tableData})
+          })
+
+     .catch(err => {
+        //  console.log('err',err)
+         dispatch({type: EDIT_PARENTDROPDOWN_FAILURE, payload: err.payload})
+     })
+    }
+
+
+
 
 
 export const FETCH_STUDENTBYFAMILYID_START = 'FETCH_STUDENTBYFAMILYID_START';

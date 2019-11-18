@@ -25,6 +25,9 @@ const StaffForm = props => {
         user_id: props.staffById.user_id
     })
 
+    const admin = [{ label: 'Yes', value: true }, { label: 'No', value: false }]
+    const active = [{ label: 'Yes', value: true }, { label: 'No', value: false }]
+
     const handleChange = e => {
         setState({
             ...state,
@@ -116,13 +119,10 @@ const StaffForm = props => {
                     <div>
                         <Label>Accent</Label>
                         <div>
-                            <Dropdown
-                                // type='text'
-                                // name='accent'
-                                // placeholder='Accent'
-                                controlClassName='myControlClassName'
-                                options={TestArr}
-                                className='dropdown'
+                            <Input
+                                type='text'
+                                name='accent'
+                                placeholder='Accent'
                                 onChange={handleChange}
                                 value={state.accent}
                             />
@@ -133,9 +133,6 @@ const StaffForm = props => {
                         <Label>Gender</Label>
                         <div>
                             <Dropdown
-                                // type='text'
-                                // name='gender'
-                                // placeholder='Gender'
                                 onChange={handleChange}
                                 value={state.gender}
                                 controlClassName='myControlClassName'
@@ -174,12 +171,12 @@ const StaffForm = props => {
                     <div>
                         <Label>Admin</Label>
                         <div>
-                            <Input
-                                type='text'
-                                name='admin'
-                                placeholder='Admin'
-                                onChange={handleChange}
+                            <Dropdown
+                                onChange={(e) => setState({ ...state, admin: e.value })}
                                 value={state.admin}
+                                options={admin}
+                                controlClassName='myControlClassName'
+                                className='dropdown'
                             />
                         </div>
                     </div>
@@ -187,12 +184,12 @@ const StaffForm = props => {
                     <div>
                         <Label>Active</Label>
                         <div>
-                            <Input
-                                type='text'
-                                name='active'
-                                placeholder='active'
-                                onChange={handleChange}
+                            <Dropdown
+                                onChange={(e) => setState({ ...state, active: e.value })}
                                 value={state.active}
+                                options={active}
+                                controlClassName='myControlClassName'
+                                className='dropdown'
                             />
                         </div>
                     </div>

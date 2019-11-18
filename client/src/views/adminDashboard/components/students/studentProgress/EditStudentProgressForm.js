@@ -10,7 +10,7 @@ import StudentProgressTab from './StudentProgressTab';
 
 const EditStudentProgressForm = props => {
     const { studentID } = props
-    let reportDate = new Date(props.progressByStudentId.report_date).toISOString().split("T")[0];
+    // let reportDate = new Date(props.progressByStudentId.report_date).toISOString().split("T")[0];
     const [state, setState] = useState({
         id: props.progressByStudentId.id,
         speaking_fluency: props.progressByStudentId.speaking_fluency,
@@ -29,7 +29,7 @@ const EditStudentProgressForm = props => {
         course_id: props.progressByStudentId.course_id,
         student_id: props.progressByStudentId.student_id,
         teacher_id: props.progressByStudentId.teacher_id,
-        report_date: reportDate
+        report_date: props.progressByStudentId.report_date,
     })
 
     const [cancelEdit, setCancelEdit] = useState(false)
@@ -54,12 +54,6 @@ const EditStudentProgressForm = props => {
         )
     } else {
        
-
-        
-
-
-
-    
     return (
         <FormWrap >
             {props.isLoading ? (
@@ -276,11 +270,11 @@ const EditStudentProgressForm = props => {
                                 <Label>Report Date</Label>
                                 <div>
                                     <Input
-                                        type='text'
+                                        type='date'
                                         name='report_date'
                                         placeholder="Report Date"
                                         onChange={handleChange}
-                                        value={reportDate}
+                                        value={state.report_date}
                                     />
                                 </div>
                             </div>

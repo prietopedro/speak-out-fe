@@ -7,7 +7,7 @@ import StaffCoursesTab from './StaffCoursesTab';
 import { Header, Image, Icon, Tab } from 'semantic-ui-react'
 import 'antd/dist/antd.css';
 import '../../mainStyle/mainCard.scss';
-
+import dummyG from '../../../../../assets/dummyG.jpg'
 
 const StaffCard = props => {
     useEffect(() => {
@@ -41,7 +41,7 @@ const StaffCard = props => {
                     </div>
                 <div className="card-title">
 
-                    <Image src='https://react.semantic-ui.com/images/wireframe/square-image.png' circular size='small' />
+                    {/* <Image src={dummyG} circular size='small' /> */}
 
                     <Header as="h2">
                     {props.staffById.name}

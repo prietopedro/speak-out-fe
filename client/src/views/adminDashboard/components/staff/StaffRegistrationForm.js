@@ -10,8 +10,8 @@ import { FormWrap, Input, Button, Div, FormSet, Label} from '../mainStyle/styled
 const StaffRegistrationForm = (props) => {
 
     const gender = ['M', 'F']
-    const admin = [{ label: 'True', value: true }, { label: 'False', value: false }]
-    const active = [{ label: 'True', value: true }, { label: 'False', value: false }]
+    const admin = [{ label: 'Yes', value: true }, { label: 'No', value: false }]
+    const active = [{ label: 'Yes', value: true }, { label: 'No', value: false }]
     const [state, setState] = useState({
         id: props.availableID,
         name: '',

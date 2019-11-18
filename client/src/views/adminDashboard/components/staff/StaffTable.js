@@ -73,17 +73,17 @@ const StaffTable = props => {
               title: 'Teaching Rate',
               dataIndex: 'teaching_rate',
               key: 9,
-          },
-          {
-              title: 'Admin',
-              ataIndex: 'admin ',
-              key: 10,
-        },
-        {
-            title: 'Active',
-            dataIndex: 'active',
-            key: 11,
-         },
+          }
+        //   {
+        //       title: 'Admin',
+        //       ataIndex: 'admin ',
+        //       key: 10,
+        // },
+        // {
+        //     title: 'Active',
+        //     dataIndex: 'active',
+        //     key: 11,
+        //  },
       ];
       
     const staffData = props.staffList

@@ -11,6 +11,10 @@ import {
     EDIT_PARENTBYID_SUCCESS,
     EDIT_PARENTBYID_FAILURE,
 
+    EDIT_PARENTDROPDOWN_START,
+    EDIT_PARENTDROPDOWN_SUCCESSTABLE4,
+    EDIT_PARENTDROPDOWN_FAILURE,
+
     FETCH_STUDENTBYFAMILYID_START,
     FETCH_STUDENTBYFAMILYID_SUCCESS,
     FETCH_STUDENTBYFAMILYID_FAILURE,
@@ -19,6 +23,8 @@ import {
     ADD_PARENT_SUCCESS,
     ADD_PARENT_FAILURE,
     SET_FILTER_PARENT,
+
+
   } from '../../actions';
   
   const initialState = {
@@ -31,7 +37,8 @@ import {
         isEdited: false,
         isPosting: false,
         isPosting: false,
-        searchTerm:""
+        searchTerm:"",
+        dropDownList4: [],
   }
   
   export const parentReducer = (state = initialState, action) => {
@@ -96,6 +103,30 @@ import {
                 isLoading: false,
                 error: action.payload,
             }
+            //edit dropdown
+            case EDIT_PARENTDROPDOWN_START:
+                return {
+                    ...state,
+                    isLoading: true,
+                    error: null
+                }
+            case EDIT_PARENTDROPDOWN_SUCCESSTABLE4:
+                let block = action.payload.map(each => {
+                    let obj = {value: each.id, label: each.block_code}
+                    return obj;
+                })
+                return {
+                    ...state,
+                    isLoading: false,
+                    error: null,
+                    dropDownList4: block
+                }   
+                case EDIT_PARENTDROPDOWN_FAILURE:
+                return {
+                    ...state,
+                    IsLoading: false,
+                    error: action.payload
+                }          
             //get by familyId
             case FETCH_STUDENTBYFAMILYID_START:
             return {

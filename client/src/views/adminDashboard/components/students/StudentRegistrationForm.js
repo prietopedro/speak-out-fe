@@ -84,24 +84,24 @@ const StudentRegistrationForm = (props) => {
     event.preventDefault();
 
     // check for required fields
-    if (student.cpr === '' || student.firstName === '' || 
-        student.additionalNames === '' || student.gender === '' ||
+    if (student.cpr === '' || student.first_name === '' || 
+        student.additional_names === '' || student.gender === '' ||
         student.birthdate === '' || student.school_grade_id === '' || 
-        student.schoolName === '' || student.homeTelephone === '' ||
-        student.mobileTelephone === '' || student.block === '' || 
+        student.school_name === '' || student.home_telephone === '' ||
+        student.mobile_telephone === '' || student.block_code === '' || 
         student.road === '' || student.building === '' ||
         student.flat === '' || student.email === '' || 
-        student.notes === '' || student.contactTypeId === '' ||
-        student.locationId === '') 
+        student.notes === '' || student.preferred_contact_type_id  === '' ||
+        student.location_id === '') 
       { 
         // highlight all that were missed
         if (student.cpr === '') {
           setErrorBorderCpr('#ef6570');
         } 
-        if (student.firstName === '') {
+        if (student.first_name === '') {
           setErrorBorderFirstName('#ef6570');
         } 
-        if (student.additionalNames === '') {
+        if (student.additional_names === '') {
           setErrorBorderAdditionalNames('#ef6570');
         }
         if (student.gender === '') {
@@ -113,16 +113,16 @@ const StudentRegistrationForm = (props) => {
         if (student.school_grade_id === '') {
           setErrorBorderSchoolGrade('#ef6570');
         }
-        if (student.schoolName === '') {
+        if (student.school_name === '') {
           setErrorBorderSchoolName('#ef6570');
         }
-        if (student.homeTelephone === '') {
+        if (student.home_telephone === '') {
           setErrorBorderHomeTelephone('#ef6570');
         }
-        if (student.mobileTelephone === '') {
+        if (student.mobile_telephone === '') {
           setErrorBorderMobileTelephone('#ef6570');
         }
-        if (student.block === '') {
+        if (student.block_code === '') {
           setErrorBorderBlock('#ef6570');
         }
         if (student.road === '') {
@@ -140,10 +140,10 @@ const StudentRegistrationForm = (props) => {
         if (student.notes === '') {
           setErrorBorderNotes('#ef6570');
         }
-        if (student.contactTypeId === '') {
+        if (student.preferred_contact_type_id === '') {
           setErrorBorderContactType('#ef6570');
         }
-        if (student.locationId === '') {
+        if (student.location_id === '') {
           setErrorBorderLocation('#ef6570');
         }
 
@@ -347,7 +347,7 @@ const StudentRegistrationForm = (props) => {
           </div>
           <div style={{ gridColumn: 'span 4' }}>
             <Label>Notes</Label>
-            <div style={{ border: `1px solid ${errorBorderNotes}`, borderRadius: '3px' }}>
+            <div  style={{ border: `1px solid ${errorBorderNotes}`, borderRadius: '3px' }}>
               <textarea
                 style={{
                   width: '100%', height: '80px', outline: 'none',

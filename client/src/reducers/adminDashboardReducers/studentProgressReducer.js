@@ -82,7 +82,7 @@ export const studentProgressReducer = (state = initialState, action) => {
                     ...state,
                     isEditing: !state.isEditing,
                     isEdited: true,
-                    progressByStudentId: [action.payload, ...state.progressByStudentId]
+                    progressByStudentId: action.payload
                 };
             case EDIT_STUDENTPROGRESS_FAILURE:
                 return {

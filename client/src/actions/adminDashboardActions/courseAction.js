@@ -71,7 +71,6 @@ export const ADD_COURSE_FAILURE = 'ADD_COURSE_FAILURE';
 // }
 
 export const addCourse = course => dispatch => {
-    // console.log(course)
     let { course_schedule_id, course_type_id, group_type_id, level_id, room_id, school_grade_id, teacher_id, term_id } = course;
     const newCourse = {
         ...course,
@@ -85,25 +84,21 @@ export const addCourse = course => dispatch => {
         term_id: term_id.value
     }
 
-    
     console.log(newCourse)
-    dispatch({ type: ADD_COURSE_START })
     axios.post('https://speak-out-be-staging.herokuapp.com/api?table=course', newCourse)
         .then(res => {
-            // if(res.status===201){
-                // axios.get('https://speak-out-be-staging.herokuapp.com/api?table=course_view').then(res => {
-                //     dispatch({type: ADD_COURSE_SUCCESS, payload: res.data.tableData[0]})
-                console.log('res from AddCourse', res)
-                 dispatch({
-            type: ADD_COURSE_SUCCESS, payload: res.data[0]
+            if(res.status===201){
+                axios.get('https://speak-out-be-staging.herokuapp.com/api?table=course_view')
+                .then(res => {
+                    console.log('res', res.data)
+                    dispatch({type: ADD_COURSE_SUCCESS, payload:res.data.tableData})
                 })
-            })
-        // })
-        .catch(err=> {
+            }
+        }).catch(err=> {
             console.log('err',err)
             dispatch({type: ADD_COURSE_FAILURE, payload: err})
-        });
-};
+        })
+}
 
 export const FETCH_DROPDOWNCOURSES_START = 'FETCH_DROPDOWNCOURSES_START';
 export const FETCH_DROPDOWN_TABLETERM = 'FETCH_DROPDOWN_TABLETERM';
@@ -219,5 +214,5 @@ export const filterCourseTable = (searchTerm) => dispatch => {
             console.log('err',err)
             dispatch({type: FETCH_COURSES_FAILURE, payload: err.payload})
         });
-}
 
+    }

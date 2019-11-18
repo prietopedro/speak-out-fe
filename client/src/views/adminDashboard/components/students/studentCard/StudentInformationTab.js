@@ -30,89 +30,89 @@ const StudentInformationTab = props => {
                     <Div>
                         <div>
                             <Label>CPR</Label>
-                            <TextDiv>{props.studentById.cpr || "-" }</TextDiv>
+                            <TextDiv>{props.studentById.cpr }</TextDiv>
                         </div>
                         <div>
                             <Label>First name</Label>
-                            <TextDiv>{props.studentById.first_name || "-" }</TextDiv>
+                            <TextDiv>{props.studentById.first_name }</TextDiv>
                         </div>
                         <div style={{ gridColumn: 'span 2' }}>
                             <Label>Additional names</Label>
-                            <TextDiv>{props.studentById.additional_names || "-" }</TextDiv>
+                            <TextDiv>{props.studentById.additional_names }</TextDiv>
                         </div>
                         <div>
                             <Label>Gender</Label>
-                            <TextDiv>{props.studentById.gender || "-" }</TextDiv>
+                            <TextDiv>{props.studentById.gender }</TextDiv>
                         </div>
                         <div>
                             <Label>Email</Label>
-                            <TextDiv>{props.studentById.email || "-" }</TextDiv>
+                            <TextDiv>{props.studentById.email }</TextDiv>
                         </div>
                         <div>
                             <Label>School Name</Label>
-                            <TextDiv>{props.studentById.school_name || "-" }</TextDiv>
+                            <TextDiv>{props.studentById.school_name }</TextDiv>
                         </div>
                         <div>
                             <Label>Birthdate</Label>
-                            <TextDiv>{birthdate || "-" }</TextDiv>
+                            <TextDiv>{birthdate }</TextDiv>
                         </div>
                         <div>
                             <Label>Location</Label>
-                            <TextDiv>{props.studentById.location_id || "-" }</TextDiv>
+                            <TextDiv>{props.studentById.location_id }</TextDiv>
                         </div>
                         <div>
                             <Label>Home Phone</Label>
-                            <TextDiv>{props.studentById.home_telephone || "-" }</TextDiv>
+                            <TextDiv>{props.studentById.home_telephone }</TextDiv>
                         </div>
                         <div>
                             <Label>Mobile</Label>
-                            <TextDiv>{props.studentById.mobile_telephone || "-" }</TextDiv>
+                            <TextDiv>{props.studentById.mobile_telephone }</TextDiv>
                         </div>
                         
                         <div>
                             <Label>Contact Method</Label>
-                            <TextDiv>{props.studentById.preferred_contact_type_id || "-" }</TextDiv>
+                            <TextDiv>{props.studentById.preferred_contact_type_id }</TextDiv>
                         </div>
                         <div>
                             <Label>Block Code</Label>
-                            <TextDiv>{props.studentById.block_code || "-" }</TextDiv>
+                            <TextDiv>{props.studentById.block_code }</TextDiv>
                         </div>
                         <div>
                             <Label>Road</Label>
-                            <TextDiv>{props.studentById.road || "-" }</TextDiv>
+                            <TextDiv>{props.studentById.road }</TextDiv>
                         </div>
                         <div>
                             <Label>Building</Label>
-                            <TextDiv>{props.studentById.building || "-" }</TextDiv>
+                            <TextDiv>{props.studentById.building }</TextDiv>
                         </div>
                         <div>
                             <Label>Flat</Label>
-                            <TextDiv>{props.studentById.flat || "-" }</TextDiv>
+                            <TextDiv>{props.studentById.flat }</TextDiv>
                         </div>
                         <div>
                             <Label>Delinquent</Label>
-                            <TextDiv>{props.studentById.delinquent ? 'Yes' : 'No' || "-" }</TextDiv>
+                            <TextDiv>{props.studentById.delinquent ? 'Yes' : 'No' }</TextDiv>
                         </div>
                         <div>
                             <Label>School Grade ID</Label>
-                            <TextDiv>{props.studentById.school_grade_id || "-" }</TextDiv>
+                            <TextDiv>{props.studentById.school_grade_id }</TextDiv>
                         </div>
                         <div>
                                 <Label>Grade Updated</Label>
-                                <TextDiv>{grade_updated || "-" }</TextDiv> 
+                                <TextDiv>{grade_updated }</TextDiv> 
                         </div>
                         <div>
                             <Label>Registration Date</Label>
-                            <TextDiv>{registration_date || "-" }</TextDiv>
+                            <TextDiv>{registration_date }</TextDiv>
                         </div>
                         {/* <div>
                             <Label>Family ID</Label>
-                            <TextDiv>{props.studentById.family_id || "-" }</TextDiv> 
+                            <TextDiv>{props.studentById.family_id }</TextDiv> 
                         </div> */}
                         <div style={{ gridColumn: 'span 4'}}>
                             <Label>Notes</Label>
                             <div>
-                                <TextDiv style={{height: '80px' }}>{props.studentById.notes || "-" }</TextDiv> 
+                                <TextDiv style={{height: '80px' }}>{props.studentById.notes }</TextDiv> 
                             </div>
                         </div>
                     </Div>

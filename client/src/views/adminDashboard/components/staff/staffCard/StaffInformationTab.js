@@ -14,7 +14,6 @@ const StaffInformationTab = props => {
     let options = { year: 'numeric', month: 'numeric', day: 'numeric' }; //'long'
     let birthdate = new Date(props.staffById.birthdate).toLocaleDateString('en-GB', options)
 
-
     const editStaffInfo = e => {
         e.preventDefault();
         props.toggleStaffEditComponent();
@@ -72,15 +71,15 @@ const StaffInformationTab = props => {
                     </div>
                     <div>
                         <Label>Admin</Label>
-                        <TextDiv>{props.staffById.admin || "-" }</TextDiv>
+                        <TextDiv>{props.staffById.admin ? 'YES' : 'NO'  }</TextDiv>
                     </div>
                     <div>
                         <Label>Active</Label>
-                        <TextDiv>{props.staffById.active || "-" }</TextDiv>
+                        <TextDiv>{props.staffById.active ? 'YES' : 'NO' }</TextDiv>
                     </div>
                     <div>
                         <Label>User ID</Label>
-                        <TextDiv>{props.staffById.user_id || "-" }</TextDiv>
+                        <TextDiv>{props.staffById.user_id }</TextDiv>
                     </div>
                 </Div>
                 </FormSet>

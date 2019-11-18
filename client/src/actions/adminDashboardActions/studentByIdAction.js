@@ -36,15 +36,33 @@ export const toggleEditComponent = (isEditing, isEdited) => dispatch => {
     //     return dispatch({type: EDIT_STUDENTBYID_FAILURE})
     // }
 }
+
+
 export const editStudentById = (student_id, state ) => dispatch => {
     // let obj1 = {id:id, block_code:"431", delinquent:true} //will fix later 
     // let state1 = {...state, ...obj1 }
-    axios.put(`https://speak-out-be-staging.herokuapp.com/api/?table=student&where=id=${student_id}`, state)
+    const {block_code, location_id, school_grade_id, preferred_contact_type_id} = state
+
+    console.log(school_grade_id)
+    let obj = { ...state, 
+        block_code: block_code.label, 
+        location_id: location_id.value, 
+        school_grade_id: school_grade_id.value, 
+        preferred_contact_type_id: preferred_contact_type_id.value }
+
+    console.log('state edit', obj)
+    axios.put(`https://speak-out-be-staging.herokuapp.com/api/?table=student&where=id=${student_id}`, obj)
     .then(res => {
-        dispatch({
-            type: EDIT_STUDENTBYID_SUCCESS,
-            payload: res.data
-        })
+        if(res.status === 201){
+            axios.get(`https://speak-out-be-staging.herokuapp.com/api/?table=student&where=id=${student_id}`).then(res=>{
+                dispatch({
+                    type: EDIT_STUDENTBYID_SUCCESS,
+                    payload: res.data.tableData[0]
+                })
+            })
+            
+        }
+        
     })
     .catch(err => {
        dispatch({

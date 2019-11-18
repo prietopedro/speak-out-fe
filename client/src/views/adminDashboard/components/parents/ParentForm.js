@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react'
 import { connect } from 'react-redux';
-import { editParentById, toggleEditParent } from '../../../../actions';
+import { editParentById, toggleEditParent, editParentDropDown } from '../../../../actions';
 import { withRouter } from 'react-router-dom';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
@@ -18,6 +18,11 @@ const ParentForm = props => {
         flat: props.parentById.flat,
         road: props.parentById.road
     })
+
+    useEffect(() => {
+        props.editParentDropDown();
+      }, [])
+
     const handleChange = e => {
         setState({
             ...state,
@@ -86,12 +91,13 @@ const ParentForm = props => {
                     <div>
                         <Label>Block Code</Label>
                         <div>
-                        <Input
-                                type='text'
-                                name='block_code'
-                                placeholder='Block Code'
-                                onChange={handleChange}
+                        <Dropdown
+                                 controlClassName='myControlClassName'
+                                 className='dropdown'
+                                 options={props.dropDownList4}
+                                onChange={(e) => setState({ ...state, block_code: e })}
                                 value={state.block_code}
+                                onChange={(e) => setState({ ...state, block_code: e })}
                             />
                         </div>
                     </div>
@@ -150,11 +156,12 @@ const mapStateToProps = state => {
         isLoading: state.parentReducer.isLoading,
         parentById: state.parentReducer.parentById,
         isEditing: state.parentReducer.isEditing,
+        dropDownList4: state.parentReducer.dropDownList4
     };
   };
 export default withRouter(
     connect(
         mapStateToProps,
-        { editParentById, toggleEditParent }
+        { editParentById, toggleEditParent, editParentDropDown }
     )(ParentForm)
 ) 

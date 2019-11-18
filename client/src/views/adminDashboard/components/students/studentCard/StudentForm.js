@@ -13,7 +13,7 @@ const StudentForm = (props) => {
     let options = { year: 'numeric', month: 'numeric', day: 'numeric' };
     let birthdate = new Date(props.studentById.birthdate).toISOString().split("T")[0];
     let registration_date = new Date(props.studentById.registration_date).toLocaleDateString('en-GB', options)
-
+    console.log('studentID', studentID)
     const [state, setState] = useState({
         cpr: props.studentById.cpr,
         id: studentID,
@@ -39,7 +39,7 @@ const StudentForm = (props) => {
         grade_updated: props.studentById.grade_updated,
         school_grade_id: props.studentById.school_grade_id
     });
-
+    
     useEffect(() => {
         props.editStudentDropDown();
       }, [])
@@ -51,22 +51,6 @@ console.log('STUDENT', props)
         additional_names: false
     })
 
-    // const handleChange = (e, result) => {
-    //     const {name, value}= result || e.target;
-    //     if(e.target.value === ''){
-    //         setError({
-    //             ...error,   
-    //             [name]: true
-    //         })
-    //     }
-    //     if(value.length !== 0){
-    //         setError(false)
-    //     }
-    //     setState({
-    //         ...state,
-    //         [name]: value
-    //     })
-    // }
 
     function handleChange(event) {
         setState({
@@ -78,10 +62,6 @@ console.log('STUDENT', props)
 
     const handleSubmit = e => {
         e.preventDefault();
-        // if(error) {
-        //     props.toggleEditComponent('true', 'false')
-        // } else {
-        //     props.toggleEditComponent('false', 'true')
             props.editStudentById(studentID, state)
         }
     
@@ -93,7 +73,7 @@ console.log('STUDENT', props)
     const genderArr = ['F', 'M']
 
     
-    return (
+    return ( 
             <FormWrap onSubmit={handleSubmit}>
                 <FormSet>
                     <Div>
@@ -191,6 +171,7 @@ console.log('STUDENT', props)
                                         onChange={(e) => setState({ ...state, location_id: e })}
                                         value={state.location_id}
                                         options={props.dropDownList1}
+                                        
                                     />
                                 </div>
                             </div>
@@ -320,7 +301,7 @@ console.log('STUDENT', props)
                             <Label>Registration Date</Label>
                             <div>
                                 <Input
-                                    type='text'
+                                    type='date'
                                     name='registration_date'
                                     placeholder='Registration Date'
                                     value={registration_date}
