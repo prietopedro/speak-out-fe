@@ -26,10 +26,10 @@ const CourseCard = props => {
             menuItem: 'COURSE INFORMATION',
             render: () => <Tab.Pane attached={false}>{<CourseInformationTab courseId ={courseId}/>}</Tab.Pane>,
         },
-        {
-            menuItem: 'ENROLLED STUDENTS',
-            render: () => <Tab.Pane attached={false}>{<EnrolledStudentsTab courseId = {courseId} />}</Tab.Pane>,
-        },
+        // {
+        //     menuItem: 'ENROLLED STUDENTS',
+        //     render: () => <Tab.Pane attached={false}>{<EnrolledStudentsTab courseId = {courseId} />}</Tab.Pane>,
+        // },
     ]
 
     const goBack = () => {

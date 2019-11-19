@@ -11,6 +11,8 @@ $pink: #EC404E;
 }
 .sidebarLink.active-tab {
     background-color: $pink;
+    border-top: 1px solid #b9232f;
+    border-bottom: 1px solid #ababab;
 }
 .sidebarLink.active-tab:hover {
     background-color: $pink;

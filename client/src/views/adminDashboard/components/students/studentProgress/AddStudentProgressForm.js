@@ -24,7 +24,7 @@ const StudentProgressForm = props => {
         homework_effort: '',
         notes: '',
         course_id: '',
-        student_id: '',
+        student_id: props.studentID,
         teacher_id: '',
         report_date: '',
         id: props.id,

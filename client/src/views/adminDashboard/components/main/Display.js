@@ -1,11 +1,5 @@
 import React from 'react';
 import Student from '../students/Student.js';
-import Calendar from '../calendar/Calendar';
-import Schedule from '../schedule/Schedule';
-// import Payments from '../payments/Payments';
-import Tables from '../tables/Tables';
-import Queries from '../queries/Queries';
-import Documents from '../documents/Documents';
 import MainUserPage from '../mainUserPage/Main';
 import Parents from '../parents/Parents';
 import Courses from '../courses/Courses';
