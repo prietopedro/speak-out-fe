@@ -6,16 +6,19 @@ import ParentDashboard from './parentDashboard/components/index';
 import StaffDashboard from './staffDashboard/components/index';
 
 function Index(props) {
-
-  {if (props.user.username === 'admin') {
+  //three user types
+  //admin --> username: admin, password: password
+  //parent --> usernmae: parent, password: password
+  //staff --> username: staff, password: password
+  {if (props.user.user_type === 'admin') {
       return (
         <AdminDashboard />
       )
-  } else if (props.user.username === 'Parent Test') {
+  } else if (props.user.user_type === 'parent') {
       return (
         <ParentDashboard />
       )
-  } else if (props.user.username === 'staff') {
+  } else if (props.user.user_type === 'staff') {
       return (
         <StaffDashboard />
       )

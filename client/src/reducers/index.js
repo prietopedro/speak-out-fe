@@ -6,12 +6,16 @@ import { landingPageReducer } from './landingPageReducers/landingPageReducers';
 import { coursesReducer } from './adminDashboardReducers/courses/coursesReducer';
 import { staffReducer } from './adminDashboardReducers/staff/staffReducer';
 import { registrationReducer } from './registrationReducer';
+import { parentDashboardReducer } from './parentDashboardReducers/parentDashboard/ParentDashboardReducers';
+
+
 export const reducer = combineReducers({
   authenticationReducer,
   studentsReducer,
   landingPageReducer,
   coursesReducer,
   staffReducer,
-  registrationReducer
+  registrationReducer,
+  parentDashboardReducer
 });
 

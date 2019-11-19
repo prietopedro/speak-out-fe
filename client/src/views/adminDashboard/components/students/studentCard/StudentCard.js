@@ -77,6 +77,7 @@ const StudentCard = props => {
                     <p style={{backgroundColor: '#CDD5E9', padding: '5px 10px 5px 10px', marginBottom: '0px', fontWeight: '500'}}>STUDENT ID   {props.studentById.id}</p>
                   </div>
                 </div>
+                {/* <button className="placement-button"style={{marginRight: '30px'}}>Placement test</button> */}
             </TitleWrap>
             <TabsWrap>
               <TabList tabs={studentCardTabs} setNavigation={setNavigation} setSelected={setSelected} 

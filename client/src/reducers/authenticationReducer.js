@@ -13,7 +13,9 @@ import {
 const initialState = {
   user: {
     authenticated: false,
-    username: null
+    username: null,
+    user_type: null,
+    user_id: null
   },
   loggedIn: {
     isLoading: false,
@@ -49,7 +51,9 @@ export const authenticationReducer = (state = initialState, action) => {
         },
         user: {
           authenticated: true,
-          username: action.payload.username, //update the be login endpoint to return username
+          username: action.payload.username,
+          user_type: action.payload.user_type,
+          user_id: action.payload.user_id
         }
       }
     case LOGIN_FAILURE:
@@ -105,7 +109,9 @@ export const authenticationReducer = (state = initialState, action) => {
         },
         user: {
           authenticated: action.payload.authenticated,
-          username: action.payload.username || 'undefined'
+          username: action.payload.username || 'undefined',
+          user_type: action.payload.user_type,
+          user_id: action.payload.user_id
         }
       };
     case LOGGEDIN_FAILURE:
