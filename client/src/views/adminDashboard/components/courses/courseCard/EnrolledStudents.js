@@ -5,6 +5,7 @@ import { Table, Spin } from 'antd';
 import 'antd/dist/antd.css';
 import { enrolledStudentsColumns } from '../../../../../data';
 import { getEnrolledStudents } from '../../../../../actions/adminDashboardActions/courses/courseAction';
+import './enrolledStudents.scss';
 
 function EnrolledStudents(props) {
 
@@ -19,7 +20,7 @@ function EnrolledStudents(props) {
     </div>)
   } else {
       return (
-        <div style={{marginTop: '30px', width: '100%'}}>
+        <div className="enrolled-students" style={{marginTop: '30px', width: '100%'}}>
           <Table
             className="rowHover"
             dataSource={props.enrolledStudents} 
