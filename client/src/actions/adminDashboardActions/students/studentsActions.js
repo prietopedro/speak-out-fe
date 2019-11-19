@@ -6,8 +6,7 @@ export const FETCH_STUDENTS_FAILURE = 'FETCH_STUDENTS_FAILURE';
 
 export const getStudentTable = (setSavePrevState, newRecord) => dispatch => {
     dispatch({type: FETCH_STUDENTS_START})
-    // axios.get('https://speak-out-be-staging.herokuapp.com/api?table=student_view')
-    axios.get('http://localhost:3300/api?table=student_view')
+    axios.get('https://speak-out-be-staging.herokuapp.com/api?table=student_view')
         .then(res => {
            setSavePrevState(newRecord);
            dispatch({type: FETCH_STUDENTS_SUCCESS, payload:res.data.tableData})
@@ -23,8 +22,7 @@ export const FETCH_STUDENTBYID_FAILURE = 'FETCH_STUDENTBYID_FAILURE';
 
 export const getStudentById = id => dispatch => {
     dispatch({ type: FETCH_STUDENTBYID_START })
-    // axios.get(`https://speak-out-be-staging.herokuapp.com/api/?table=student&where=id=${id}`)
-    axios.get(`http://localhost:3300/api/?table=student&where=id=${id}`)
+    axios.get(`https://speak-out-be-staging.herokuapp.com/api/?table=student&where=id=${id}`)
     .then(res => {
         dispatch({
             type: FETCH_STUDENTBYID_SUCCESS,
@@ -47,8 +45,7 @@ export const EDIT_STUDENTBYID_FAILURE = 'EDIT_STUDENTBYID_FAILURE';
 
 
 export const editStudentById = (id, state) => dispatch => {
-    // axios.put(`https://speak-out-be-staging.herokuapp.com/api/?table=student&where=id=${id}`, state)
-    axios.put(`http://localhost:3300/api/?table=student&where=id=${id}`, state)
+    axios.put(`https://speak-out-be-staging.herokuapp.com/api/?table=student&where=id=${id}`, state)
     .then(res => {
       dispatch({
           type: EDIT_STUDENTBYID_SUCCESS,
@@ -73,8 +70,7 @@ export const DELETE_STUDENTBYID_FAILURE = 'DELETE_STUDENTBYID_FAILURE';
 
 export const deleteStudentById = id => dispatch => {
     dispatch({ type: DELETE_STUDENTBYID_START })
-    // axios.put(`https://speak-out-be-staging.herokuapp.com/api/?table=student&where=id=${id}`)
-    axios.put(`http://localhost:3300/api/?table=student&where=id=${id}`)
+    axios.put(`https://speak-out-be-staging.herokuapp.com/api/?table=student&where=id=${id}`)
     .then(res => {
       dispatch({
           type: DELETE_STUDENTBYID_SUCCESS,
@@ -95,8 +91,7 @@ export const resetForm = () => {
 
 
 export const getLocationsTable = () => dispatch => {
-  // axios.get(`https://speak-out-be-staging.herokuapp.com/api/?table=location`)
-  axios.get(`http://localhost:3300/api/?table=location`)
+  axios.get(`https://speak-out-be-staging.herokuapp.com/api/?table=location`)
   .then(res => {
     dispatch({
         type: 'GET_LOCATIONS_TABLE_SUCCESS',

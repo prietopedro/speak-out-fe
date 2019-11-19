@@ -507,7 +507,7 @@ function CourseRegistrationForm(props) {
               Cancel
             </Button>
             <Button type="submit">
-              Add student
+              Add course
             </Button>
           </div>
         </FormWrap>
