@@ -13,25 +13,28 @@ function EnrolledStudents(props) {
   }, [])
 
   if (props.isLoading) {
-    return <Spin style={{marginTop: '20px'}}size="large" />
+    return (
+    <div style={{marginTop: '30px', width: '100%'}}>
+      <Spin style={{marginTop: '20px'}}size="large" />
+    </div>)
   } else {
       return (
-        <div style={{marginTop: '20px', width: '100%'}}>
-        <Table
-          className="rowHover"
-          dataSource={props.enrolledStudents} 
-          columns={enrolledStudentsColumns} 
-          pagination={{ pageSize: 15 }} 
-          rowKey='enrolled id'
-          onRow={(record, rowIndex) => {
-            // return {
-              // onClick: event => {
-              //   // rowKey={rowIndex}
-              // }
-              // rowKey={rowIndex}
-            // };
-          }}
-        />
+        <div style={{marginTop: '30px', width: '100%'}}>
+          <Table
+            className="rowHover"
+            dataSource={props.enrolledStudents} 
+            columns={enrolledStudentsColumns} 
+            pagination={{ pageSize: 15 }} 
+            rowKey='enrolled id'
+            onRow={(record, rowIndex) => {
+              // return {
+                // onClick: event => {
+                //   // rowKey={rowIndex}
+                // }
+                // rowKey={rowIndex}
+              // };
+            }}
+          />
         </div>
       )
   } 
