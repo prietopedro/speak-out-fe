@@ -4,8 +4,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { getCoursesByStudent } from '../../../../../actions/adminDashboardActions/students/studentsActions';
 import { Table, Spin } from 'antd';
 import 'antd/dist/antd.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import './studentCourses.scss';
 
 // import '../mainStyle/mainCard.scss'
 
@@ -71,43 +70,39 @@ const StudentCourses = props => {
       key: 9,
     },
   ];
-
-  // const studentData = props.studentList.sort((a, b) => {
-  //   return b.id - a.id
-  // }
-  // )
-
-  return (
-    <div>
       
-      {props.isLoading ? (
-        <Spin style={{ marginTop: '150px' }} size="large" />
-      ) : (
-          <Table
-            className="rowHover"
-            dataSource={props.courseList}
-            columns={columns}
-            pagination={{ pageSize: 15 }}
-            rowKey='id'
-            onRow={(record, rowIndex) => {
-              return {
-                onClick: event => {
-                  // props.setCourseView('courseCardView')
-                  // props.setCourseID(record.id)
-                }
-              };
-            }}
-          />
-        )}
+  if (props.isLoading) {
+    return (
+    <div style={{marginTop: '30px', width: '100%'}}>
+      <Spin style={{ marginTop: '150px' }} size="large" />
     </div>
-  )
+    )
+  } else {
+    return (
+    <div className="student-courses" style={{marginTop: '30px', width: '100%'}}>
+      <Table
+        className="rowHover"
+        dataSource={props.courseList}
+        columns={columns}
+        pagination={{ pageSize: 15 }}
+        rowKey='id'
+        onRow={(record, rowIndex) => {
+          return {
+            onClick: event => {
+              // props.setCourseView('courseCardView')
+              // props.setCourseID(record.id)
+            }
+          };
+        }}
+      />
+    </div>
+    )}
 }
 
 const mapStateToProps = state => {
   return {
     isLoading: state.studentsReducer.courseListIsLoading,
     courseList: state.studentsReducer.courseList,
-    // error: state.coursesReducer.error,
   };
 };
 
