@@ -36,6 +36,28 @@ export const getCourseById = id => dispatch => {
     })
 }
 
+export const GET_ENROLLED_STUDENTS_START = 'GET_ENROLLED_STUDENTS_START';
+export const GET_ENROLLED_STUDENTS_SUCCESS = 'GET_ENROLLED_STUDENTS_SUCCESS';
+export const GET_ENROLLED_STUDENTS_FAILURE = 'GET_ENROLLED_STUDENTS_FAILURE';
+
+export const getEnrolledStudents = id => dispatch => {
+    dispatch({ type: GET_ENROLLED_STUDENTS_START })
+    axios.get(`https://speak-out-be-staging.herokuapp.com/api/?table=course_enrollment_view&where=course_id=${id}`)
+    .then(res => {
+      console.log('RESPONSE ENROLLED STUDENTS:', res.data)
+        dispatch({
+            type: GET_ENROLLED_STUDENTS_SUCCESS,
+            payload: res.data.tableData
+        })
+    })
+    .catch(err => {
+       dispatch({
+        type: GET_ENROLLED_STUDENTS_FAILURE,
+        payload: err.data
+       }) 
+    })
+}
+
 
 // export const EDIT_COURSEBYID_START = 'EDIT_COURSEBYID_START';
 // export const EDIT_COURSEBYID_SUCCESS = 'EDIT_COURSEBYID_SUCCESS';

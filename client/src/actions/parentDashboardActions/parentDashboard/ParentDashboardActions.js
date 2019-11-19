@@ -22,7 +22,7 @@ export const getFamily = (userId) => {
         //get children
         dispatch({ type: GET_CHILDREN_START });
         axios
-        .get(`http://localhost:3300/api/?table=student&where=family_id=${res.data.tableData[0].id}`)
+        .get(`https://speak-out-be-staging.herokuapp.com/api/?table=student&where=family_id=${res.data.tableData[0].id}`)
         .then(res => {
           console.log('CHILDREN HERE: ', res.data.tableData)
           dispatch({ type: GET_CHILDREN_SUCCESS, payload: res.data.tableData })
@@ -57,7 +57,7 @@ export const getCourseInfo = (studentId) => {
         //get courses if placement was taken
         dispatch({ type: GET_COURSES_START });
         axios
-        .get(`http://localhost:3300/api/?table=course_enrollment_view&where=student_id=${studentId}`)
+        .get(`https://speak-out-be-staging.herokuapp.com/api/?table=course_enrollment_view&where=student_id=${studentId}`)
         .then(res => {
           console.log('COURSES HERE: ', res.data);
           dispatch({ type: GET_COURSES_SUCCESS, payload: res.data.tableData })

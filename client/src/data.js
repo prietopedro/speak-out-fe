@@ -133,4 +133,40 @@ export const staffCardTabs = [
   // {key: "Work Log"}
 ]
 
-
+export const enrolledStudentsColumns = [
+  {
+    title: 'Student ID',
+    dataIndex: 'student_id',
+    key: 1,
+  },
+  {
+    title: 'First Name',
+    dataIndex: 'first_name',
+    key: 2,
+  },
+  {
+    title: 'Additional Names',
+    dataIndex: 'additional_names',
+    key: 3,
+  },
+  {
+    title: 'First Day',
+    dataIndex: 'first_day',
+    key: 4,
+  },
+  {
+    title: 'Last Day',
+    dataIndex: 'last_day',
+    key: 5,
+  },
+  {
+    title: 'Result',
+    dataIndex: 'result',
+    key: 6,
+  },
+  {
+    title: 'Notes',
+    dataIndex: 'notes',
+    key: 7,
+  },
+]
