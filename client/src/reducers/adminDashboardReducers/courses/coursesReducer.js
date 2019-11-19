@@ -72,7 +72,9 @@ import {
     
         editCourseIsLoading: false,
         editCourseError: null,
-        edited: false
+        edited: false,
+
+        enrolledStudents: []
 
   }
   
@@ -264,6 +266,24 @@ import {
           return {
             ...state,
             createNewCourseError: 'Something went wrong'
+          }
+        case GET_ENROLLED_STUDENTS_START: 
+          return {
+            ...state,
+            isLoading: true
+            
+          }
+        case GET_ENROLLED_STUDENTS_SUCCESS:
+          return {
+            ...state,
+            isLoading: false,
+            enrolledStudents: action.payload
+
+          }
+        case GET_ENROLLED_STUDENTS_FAILURE:
+          return {
+            ...state,
+            error: 'Something went wrong'
           }
         default: return state;
   
