@@ -57,23 +57,23 @@ function StudentRegistrationForm(props) {
   const [block, setBlock] = useState(props.blockList[0]);
 
   // handle required fields (make them all required for now)
-  const [errorBorderCpr, setErrorBorderCpr] = useState('transparent'); //error #C73642
-  const [errorBorderFirstName, setErrorBorderFirstName] = useState('transparent'); //error #C73642
-  const [errorBorderAdditionalNames, setErrorBorderAdditionalNames] = useState('transparent'); //error #C73642
-  const [errorBorderGender, setErrorBorderGender] = useState('transparent'); //error #C73642
-  const [errorBorderBirthdate, setErrorBorderBirthdate] = useState('transparent'); //error #C73642
-  const [errorBorderSchoolGrade, setErrorBorderSchoolGrade] = useState('transparent'); //error #C73642
-  const [errorBorderSchoolName, setErrorBorderSchoolName] = useState('transparent'); //error #C73642
-  const [errorBorderHomeTelephone, setErrorBorderHomeTelephone] = useState('transparent'); //error #C73642
-  const [errorBorderMobileTelephone, setErrorBorderMobileTelephone] = useState('transparent'); //error #C73642
-  const [errorBorderBlock, setErrorBorderBlock] = useState('transparent'); //error #C73642
-  const [errorBorderRoad, setErrorBorderRoad] = useState('transparent'); //error #C73642
-  const [errorBorderBuilding, setErrorBorderBuilding] = useState('transparent'); //error #C73642
-  const [errorBorderFlat, setErrorBorderFlat] = useState('transparent'); //error #C73642
-  const [errorBorderEmail, setErrorBorderEmail] = useState('transparent'); //error #C73642
-  const [errorBorderNotes, setErrorBorderNotes] = useState('transparent'); //error #C73642
-  const [errorBorderContactType, setErrorBorderContactType] = useState('transparent'); //error #C73642
-  const [errorBorderLocation, setErrorBorderLocation] = useState('transparent'); //error #C73642
+  const [errorBorderCpr, setErrorBorderCpr] = useState('transparent'); //error '#ef6570'
+  const [errorBorderFirstName, setErrorBorderFirstName] = useState('transparent'); //error '#ef6570'
+  const [errorBorderAdditionalNames, setErrorBorderAdditionalNames] = useState('transparent'); //error '#ef6570'
+  const [errorBorderGender, setErrorBorderGender] = useState('transparent'); //error '#ef6570'
+  const [errorBorderBirthdate, setErrorBorderBirthdate] = useState('transparent'); //error '#ef6570'
+  const [errorBorderSchoolGrade, setErrorBorderSchoolGrade] = useState('transparent'); //error '#ef6570'
+  const [errorBorderSchoolName, setErrorBorderSchoolName] = useState('transparent'); //error '#ef6570'
+  const [errorBorderHomeTelephone, setErrorBorderHomeTelephone] = useState('transparent'); //error '#ef6570'
+  const [errorBorderMobileTelephone, setErrorBorderMobileTelephone] = useState('transparent'); //error '#ef6570'
+  const [errorBorderBlock, setErrorBorderBlock] = useState('transparent'); //error '#ef6570'
+  const [errorBorderRoad, setErrorBorderRoad] = useState('transparent'); //error '#ef6570'
+  const [errorBorderBuilding, setErrorBorderBuilding] = useState('transparent'); //error '#ef6570'
+  const [errorBorderFlat, setErrorBorderFlat] = useState('transparent'); //error '#ef6570'
+  const [errorBorderEmail, setErrorBorderEmail] = useState('transparent'); //error '#ef6570'
+  const [errorBorderNotes, setErrorBorderNotes] = useState('transparent'); //error '#ef6570'
+  const [errorBorderContactType, setErrorBorderContactType] = useState('transparent'); //error '#ef6570'
+  const [errorBorderLocation, setErrorBorderLocation] = useState('transparent'); //error '#ef6570'
 
   // display a spinner on isLoading when posting a new record
   const [loading, setLoading] = useState(props.createNewStudentIsLoading);
@@ -149,6 +149,9 @@ function StudentRegistrationForm(props) {
     }
     if (event.target.name === 'notes' && errorBorderNotes === '#ef6570') {
       setErrorBorderNotes('transparent');
+    }
+    if (event.target.name === 'birthdate' && errorBorderBirthdate === '#ef6570') {
+      setErrorBorderBirthdate('transparent');
     }
     setStudent({ ...student, [event.target.name]: event.target.value })
   }                                        
@@ -298,6 +301,9 @@ function StudentRegistrationForm(props) {
   }
 
   function handleGenderDropdown(e) {
+    if (errorBorderGender === '#ef6570') {
+      setErrorBorderGender('transparent');
+    }
     //reassign the dropdown value to the one selected
     let index;
     for (let i = 0; i < genderArr.length; i++) {
@@ -310,6 +316,9 @@ function StudentRegistrationForm(props) {
   }
   
   function handleLocationDropdown(e) {
+    if (errorBorderLocation === '#ef6570') {
+      setErrorBorderLocation('transparent');
+    }
     //reassign the dropdown value to the one selected
     let index;
     for (let i = 0; i < props.locationList.length; i++) {
@@ -323,6 +332,9 @@ function StudentRegistrationForm(props) {
   }
 
   function handleContactMethodDropdown(e) {
+    if (errorBorderContactType === '#ef6570') {
+      setErrorBorderContactType('transparent');
+    }
     //reassign the dropdown value to the one selected
     let index;
     for (let i = 0; i < props.preferredContactMethodList.length; i++) {
@@ -335,6 +347,9 @@ function StudentRegistrationForm(props) {
   }
 
   function handleSchoolGradeDropdown(e) {
+    if (errorBorderSchoolGrade === '#ef6570') {
+      setErrorBorderSchoolGrade('transparent');
+    }
     //reassign the dropdown value to the one selected
     let index;
     for (let i = 0; i < props.schoolGradeList.length; i++) {
@@ -347,6 +362,9 @@ function StudentRegistrationForm(props) {
   }
 
   function handleBlockDropdown(e) {
+    if (errorBorderBlock === '#ef6570') {
+      setErrorBorderBlock('transparent');
+    }
     //reassign the dropdown value to the one selected
     let index;
     for (let i = 0; i < props.blockList.length; i++) {

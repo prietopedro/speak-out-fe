@@ -231,7 +231,7 @@ function StaffRegistrationForm(props) {
                 </div>
               </div>
               <div>
-                <label>First Name</label>
+                <label>Name</label>
                 <div style={{border: `1px solid ${errorBorderFirstName}`, borderRadius: '3px'}}>
                 <Input 
                   type="text"

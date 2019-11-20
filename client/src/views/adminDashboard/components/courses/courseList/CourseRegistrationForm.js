@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { createNewCourse } from '../../../../../actions/adminDashboardActions/courses/courseAction';
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
-import moment from 'moment';
 import { Spin } from 'antd';
 
 const FormWrap = styled.form`
@@ -72,23 +71,21 @@ function CourseRegistrationForm(props) {
   const [teacher, setTeacher] = useState(props.teacherList[0]);
 
   // handle required fields (make them all required for now)
-  const [errorBorderCpr, setErrorBorderCpr] = useState('transparent'); //error #C73642
-  const [errorBorderFirstName, setErrorBorderFirstName] = useState('transparent'); //error #C73642
-  const [errorBorderAdditionalNames, setErrorBorderAdditionalNames] = useState('transparent'); //error #C73642
-  const [errorBorderGender, setErrorBorderGender] = useState('transparent'); //error #C73642
-  const [errorBorderBirthdate, setErrorBorderBirthdate] = useState('transparent'); //error #C73642
-  const [errorBorderSchoolGrade, setErrorBorderSchoolGrade] = useState('transparent'); //error #C73642
-  const [errorBorderSchoolName, setErrorBorderSchoolName] = useState('transparent'); //error #C73642
-  const [errorBorderHomeTelephone, setErrorBorderHomeTelephone] = useState('transparent'); //error #C73642
-  const [errorBorderMobileTelephone, setErrorBorderMobileTelephone] = useState('transparent'); //error #C73642
-  const [errorBorderBlock, setErrorBorderBlock] = useState('transparent'); //error #C73642
-  const [errorBorderRoad, setErrorBorderRoad] = useState('transparent'); //error #C73642
-  const [errorBorderBuilding, setErrorBorderBuilding] = useState('transparent'); //error #C73642
-  const [errorBorderFlat, setErrorBorderFlat] = useState('transparent'); //error #C73642
-  const [errorBorderEmail, setErrorBorderEmail] = useState('transparent'); //error #C73642
-  const [errorBorderNotes, setErrorBorderNotes] = useState('transparent'); //error #C73642
-  const [errorBorderContactType, setErrorBorderContactType] = useState('transparent'); //error #C73642
-  const [errorBorderLocation, setErrorBorderLocation] = useState('transparent'); //error #C73642
+  const [errorBorderTerm, setErrorBorderTerm] = useState('transparent'); //error '#ef6570'
+  const [errorBorderCourseType, setErrorBorderCourseType] = useState('transparent'); //error '#ef6570'
+  const [errorBorderGroupType, setErrorBorderGroupType] = useState('transparent'); //error '#ef6570'
+  const [errorBorderSchoolGrade, setErrorBorderSchoolGrade] = useState('transparent'); //error '#ef6570'
+  const [errorBorderLevel, setErrorBorderLevel] = useState('transparent'); //error '#ef6570'
+  const [errorBorderSection, setErrorBorderSection] = useState('transparent'); //error '#ef6570'
+  const [errorBorderSubsection, setErrorBorderSubsection] = useState('transparent'); //error '#ef6570'
+  const [errorBorderHourlyRate, setErrorBorderHourlyRate] = useState('transparent'); //error '#ef6570'
+  const [errorBorderCourseSchedule, setErrorBorderCourseSchedule] = useState('transparent'); //error '#ef6570'
+  const [errorBorderRoom, setErrorBorderRoom] = useState('transparent'); //error '#ef6570'
+  const [errorBorderStartTime, setErrorBorderStartTime] = useState('transparent'); //error '#ef6570'
+  const [errorBorderEndTime, setErrorBorderEndTime] = useState('transparent'); //error '#ef6570'
+  const [errorBorderTeacher, setErrorBorderTeacher] = useState('transparent'); //error '#ef6570'
+  const [errorBorderNotes, setErrorBorderNotes] = useState('transparent'); //error '#ef6570'
+  const [errorBorderStatus, setErrorBorderStatus] = useState('transparent'); //error '#ef6570'
 
   // display a spinner on isLoading when posting a new record
   const [loading, setLoading] = useState(props.createNewStudentIsLoading);
@@ -99,6 +96,21 @@ function CourseRegistrationForm(props) {
   }, [loading])
   
   function handleChange(event) {
+    if (event.target.name === 'section' && errorBorderSection === '#ef6570') {
+      setErrorBorderSection('transparent');
+    }
+    if (event.target.name === 'subsection' && errorBorderSubsection === '#ef6570') {
+      setErrorBorderSubsection('transparent');
+    }
+    if (event.target.name === 'hourly_rate' && errorBorderHourlyRate === '#ef6570') {
+      setErrorBorderHourlyRate('transparent');
+    }
+    if (event.target.name === 'start_time' && errorBorderStartTime === '#ef6570') {
+      setErrorBorderStartTime('transparent');
+    }
+    if (event.target.name === 'end_time' && errorBorderEndTime === '#ef6570') {
+      setErrorBorderEndTime('transparent');
+    }
     setCourse({ ...course, [event.target.name]: event.target.value });
   }   
 
@@ -106,59 +118,58 @@ function CourseRegistrationForm(props) {
     event.preventDefault();
 
     // check for required fields
-    if (course.term_id === '' || course.course_type_id === '' || 
-        course.group_type_id === '' || course.school_grade_id === '' ||
-        course.level_id === '' || course.section === '' || 
-        course.subsection === '' || course.hourly_rate === '' ||
-        course.course_schedule_id === '' || course.room_id === '' || 
+    if (course.term_id === '' || course.term_id === undefined || course.course_type_id === '' || course.course_type_id === undefined ||
+        course.group_type_id === '' || course.group_type_id === undefined || course.school_grade_id === '' ||
+        course.school_grade_id === undefined || course.level_id === '' || course.level_id === undefined || 
+        course.section.split(" ").join("") === '' || 
+        course.subsection.split(" ").join("") === '' || course.hourly_rate.split(" ").join("") === '' ||
+        course.course_schedule_id === '' || course.course_schedule_id === undefined || 
         course.start_time === '' || course.end_time === '' ||
-        course.teacher_id === '' || course.notes === '' || course.status === '') 
+        course.teacher_id === '' || course.teacher_id === undefined || course.notes === '' || course.status === '' ||
+        course.status === 'select') 
       { 
         // highlight all that were missed
-        if (course.term_id === '') {
-          setErrorBorderCpr('#ef6570');
+        if (course.term_id === '' || course.term_id === undefined) {
+          setErrorBorderTerm('#ef6570');
         } 
-        if (course.course_type_id === '') {
-          setErrorBorderFirstName('#ef6570');
+        if (course.course_type_id === '' || course.course_type_id === undefined) {
+          setErrorBorderCourseType('#ef6570');
         } 
-        if (course.group_type_id === '') {
-          setErrorBorderAdditionalNames('#ef6570');
+        if (course.group_type_id === '' || course.group_type_id === undefined) {
+          setErrorBorderGroupType('#ef6570');
         }
-        if (course.school_grade_id === '') {
-          setErrorBorderGender('#ef6570');
-        }
-        if (course.level_id === '') {
-          setErrorBorderBirthdate('#ef6570');
-        }
-        if (course.section === '') {
+        if (course.school_grade_id === '' || course.school_grade_id === undefined) {
           setErrorBorderSchoolGrade('#ef6570');
         }
-        if (course.subsection === '') {
-          setErrorBorderSchoolName('#ef6570');
+        if (course.level_id === '' || course.level_id === undefined) {
+          setErrorBorderLevel('#ef6570');
+        }
+        if (course.section.split(" ").join("") === '') {
+          setErrorBorderSection('#ef6570');
+        }
+        if (course.subsection.split(" ").join("") === '') {
+          setErrorBorderSubsection('#ef6570');
         }
         if (course.hourly_rate === '') {
-          setErrorBorderHomeTelephone('#ef6570');
+          setErrorBorderHourlyRate('#ef6570');
         }
-        if (course.course_schedule_id === '') {
-          setErrorBorderMobileTelephone('#ef6570');
-        }
-        if (course.room_id === '') {
-          setErrorBorderBlock('#ef6570');
+        if (course.course_schedule_id === '' || course.course_schedule_id === undefined) {
+          setErrorBorderCourseSchedule('#ef6570');
         }
         if (course.start_time === '') {
-          setErrorBorderRoad('#ef6570');
+          setErrorBorderStartTime('#ef6570');
         }
         if (course.end_time === '') {
-          setErrorBorderBuilding('#ef6570');
+          setErrorBorderEndTime('#ef6570');
         }
-        if (course.teacher_id === '') {
-          setErrorBorderFlat('#ef6570');
+        if (course.teacher_id === '' || course.teacher_id === undefined) {
+          setErrorBorderTeacher('#ef6570');
         }
-        if (course.notes === '') {
-          setErrorBorderEmail('#ef6570');
-        }
-        if (course.status === '') {
+        if (course.notes.split(" ").join("") === '') {
           setErrorBorderNotes('#ef6570');
+        }
+        if (course.status === '' || course.status === 'select') {
+          setErrorBorderStatus('#ef6570');
         }
     
     } else {
@@ -214,6 +225,9 @@ function CourseRegistrationForm(props) {
   }                                     
 
   function handleTermDropdown(e) {
+    if (errorBorderTerm === '#ef6570') {
+      setErrorBorderTerm('transparent');
+    }
     //reassign the dropdown value to the one selected
     let index;
     for (let i = 0; i < props.termList.length; i++) {
@@ -226,6 +240,9 @@ function CourseRegistrationForm(props) {
   }
   
   function handleCourseTypeDropdown(e) {
+    if (errorBorderCourseType === '#ef6570') {
+      setErrorBorderCourseType('transparent');
+    }
     //reassign the dropdown value to the one selected
     let index;
     for (let i = 0; i < props.courseTypeList.length; i++) {
@@ -238,6 +255,9 @@ function CourseRegistrationForm(props) {
   }
 
   function handleGroupTypeDropdown(e) {
+    if (errorBorderGroupType === '#ef6570') {
+      setErrorBorderGroupType('transparent');
+    }
     //reassign the dropdown value to the one selected
     let index;
     for (let i = 0; i < props.groupTypeList.length; i++) {
@@ -250,6 +270,9 @@ function CourseRegistrationForm(props) {
   }
 
   function handleSchoolGradeDropdown(e) {
+    if (errorBorderSchoolGrade === '#ef6570') {
+      setErrorBorderSchoolGrade('transparent');
+    }
     //reassign the dropdown value to the one selected
     let index;
     for (let i = 0; i < props.schoolGradeList.length; i++) {
@@ -262,6 +285,9 @@ function CourseRegistrationForm(props) {
   }
 
   function handleLevelDropdown(e) {
+    if (errorBorderLevel === '#ef6570') {
+      setErrorBorderLevel('transparent');
+    }
     //reassign the dropdown value to the one selected
     let index;
     for (let i = 0; i < props.levelList.length; i++) {
@@ -274,6 +300,9 @@ function CourseRegistrationForm(props) {
   }
 
   function handleCourseScheduleDropdown(e) {
+    if (errorBorderCourseSchedule === '#ef6570') {
+      setErrorBorderCourseSchedule('transparent');
+    }
     //reassign the dropdown value to the one selected
     let index;
     for (let i = 0; i < props.courseScheduleList.length; i++) {
@@ -298,6 +327,9 @@ function CourseRegistrationForm(props) {
   }
 
   function handleStatusDropdown(e) {
+    if (errorBorderStatus === '#ef6570') {
+      setErrorBorderStatus('transparent');
+    }
     //reassign the dropdown value to the one selected
     let index;
     for (let i = 0; i < statusArr.length; i++) {
@@ -310,6 +342,9 @@ function CourseRegistrationForm(props) {
   }
 
   function handleTeacherDropdown(e) {
+    if (errorBorderTeacher === '#ef6570') {
+      setErrorBorderTeacher('transparent');
+    }
     //reassign the dropdown value to the one selected
     let index;
     for (let i = 0; i < props.teacherList.length; i++) {
@@ -331,7 +366,7 @@ function CourseRegistrationForm(props) {
                          gridGap: '15px', margin: '10px'}}>
               <div >
                 <label>Term</label>
-                <div style={{border: `1px solid ${errorBorderCpr}`, borderRadius: '3px'}}>
+                <div style={{border: `1px solid ${errorBorderTerm}`, borderRadius: '3px'}}>
                   <Dropdown
                     onChange={handleTermDropdown} 
                     controlClassName='myControlClassName'
@@ -343,7 +378,7 @@ function CourseRegistrationForm(props) {
               </div>
               <div>
                 <label>Course Type</label>
-                <div style={{border: `1px solid ${errorBorderFirstName}`, borderRadius: '3px'}}>
+                <div style={{border: `1px solid ${errorBorderCourseType}`, borderRadius: '3px'}}>
                   <Dropdown
                     onChange={handleCourseTypeDropdown} 
                     controlClassName='myControlClassName'
@@ -355,7 +390,7 @@ function CourseRegistrationForm(props) {
               </div>
               <div>
                 <label>Group Type </label>
-                <div style={{border: `1px solid ${errorBorderAdditionalNames}`, borderRadius: '3px'}}>
+                <div style={{border: `1px solid ${errorBorderGroupType}`, borderRadius: '3px'}}>
                   <Dropdown
                     onChange={handleGroupTypeDropdown} 
                     controlClassName='myControlClassName'
@@ -367,7 +402,7 @@ function CourseRegistrationForm(props) {
               </div>
               <div>
                 <label>School Grade</label>
-                <div style={{border: `1px solid ${errorBorderGender}`, borderRadius: '3px'}}>
+                <div style={{border: `1px solid ${errorBorderSchoolGrade}`, borderRadius: '3px'}}>
                   <Dropdown
                     onChange={handleSchoolGradeDropdown} 
                     controlClassName='myControlClassName'
@@ -379,7 +414,7 @@ function CourseRegistrationForm(props) {
               </div>
               <div>
                 <label>Level</label>
-                <div style={{border: `1px solid ${errorBorderEmail}`, borderRadius: '3px'}}>
+                <div style={{border: `1px solid ${errorBorderLevel}`, borderRadius: '3px'}}>
                   <Dropdown
                     onChange={handleLevelDropdown} 
                     controlClassName='myControlClassName'
@@ -391,7 +426,7 @@ function CourseRegistrationForm(props) {
               </div>
               <div>
                 <label>Section</label>
-                <div style={{border: `1px solid ${errorBorderSchoolName}`, borderRadius: '3px'}}>
+                <div style={{border: `1px solid ${errorBorderSection}`, borderRadius: '3px'}}>
                   <Input 
                     type="text"
                     name="section"
@@ -401,7 +436,7 @@ function CourseRegistrationForm(props) {
               </div>
               <div >
                 <label>Subsection</label>
-                <div style={{border: `1px solid ${errorBorderBirthdate}`, borderRadius: '3px'}}>
+                <div style={{border: `1px solid ${errorBorderSubsection}`, borderRadius: '3px'}}>
                   <Input 
                     type='text' 
                     name="subsection"
@@ -411,7 +446,7 @@ function CourseRegistrationForm(props) {
               </div>
               <div>
                 <label>Hourly Rate</label>
-                <div style={{border: `1px solid ${errorBorderLocation}`, borderRadius: '3px'}}>
+                <div style={{border: `1px solid ${errorBorderHourlyRate}`, borderRadius: '3px'}}>
                   <Input 
                     type='text' 
                     name="hourly_rate"
@@ -421,7 +456,7 @@ function CourseRegistrationForm(props) {
               </div>
               <div>
                 <label>Course Schedule</label>
-                <div style={{border: `1px solid ${errorBorderHomeTelephone}`, borderRadius: '3px'}}>
+                <div style={{border: `1px solid ${errorBorderCourseSchedule}`, borderRadius: '3px'}}>
                   <Dropdown
                     onChange={handleCourseScheduleDropdown} 
                     controlClassName='myControlClassName'
@@ -433,7 +468,7 @@ function CourseRegistrationForm(props) {
               </div>
               <div>
                 <label>Teacher</label>
-                <div style={{border: `1px solid ${errorBorderMobileTelephone}`, borderRadius: '3px'}}>
+                <div style={{border: `1px solid ${errorBorderTeacher}`, borderRadius: '3px'}}>
                   <Dropdown
                     onChange={handleTeacherDropdown} 
                     controlClassName='myControlClassName'
@@ -445,7 +480,7 @@ function CourseRegistrationForm(props) {
               </div>
               <div>
                 <label>Room</label>
-                <div style={{border: `1px solid ${errorBorderContactType}`, borderRadius: '3px'}}>
+                <div style={{border: `1px solid ${errorBorderRoom}`, borderRadius: '3px'}}>
                   <Dropdown
                     onChange={handleRoomDropdown} 
                     controlClassName='myControlClassName'
@@ -457,7 +492,7 @@ function CourseRegistrationForm(props) {
               </div>
               <div>
                 <label>Start Time</label>
-                <div style={{border: `1px solid ${errorBorderBlock}`, borderRadius: '3px'}}>
+                <div style={{border: `1px solid ${errorBorderStartTime}`, borderRadius: '3px'}}>
                   <Input 
                     type="time"
                     name="start_time"
@@ -467,7 +502,7 @@ function CourseRegistrationForm(props) {
               </div>
               <div>
                 <label>End Time</label>
-                <div style={{border: `1px solid ${errorBorderRoad}`, borderRadius: '3px'}}>
+                <div style={{border: `1px solid ${errorBorderEndTime}`, borderRadius: '3px'}}>
                   <Input 
                     type="time"
                     name="end_time"
@@ -477,7 +512,7 @@ function CourseRegistrationForm(props) {
               </div>
               <div>
                 <label>Status</label>
-                <div style={{border: `1px solid ${errorBorderBuilding}`, borderRadius: '3px'}}>
+                <div style={{border: `1px solid ${errorBorderStatus}`, borderRadius: '3px'}}>
                   <Dropdown
                     onChange={handleStatusDropdown} 
                     controlClassName='myControlClassName'
@@ -489,11 +524,10 @@ function CourseRegistrationForm(props) {
               </div>
               <div style={{gridColumn: 'span 4'}}>
                 <label>Notes</label>
-                <div style={{border: `1px solid ${errorBorderFlat}`, borderRadius: '3px'}}>
+                <div style={{border: `1px solid ${errorBorderNotes}`, borderRadius: '3px'}}>
                   <textarea 
                     style={{width: '100%', height: '80px', outline: 'none', 
-                            border: '1px solid transparent', borderRadius: '3px', 
-                            fontSize: '14px', fontWeight: '400', marginLeft: '-2px'}}
+                            border: '1px solid transparent', borderRadius: '3px'}}
                     type="text"
                     name="notes"
                     value={course.notes}
