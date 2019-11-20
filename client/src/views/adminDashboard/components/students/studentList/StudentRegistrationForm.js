@@ -36,6 +36,8 @@ const Button = styled.button`
   background: #26ABBD;
   text-align: center;
   color: white;
+  outline: none;
+  cursor: pointer;
 `
 
 
@@ -49,12 +51,12 @@ function StudentRegistrationForm(props) {
 
  
   // set arrays of foreign key values to use in the dropdown (except 'gender' array it's not a foreign key)
-  const genderArr = ['select', 'F', 'M'];
-  const [gender, setGender] = useState(genderArr[0])
-  const [location, setLocation] = useState(props.locationList[0]);
-  const [contact, setContact] = useState(props.preferredContactMethodList[0]);
-  const [schoolGrade, setSchoolGrade] = useState(props.schoolGradeList[0]);
-  const [block, setBlock] = useState(props.blockList[0]);
+  const genderArr = ['F', 'M'];
+  const [gender, setGender] = useState('')
+  const [location, setLocation] = useState('');
+  const [contact, setContact] = useState('');
+  const [schoolGrade, setSchoolGrade] = useState('');
+  const [block, setBlock] = useState('');
 
   // handle required fields (make them all required for now)
   const [errorBorderCpr, setErrorBorderCpr] = useState('transparent'); //error '#ef6570'
@@ -79,15 +81,15 @@ function StudentRegistrationForm(props) {
   const [loading, setLoading] = useState(props.createNewStudentIsLoading);
 
   //error message visibility
-  const [cprMessage, setCprMessage] = useState('#E0EBF0'); //or block
+  const [cprMessage, setCprMessage] = useState('#E0EBF0'); 
   const [cprOpacity, setCprOpacity] = useState('0');
-  const [firstNameMessage, setFirstNameMessage] = useState('#E0EBF0'); //or block
+  const [firstNameMessage, setFirstNameMessage] = useState('#E0EBF0'); 
   const [firstNameOpacity, setFirstNameopacity] = useState('0');
-  const [additionalNamesMessage, setAdditionalNamesMessage] = useState('#E0EBF0'); //or block
+  const [additionalNamesMessage, setAdditionalNamesMessage] = useState('#E0EBF0'); 
   const [additionalNamesOpacity, setAdditionalNamesOpacity] = useState('0');
-  const [homeTelephoneMessage, setHomeTelephoneMessage] = useState('#E0EBF0'); //or block
+  const [homeTelephoneMessage, setHomeTelephoneMessage] = useState('#E0EBF0'); 
   const [homeTelephoneOpacity, setHomeTelephoneOpacity] = useState('0');
-  const [mobileTelephoneMessage, setMobileTelephoneMessage] = useState('#E0EBF0'); //or block
+  const [mobileTelephoneMessage, setMobileTelephoneMessage] = useState('#E0EBF0'); 
   const [mobileTelephoneOpacity, setMobileTelephoneOpacity] = useState('0');
 
 
@@ -167,14 +169,14 @@ function StudentRegistrationForm(props) {
 
     // check for required fields
     if (student.cpr.split(" ").join("") === '' || student.firstName.split(" ").join("") === '' || 
-        student.additionalNames.split(" ").join("") === '' || student.gender === '' || student.gender === undefined ||
-        student.birthdate === '' || student.schoolGradeId === '' || student.schoolGradeId === undefined ||
+        student.additionalNames.split(" ").join("") === '' || student.gender === '' ||
+        student.birthdate === '' || student.schoolGradeId === '' || 
         student.schoolName.split(" ").join("") === '' || student.homeTelephone.split(" ").join("") === '' ||
         student.mobileTelephone.split(" ").join("") === '' || student.block === '' || 
         student.road.split(" ").join("") === '' || student.building.split(" ").join("") === '' ||
         student.flat.split(" ").join("") === '' || student.email.split(" ").join("") === '' || 
-        student.notes.split(" ").join("") === '' || student.contactTypeId === '' || student.contactTypeId === undefined ||
-        student.locationId === '' || student.locationId === undefined)  
+        student.notes.split(" ").join("") === '' || student.contactTypeId === '' || 
+        student.locationId === '' )  
       { 
         // highlight all that were missed
         if (student.cpr.split(" ").join("") === '') {
@@ -186,13 +188,13 @@ function StudentRegistrationForm(props) {
         if (student.additionalNames.split(" ").join("") === '') {
           setErrorBorderAdditionalNames('#ef6570');
         }
-        if (student.gender === '' || student.gender === undefined) {
+        if (student.gender === '') {
           setErrorBorderGender('#ef6570');
         }
         if (student.birthdate === '') {
           setErrorBorderBirthdate('#ef6570');
         }
-        if (student.schoolGradeId === '' || student.schoolGradeId === undefined) {
+        if (student.schoolGradeId === '') {
           setErrorBorderSchoolGrade('#ef6570');
         }
         if (student.schoolName.split(" ").join("") === '') {
@@ -204,7 +206,7 @@ function StudentRegistrationForm(props) {
         if (student.mobileTelephone.split(" ").join("") === '') {
           setErrorBorderMobileTelephone('#ef6570');
         }
-        if (student.block === '' || student.block === undefined) {
+        if (student.block === '') {
           setErrorBorderBlock('#ef6570');
         }
         if (student.road.split(" ").join("") === '') {
@@ -222,10 +224,10 @@ function StudentRegistrationForm(props) {
         if (student.notes.split(" ").join("") === '') {
           setErrorBorderNotes('#ef6570');
         }
-        if (student.contactTypeId === '' || student.contactTypeId === undefined) {
+        if (student.contactTypeId === '') {
           setErrorBorderContactType('#ef6570');
         }
-        if (student.locationId === '' || student.locationId === undefined) {
+        if (student.locationId === '') {
           setErrorBorderLocation('#ef6570');
         }
     
@@ -233,7 +235,7 @@ function StudentRegistrationForm(props) {
       else if (!student.cpr.match(regexNum)) {
         setCprMessage('#ef6570');
         setCprOpacity('1');
-      } else if (!student.firstName.match(regexStr)) {
+      } else if (!student.firstName.match(regexMultipleWords)) {
         setFirstNameMessage('#ef6570');
         setFirstNameopacity('1');
       } else if (!student.additionalNames.match(regexMultipleWords)) {
@@ -272,9 +274,6 @@ function StudentRegistrationForm(props) {
             "email": student.email,
             "notes": student.notes,
             "preferred_contact_type_id": student.contactTypeId,
-            "no_call": false,
-            "delinquent": false,
-            "expelled": false,
             "location_id": student.locationId,
           }
 

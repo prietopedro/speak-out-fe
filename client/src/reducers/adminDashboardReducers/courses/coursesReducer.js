@@ -139,7 +139,7 @@ import {
             }
 
         case GET_TERM_TABLE_SUCCESS:
-          let termArr = ['select'];
+          let termArr = [];
           let termObj = {};
           for (let i = 0; i < action.payload.length; i++) {
             termArr.push(action.payload[i].name + ' sub ' + action.payload[i].subsection);
@@ -153,7 +153,7 @@ import {
             termIdLookup: termObj
         }
         case  GET_COURSE_TYPE_TABLE_SUCCESS:
-          let courseTypeArr = ['select'];
+          let courseTypeArr = [];
           let courseTypeObj = {};
           for (let i = 0; i < action.payload.length; i++) {
             courseTypeArr.push(action.payload[i].description);
@@ -165,7 +165,7 @@ import {
             courseTypeIdLookup: courseTypeObj
           }
         case GET_GROUP_TYPE_TABLE_SUCCESS:
-          let groupTypeArr = ['select'];
+          let groupTypeArr = [];
           let groupTypeObj = {};
           for (let i = 0; i < action.payload.length; i++) {
             groupTypeArr.push(action.payload[i].long_description);
@@ -177,7 +177,7 @@ import {
             groupTypeIdLookup: groupTypeObj
           }
         case GET_SCHOOL_GRADE_TABLE_SUCCESS:
-          let schoolGradeArr = ['select'];
+          let schoolGradeArr = [];
           let schoolGradeObj = {};
           for (let i = 0; i < action.payload.length; i++) {
             schoolGradeArr.push(action.payload[i].name);
@@ -189,7 +189,7 @@ import {
             schoolGradeIdLookup: schoolGradeObj
           }
         case GET_LEVEL_TABLE_SUCCESS:
-          let levelArr = ['select'];
+          let levelArr = [];
           let levelObj = {};
           for (let i = 0; i < action.payload.length; i++) {
             levelArr.push(action.payload[i].description);
@@ -201,7 +201,7 @@ import {
             levelListIdLookup: levelObj
           }
         case GET_COURSE_SCHEDULE_TABLE_SUCCESS:
-          let courseScheduleArr = ['select'];
+          let courseScheduleArr = [];
           let courseScheduleObj = {};
           for (let i = 0; i < action.payload.length; i++) {
             courseScheduleArr.push(action.payload[i].short_description);
@@ -213,7 +213,7 @@ import {
             courseScheduleIdLookup: courseScheduleObj
           }
         case GET_ROOM_TABLE_SUCCESS:
-          let roomArr = ['select'];
+          let roomArr = [];
           let roomObj = {};
           for (let i = 0; i < action.payload.length; i++) {
             roomArr.push(action.payload[i].id.toString());
@@ -225,7 +225,7 @@ import {
             roomIdLookup: roomObj
           }
         case GET_TEACHER_TABLE_SUCCESS:
-          let teacherArr = ['select'];
+          let teacherArr = [];
           let teacherObj = {};
           for (let i = 0; i < action.payload.length; i++) {
             teacherArr.push(action.payload[i].name);

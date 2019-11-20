@@ -104,7 +104,7 @@ export const studentsReducer = (state = initialState, action) => {
             studentById: []
           }
       case 'GET_LOCATIONS_TABLE_SUCCESS':
-          let locationArr = ['select'];
+          let locationArr = [];
           let locationObj = {};
           for (let i = 0; i < action.payload.length; i++) {
             locationArr.push(action.payload[i].name);
@@ -116,7 +116,7 @@ export const studentsReducer = (state = initialState, action) => {
             locationIdLookup: locationObj
           }
       case 'GET_PREFERRED_CONTACT_METHOD_TABLE_SUCCESS':
-          let preferredContactMethodArr = ['select'];
+          let preferredContactMethodArr = [];
           let preferredContactMethodObj = {};
           for (let i = 0; i < action.payload.length; i++) {
             preferredContactMethodArr.push(action.payload[i].method);
@@ -128,7 +128,7 @@ export const studentsReducer = (state = initialState, action) => {
             preferredContactMethodIdLookup: preferredContactMethodObj
           }
       case 'GET_SCHOOL_GRADE_TABLE_SUCCESS':
-          let schoolGradeArr = ['select'];
+          let schoolGradeArr = [];
           let schoolGradeObj = {};
           for (let i = 0; i < action.payload.length; i++) {
             schoolGradeArr.push(action.payload[i].name);
@@ -140,7 +140,7 @@ export const studentsReducer = (state = initialState, action) => {
             schoolGradeIdLookup: schoolGradeObj
           }
       case 'GET_BLOCK_TABLE_SUCCESS':
-          let blockArr = ['select'];
+          let blockArr = [];
           let blockObj = {};
           for (let i = 0; i < action.payload.length; i++) {
             blockArr.push(action.payload[i].block_code + ' ' + action.payload[i].neighborhood);
