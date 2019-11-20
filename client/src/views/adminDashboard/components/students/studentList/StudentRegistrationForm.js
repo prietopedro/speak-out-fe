@@ -97,7 +97,40 @@ function StudentRegistrationForm(props) {
 
 
   function handleChange(event) {
-    setStudent({ ...student, [event.target.name]: event.target.value.split(" ").join("") })
+    if (event.target.name === 'cpr' && errorBorderCpr === '#ef6570') {
+      setErrorBorderCpr('transparent');
+    } 
+    if (event.target.name === 'firstName' && errorBorderFirstName === '#ef6570') {
+      setErrorBorderFirstName('transparent');
+    }
+    if (event.target.name === 'additionalNames' && errorBorderAdditionalNames === '#ef6570') {
+      setErrorBorderAdditionalNames('transparent');
+    } 
+    if (event.target.name === 'schoolName' && errorBorderSchoolName === '#ef6570') {
+      setErrorBorderSchoolName('transparent');
+    }
+    if (event.target.name === 'homeTelephone' && errorBorderHomeTelephone === '#ef6570') {
+      setErrorBorderHomeTelephone('transparent');
+    }
+    if (event.target.name === 'mobileTelephone' && errorBorderMobileTelephone === '#ef6570') {
+      setErrorBorderMobileTelephone('transparent');
+    }
+    if (event.target.name === 'road' && errorBorderRoad === '#ef6570') {
+      setErrorBorderRoad('transparent');
+    }
+    if (event.target.name === 'building' && errorBorderBuilding === '#ef6570') {
+      setErrorBorderBuilding('transparent');
+    }
+    if (event.target.name === 'flat' && errorBorderFlat === '#ef6570') {
+      setErrorBorderFlat('transparent');
+    }
+    if (event.target.name === 'email' && errorBorderEmail === '#ef6570') {
+      setErrorBorderEmail('transparent');
+    }
+    if (event.target.name === 'notes' && errorBorderNotes === '#ef6570') {
+      setErrorBorderNotes('transparent');
+    }
+    setStudent({ ...student, [event.target.name]: event.target.value })
   }                                        
 
   function handleSubmit(event) {
@@ -110,24 +143,24 @@ function StudentRegistrationForm(props) {
 
 
     // check for required fields
-    if (student.cpr === '' || student.firstName === '' || 
-        student.additionalNames === '' || student.gender === '' || student.gender === undefined ||
+    if (student.cpr.split(" ").join("") === '' || student.firstName.split(" ").join("") === '' || 
+        student.additionalNames.split(" ").join("") === '' || student.gender === '' || student.gender === undefined ||
         student.birthdate === '' || student.schoolGradeId === '' || student.schoolGradeId === undefined ||
-        student.schoolName === '' || student.homeTelephone === '' ||
-        student.mobileTelephone === '' || student.block === '' || 
-        student.road === '' || student.road === ' ' || student.building === '' ||
-        student.flat === '' || student.email === '' || 
-        student.notes === '' || student.contactTypeId === '' || student.contactTypeId === undefined ||
+        student.schoolName.split(" ").join("") === '' || student.homeTelephone.split(" ").join("") === '' ||
+        student.mobileTelephone.split(" ").join("") === '' || student.block === '' || 
+        student.road.split(" ").join("") === '' || student.building.split(" ").join("") === '' ||
+        student.flat.split(" ").join("") === '' || student.email.split(" ").join("") === '' || 
+        student.notes.split(" ").join("") === '' || student.contactTypeId === '' || student.contactTypeId === undefined ||
         student.locationId === '' || student.locationId === undefined)  
       { 
         // highlight all that were missed
-        if (student.cpr === '') {
+        if (student.cpr.split(" ").join("") === '') {
           setErrorBorderCpr('#ef6570');
         } 
-        if (student.firstName === '') {
+        if (student.firstName.split(" ").join("") === '') {
           setErrorBorderFirstName('#ef6570');
         } 
-        if (student.additionalNames === '') {
+        if (student.additionalNames.split(" ").join("") === '') {
           setErrorBorderAdditionalNames('#ef6570');
         }
         if (student.gender === '' || student.gender === undefined) {
@@ -139,34 +172,31 @@ function StudentRegistrationForm(props) {
         if (student.schoolGradeId === '' || student.schoolGradeId === undefined) {
           setErrorBorderSchoolGrade('#ef6570');
         }
-        if (student.schoolName === '') {
+        if (student.schoolName.split(" ").join("") === '') {
           setErrorBorderSchoolName('#ef6570');
         }
-        if (student.homeTelephone === '') {
+        if (student.homeTelephone.split(" ").join("") === '') {
           setErrorBorderHomeTelephone('#ef6570');
         }
-        if (student.mobileTelephone === '') {
+        if (student.mobileTelephone.split(" ").join("") === '') {
           setErrorBorderMobileTelephone('#ef6570');
         }
         if (student.block === '' || student.block === undefined) {
           setErrorBorderBlock('#ef6570');
         }
-        if (student.road === '') {
+        if (student.road.split(" ").join("") === '') {
           setErrorBorderRoad('#ef6570');
         }
-        if (student.road === ' ') {
-          setErrorBorderRoad('#ef6570');
-        }
-        if (student.building === '') {
+        if (student.building.split(" ").join("") === '') {
           setErrorBorderBuilding('#ef6570');
         }
-        if (student.flat === '') {
+        if (student.flat.split(" ").join("") === '') {
           setErrorBorderFlat('#ef6570');
         }
-        if (student.email === '') {
+        if (student.email.split(" ").join("") === '') {
           setErrorBorderEmail('#ef6570');
         }
-        if (student.notes === '') {
+        if (student.notes.split(" ").join("") === '') {
           setErrorBorderNotes('#ef6570');
         }
         if (student.contactTypeId === '' || student.contactTypeId === undefined) {
