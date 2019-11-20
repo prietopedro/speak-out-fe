@@ -17,6 +17,9 @@ import {
   FETCH_COURSES_BY_STUDENT_START,
   FETCH_COURSES_BY_STUDENT_SUCCESS,
   FETCH_COURSES_BY_STUDENT_FAILURE,
+  GET_PLACEMENT_EXAM_START,
+  GET_PLACEMENT_EXAM_SUCCESS,
+  GET_PLACEMENT_EXAM_FAILURE
 
 } from '../../../actions/adminDashboardActions/students/studentsActions';
 
@@ -52,7 +55,11 @@ const initialState = {
 
     coursesListIsLoading: false,
     coursesListError: null,
-    courseList: []
+    courseList: [],
+
+    placementExam: [],
+    placementIsLoading: false,
+    placementError: null
 
 }
 
@@ -212,6 +219,22 @@ export const studentsReducer = (state = initialState, action) => {
               ...state,
               coursesListIsLoading: false,
               coursesListError: action.payload
+          }
+      case GET_PLACEMENT_EXAM_START:
+          return {
+            ...state,
+            placementIsLoading: true
+          };
+      case GET_PLACEMENT_EXAM_SUCCESS:
+          return {
+            ...state,
+            placementIsLoading: false,
+            placementExam: action.payload
+          };
+      case GET_PLACEMENT_EXAM_FAILURE:
+          return {
+            ...state,
+            placementError: 'Something went wrong'
           }
       default: return state;
 

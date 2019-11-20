@@ -339,7 +339,7 @@ function StudentInfoTab(props) {
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
             options={genderArr}   
-            value={gender !== '' ? gender : '  '}
+            value={gender !== '' ? gender : edit === false ? '  ' : ''}
             disabled={disabled} />
         </Data>
       </div>
@@ -389,7 +389,7 @@ function StudentInfoTab(props) {
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
             options={props.locationList}   
-            value={location}
+            value={location !== '' ? location : edit === false ? '  ' : ''}
             disabled={disabled} />
         </Data>
       </div>
@@ -423,7 +423,7 @@ function StudentInfoTab(props) {
         <Data>
           <Dropdown 
             onChange={handleContactMethodDropdown}
-            value={contact !== '' ? contact : '  '} 
+            value={contact !== '' ? contact : edit === false ? '  ' : ''} 
             controlClassName={`myControlClassName editForm${arrowVisibility}`}
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
@@ -440,7 +440,7 @@ function StudentInfoTab(props) {
               className='dropdownRoot' 
               menuClassName='myMenuClassName dropdown-menu'
               options={props.blockList}   
-              value={block !== '' ? block : '  '}
+              value={block !== '' ? block : edit === false ? '  ' : ''}
               disabled={disabled} />
         </Data>
       </div>
@@ -485,7 +485,7 @@ function StudentInfoTab(props) {
         <Data>
           <Dropdown 
             onChange={handleSchoolGradeDropdown} 
-            value={schoolGrade !== '' ? schoolGrade : '  '} 
+            value={schoolGrade !== '' ? schoolGrade : edit === false ? '  ' : ''} 
             controlClassName={`myControlClassName editForm${arrowVisibility}`}
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'

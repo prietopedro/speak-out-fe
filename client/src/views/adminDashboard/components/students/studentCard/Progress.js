@@ -6,6 +6,7 @@ import { faPlusCircle, faCheck } from '@fortawesome/free-solid-svg-icons';
 import AddPlacementExamForm from './AddPlacementExamForm';
 import AddProgressReportForm from './AddProgressReportForm';
 import PlacementExamView from './PlacementExamView';
+import { getPlacementExam } from '../../../../../actions/adminDashboardActions/students/studentsActions';
 
 
 function ProgressReports(props) {
@@ -58,13 +59,15 @@ const handleAddProgressReport = () => {
 
 const mapStateToProps = state => {
   return {
-    state: state
+    state: state,
+    placementExam: state.studentsReducer.placementExam,
+    placementIsLoading: state.studentsReducer.placementIsLoading
   };
 };
 
 export default withRouter(
   connect(
       mapStateToProps,
-      {}
+      { getPlacementExam }
   )(ProgressReports)
 )

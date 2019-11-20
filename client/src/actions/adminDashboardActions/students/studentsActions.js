@@ -183,3 +183,24 @@ export const getCoursesByStudent = (id) => dispatch => {
           dispatch({type: FETCH_COURSES_BY_STUDENT_FAILURE, payload: err.payload})
       });
 };
+
+export const GET_PLACEMENT_EXAM_START = 'GET_PLACEMENT_EXAM_START';
+export const GET_PLACEMENT_EXAM_SUCCESS = 'GET_PLACEMENT_EXAM_SUCCESS';
+export const GET_PLACEMENT_EXAM_FAILURE = 'GET_PLACEMENT_EXAM_FAILURE';
+
+
+export const getPlacementExam = (studentId) => {
+  return dispatch => {
+    dispatch({ type: GET_PLACEMENT_EXAM_START });
+    
+    axios 
+      .get(`https://speak-out-be-staging.herokuapp.com/api/?table=placement_exam&where=student_id=${studentId}`)
+      .then(res => {
+        console.log('GET PLACEMENT EXAM: ', res.data)
+        dispatch({ type: GET_PLACEMENT_EXAM_SUCCESS, payload: res.data.tableData }); 
+      })
+      .catch(err => {
+        dispatch({ type: GET_PLACEMENT_EXAM_FAILURE, payload: err })
+      })  
+  };
+}

@@ -66,6 +66,10 @@ function StaffInfoTab(props) {
   const accentArr = ['North American', 'British', 'Irish', 'Australian', 'Scottish', 'South African',
                      'French/Brit', 'Local', 'Other'];
   const [accent, setAccent] = useState('');
+  const adminStatus = ['true', 'false'];
+  const [admin, setAdmin] = useState('');
+  const activeStatus = ['true', 'false'];
+  const [active, setActive] = useState('');
 
 
   //toggle visibility of cancel button
@@ -95,6 +99,26 @@ function StaffInfoTab(props) {
     for (let i = 0; i < accentArr.length; i++) {
       if (props.staffById.accent === accentArr[i]) {
         setAccent(accentArr[i]);
+      }
+    }
+
+    //display dropdown value based on the incoming data
+    for (let i = 0; i < adminStatus.length; i++) {
+      if (props.staffById.admin === true && adminStatus[i] === 'true') {
+        setAdmin(adminStatus[i]);
+      }
+      if (props.staffById.admin === false && adminStatus[i] === 'false') {
+        setAdmin(adminStatus[i]);
+      }
+    }
+
+    //display dropdown value based on the incoming data
+    for (let i = 0; i < activeStatus.length; i++) {
+      if (props.staffById.active === true && activeStatus[i] === 'true') {
+        setActive(activeStatus[i]);
+      }
+      if (props.staffById.active === false && activeStatus[i] === 'false') {
+        setActive(activeStatus[i]);
       }
     }
 
@@ -188,6 +212,30 @@ function StaffInfoTab(props) {
     setAccent(accentArr[index]); 
   }
 
+  function handleAdminDropdown(e) {
+    //reassign the dropdown value to the one selected
+    let index;
+    for (let i = 0; i < adminStatus.length; i++) {
+      if (adminStatus[i] === e.value) {
+        index = i;
+      }
+    }
+    setStaff({...staff, admin: e.value === 'true' ? true : false});
+    setAdmin(adminStatus[index]);
+  }
+
+  function handleActiveDropdown(e) {
+    //reassign the dropdown value to the one selected
+    let index;
+    for (let i = 0; i < activeStatus.length; i++) {
+      if (activeStatus[i] === e.value) {
+        index = i;
+      }
+    }
+    setStaff({...staff, active: e.value === 'true' ? true : false});
+    setActive(activeStatus[index]);
+  }
+
 
   return (
     <div style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
@@ -254,7 +302,7 @@ function StaffInfoTab(props) {
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
             options={genderArr}   
-            value={gender}
+            value={gender !== '' ? gender : edit === false ? '  ' : ''}
             disabled={disabled} />
         </Data>
       </div>
@@ -273,14 +321,15 @@ function StaffInfoTab(props) {
       <div>
         <Label>Admin</Label>
         <Data>
-          <Input 
-            style={{border: `${edit ? '1px solid #dedbdb' : '1px solid transparent'}`}}
-            type="boolean"
-            name="admin"
-            value={staff.admin}
-            onChange={handleChange}
+          <Dropdown 
+            onChange={handleAdminDropdown} 
+            controlClassName={`myControlClassName editForm${arrowVisibility}`}
+            className='dropdownRoot' 
+            menuClassName='myMenuClassName dropdown-menu'
+            options={adminStatus}   
+            value={admin !== '' ? admin : edit === false ? '  ' : ''} 
             disabled={disabled}
-          />
+            />
         </Data>
       </div>
       <div >
@@ -311,12 +360,13 @@ function StaffInfoTab(props) {
       <div>
         <Label>Active</Label>
         <Data>
-          <Input 
-            style={{border: `${edit ? '1px solid #dedbdb' : '1px solid transparent'}`}}
-            type="boolean"
-            name="active"
-            value={staff.active}
-            onChange={handleChange}
+          <Dropdown 
+            onChange={handleActiveDropdown} 
+            controlClassName={`myControlClassName editForm${arrowVisibility}`}
+            className='dropdownRoot' 
+            menuClassName='myMenuClassName dropdown-menu'
+            options={activeStatus}   
+            value={active !== '' ? active : edit === false ? '  ' : ''} 
             disabled={disabled}
           />
         </Data>
@@ -342,7 +392,7 @@ function StaffInfoTab(props) {
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
             options={accentArr}   
-            value={accent}
+            value={accent !== '' ? accent : edit === false ? '  ' : ''}
             disabled={disabled} />
         </Data>
       </div>

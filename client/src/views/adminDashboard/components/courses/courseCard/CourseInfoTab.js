@@ -361,7 +361,7 @@ function CourseInfoTab(props) {
               className='dropdownRoot' 
               menuClassName='myMenuClassName dropdown-menu'
               options={props.termList}   
-              value={term !== '' ? term : ' '}
+              value={term !== '' ? term : edit === false ? '  ' : ''}
               disabled={disabled} />
           </Data>
         </div>
@@ -374,7 +374,7 @@ function CourseInfoTab(props) {
               className='dropdownRoot' 
               menuClassName='myMenuClassName dropdown-menu'
               options={props.courseTypeList}   
-              value={courseType !== '' ? courseType : ' '}
+              value={courseType !== '' ? courseType : edit === false ? '  ' : ''}
               disabled={disabled} />
           </Data>
         </div>
@@ -387,7 +387,7 @@ function CourseInfoTab(props) {
               className='dropdownRoot' 
               menuClassName='myMenuClassName dropdown-menu'
               options={props.groupTypeList}   
-              value={groupType !== '' ? groupType : ' '}
+              value={groupType !== '' ? groupType : edit === false ? '  ' : ''}
               disabled={disabled} />
           </Data>
         </div>
@@ -400,7 +400,7 @@ function CourseInfoTab(props) {
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
             options={props.schoolGradeList}   
-            value={schoolGrade !== '' ? schoolGrade : ' '}
+            value={schoolGrade !== '' ? schoolGrade : edit === false ? '  ' : ''}
             disabled={disabled} />
         </Data>
       </div>
@@ -413,7 +413,7 @@ function CourseInfoTab(props) {
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
             options={props.levelList}   
-            value={level !== '' ? level : ' '}
+            value={level !== '' ? level : edit === false ? '  ' : ''}
             disabled={disabled} />
         </Data>
       </div>
@@ -462,7 +462,7 @@ function CourseInfoTab(props) {
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
             options={props.courseScheduleList}   
-            value={courseSchedule !== '' ? courseSchedule : ' '}
+            value={courseSchedule !== '' ? courseSchedule : edit === false ? '  ' : ''}
             disabled={disabled} />
         </Data>
       </div>
@@ -475,7 +475,7 @@ function CourseInfoTab(props) {
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
             options={props.teacherList}   
-            value={teacher !== '' ? teacher : ' '}
+            value={teacher !== '' ? teacher : edit === false ? '  ' : ''}
             disabled={disabled} />
         </Data>
       </div>
@@ -488,7 +488,7 @@ function CourseInfoTab(props) {
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
             options={props.roomList}   
-            value={room !== '' ? room : ' '}
+            value={room !== '' ? room : edit === false ? '  ' : ''}
             disabled={disabled} />
         </Data>
       </div>
@@ -525,7 +525,7 @@ function CourseInfoTab(props) {
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
             options={statusArr}   
-            value={status !== '' ? status : ' '}
+            value={status !== '' ? status : edit === false ? '  ' : ''}
             disabled={disabled} />
         </Data>
       </div>
