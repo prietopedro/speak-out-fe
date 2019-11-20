@@ -100,20 +100,40 @@ function StudentRegistrationForm(props) {
     if (event.target.name === 'cpr' && errorBorderCpr === '#ef6570') {
       setErrorBorderCpr('transparent');
     } 
+    if (event.target.name === 'cpr' && cprMessage === '#ef6570') {
+      setCprMessage('#E0EBF0');
+      setCprOpacity('0');
+    }
     if (event.target.name === 'firstName' && errorBorderFirstName === '#ef6570') {
       setErrorBorderFirstName('transparent');
+    }
+    if (event.target.name === 'firstName' && firstNameMessage === '#ef6570') {
+      setFirstNameMessage('#E0EBF0');
+      setFirstNameopacity('0');
     }
     if (event.target.name === 'additionalNames' && errorBorderAdditionalNames === '#ef6570') {
       setErrorBorderAdditionalNames('transparent');
     } 
+    if (event.target.name === 'additionalNames' && additionalNamesMessage === '#ef6570') {
+      setAdditionalNamesMessage('#E0EBF0');
+      setAdditionalNamesOpacity('0');
+    }
     if (event.target.name === 'schoolName' && errorBorderSchoolName === '#ef6570') {
       setErrorBorderSchoolName('transparent');
     }
     if (event.target.name === 'homeTelephone' && errorBorderHomeTelephone === '#ef6570') {
       setErrorBorderHomeTelephone('transparent');
     }
+    if (event.target.name === 'homeTelephone' && homeTelephoneMessage === '#ef6570') {
+      setHomeTelephoneMessage('#E0EBF0');
+      setHomeTelephoneOpacity('0');
+    }
     if (event.target.name === 'mobileTelephone' && errorBorderMobileTelephone === '#ef6570') {
       setErrorBorderMobileTelephone('transparent');
+    }
+    if (event.target.name === 'mobileTelephone' && mobileTelephoneMessage === '#ef6570') {
+      setMobileTelephoneMessage('#E0EBF0');
+      setMobileTelephoneOpacity('0');
     }
     if (event.target.name === 'road' && errorBorderRoad === '#ef6570') {
       setErrorBorderRoad('transparent');
@@ -208,19 +228,19 @@ function StudentRegistrationForm(props) {
     
     } 
       else if (!student.cpr.match(regexNum)) {
-        setCprMessage('red');
+        setCprMessage('#ef6570');
         setCprOpacity('1');
       } else if (!student.firstName.match(regexStr)) {
-        setFirstNameMessage('red');
+        setFirstNameMessage('#ef6570');
         setFirstNameopacity('1');
       } else if (!student.additionalNames.match(regexMultipleWords)) {
-        setAdditionalNamesMessage('red');
+        setAdditionalNamesMessage('#ef6570');
         setAdditionalNamesOpacity('1');
       } else if (!student.homeTelephone.match(regexNum)) {
-        setHomeTelephoneMessage('red');
+        setHomeTelephoneMessage('#ef6570');
         setHomeTelephoneOpacity('1');
       } else if (!student.mobileTelephone.match(regexNum)) {
-        setMobileTelephoneMessage('red');
+        setMobileTelephoneMessage('#ef6570');
         setMobileTelephoneOpacity('1');
       } 
     
