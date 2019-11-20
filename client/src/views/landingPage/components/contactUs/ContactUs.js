@@ -19,37 +19,26 @@ function ContactUs(props) {
 
   }, [])
   return (
-    <div className="about-us">
+    <div className="contact-us">
       <header>
         <h1>Contact Us</h1>
-        {/* <div className="link-container">
-            <Link className="link" to="/kindergarten">
-              Kindergarten
-            </Link>
-            <Link className="link" to="/primary">
-              Primary
-            </Link>
-            <Link className="link red" to="#">
-              Middle and Secondary
-            </Link>
-          </div> */}
       </header>
       <div className="body">
         <div className="body-left">
           <div className="contact-container">
             <img src={WhatsApp} />
-            <p>+973 35617635</p>
+            <div>+973 35617635</div>
           </div>
           <div className="contact-container">
             <img src={ContactEmail} />
-            <p>speakout.info.bh@gmail.com</p>
+            <div>speakout.info.bh@gmail.com</div>
           </div>
           <div className="contact-container">
             <img src={PinLarge} />
-            <p>
+            <div>
               Rd No 3949 <br />
               Bani Jamra, Bahrain
-            </p>
+            </div>
           </div>
           <div className="img-container">
             <img src={Map} />
@@ -59,15 +48,15 @@ function ContactUs(props) {
           <h2>Social Media</h2>
           <div className="contact-container">
             <img src={Instagram} />
-            <p>speak_out_program</p>
+            <div>speak_out_program</div>
           </div>
           <div className="contact-container">
             <img src={Facebook} />
-            <p>speakoutinfobh</p>
+            <div>speakoutinfobh</div>
           </div>
           <div className="contact-container">
             <img src={Twitter} />
-            <p>speakoutbh</p>
+            <div>speakoutbh</div>
           </div>
         </div>
       </div>

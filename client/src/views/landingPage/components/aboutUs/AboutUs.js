@@ -9,7 +9,6 @@ import Garden from "../../../../assets/Garden.png";
 function AboutUs(props) {
   useEffect(() => {
     props.toggle()
-    console.log('ABOUT US', props)
   }, [])
 
   return (

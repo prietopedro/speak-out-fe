@@ -10,7 +10,6 @@ function NavBar(props) {
   const [selected, setSelected] = useState(false);
 
   useEffect(() => {
-    console.log('NAVBAR HEREEE: ', props)
     if (props.location.pathname === "/about-us") {
       setSelected('about');
     }
@@ -43,10 +42,6 @@ function NavBar(props) {
   const handleLogo = () => {
     props.history.push('/')
     setSelected(false);
-  }
-
-  const signIn = () => {
-    // props.history.push('/login');
   }
 
   const handleCourse = () => {
@@ -87,7 +82,6 @@ function NavBar(props) {
         <Link to='/about-us' onClick={handleAbout} style={{borderBottom: `${selected === 'about' && selected !== 'signin' ? '2px solid #C73642' : '2px solid transparent'}`}}>About Us</Link>
         <Link to='/contact-us' onClick={handleContact} style={{borderBottom: `${selected === 'contact' && selected !== 'signin' ? '2px solid #C73642' : '2px solid transparent'}`}}>Contact Us</Link>
         <Link to='/login' onClick={handleSignIn} className="button" >{signInText}</Link>
-        {/* <button onClick={signIn}>{signInText}</button> */}
       </div>
     </div>
   )

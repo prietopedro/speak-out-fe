@@ -388,7 +388,7 @@ function StudentInfoTab(props) {
             controlClassName={`myControlClassName editForm${arrowVisibility}`} 
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
-            options={props.locationList.slice(1)}   
+            options={props.locationList}   
             value={location}
             disabled={disabled} />
         </Data>
@@ -427,7 +427,7 @@ function StudentInfoTab(props) {
             controlClassName={`myControlClassName editForm${arrowVisibility}`}
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
-            options={props.preferredContactMethodList.slice(1)}
+            options={props.preferredContactMethodList}
             disabled={disabled} />
         </Data>
       </div>
@@ -439,7 +439,7 @@ function StudentInfoTab(props) {
               controlClassName={`myControlClassName editForm${arrowVisibility}`}
               className='dropdownRoot' 
               menuClassName='myMenuClassName dropdown-menu'
-              options={props.blockList.slice(1)}   
+              options={props.blockList}   
               value={block !== '' ? block : '  '}
               disabled={disabled} />
         </Data>
@@ -489,7 +489,7 @@ function StudentInfoTab(props) {
             controlClassName={`myControlClassName editForm${arrowVisibility}`}
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
-            options={props.schoolGradeList.slice(1)}
+            options={props.schoolGradeList}
             disabled={disabled} />
         </Data>
       </div>

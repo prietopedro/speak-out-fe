@@ -40,7 +40,7 @@ const handleAddProgressReport = () => {
                 <AddPlacementExamForm />
               ) : null}
       <div style={{display: 'flex', marginTop: '10px', alignContent: 'center', marginBottom: '40px'}}>
-        <div><FontAwesomeIcon onClick={handleAddPlacementExam} style={{width: '20px', height: '20px', cursor: 'pointer', color: '#269FB0'}} icon={faPlusCircle} size='lg'/></div>
+        <div><FontAwesomeIcon onClick={handleAddPlacementExam} style={{width: '18px', height: '18px', cursor: 'pointer', color: '#269FB0'}} icon={faPlusCircle} size='lg'/></div>
         <div style={{marginLeft: '5px', color: '#269FB0'}}>Add</div>
       </div>
 
@@ -49,7 +49,7 @@ const handleAddProgressReport = () => {
                 <AddProgressReportForm />
               ) : null}
       <div style={{display: 'flex', marginTop: '10px', alignContent: 'center', marginBottom: '40px'}}>
-        <div><FontAwesomeIcon onClick={handleAddProgressReport} style={{width: '20px', height: '20px', cursor: 'pointer', color: '#269FB0'}} icon={faPlusCircle} size='lg'/></div>
+        <div><FontAwesomeIcon onClick={handleAddProgressReport} style={{width: '18px', height: '18px', cursor: 'pointer', color: '#269FB0'}} icon={faPlusCircle} size='lg'/></div>
         <div style={{marginLeft: '5px', color: '#269FB0'}}>Add</div>
       </div>
     </div>

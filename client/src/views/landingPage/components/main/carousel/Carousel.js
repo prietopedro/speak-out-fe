@@ -13,7 +13,6 @@ import prevArrow from '../../../../../assets/prev-arrow.png';
 import nextArrow from '../../../../../assets/next-arrow.png';
 import gallery from '../../../../../assets/gallery-carousel-placeholder.png';
 
-// Assets
 
 function NextArrow(props) {
     const { className, style, onClick } = props;

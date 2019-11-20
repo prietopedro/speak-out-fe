@@ -360,8 +360,8 @@ function CourseInfoTab(props) {
               controlClassName={`myControlClassName editForm${arrowVisibility}`}
               className='dropdownRoot' 
               menuClassName='myMenuClassName dropdown-menu'
-              options={props.termList.slice(1)}   
-              value={term}
+              options={props.termList}   
+              value={term !== '' ? term : ' '}
               disabled={disabled} />
           </Data>
         </div>
@@ -373,8 +373,8 @@ function CourseInfoTab(props) {
               controlClassName={`myControlClassName editForm${arrowVisibility}`}
               className='dropdownRoot' 
               menuClassName='myMenuClassName dropdown-menu'
-              options={props.courseTypeList.slice(1)}   
-              value={courseType}
+              options={props.courseTypeList}   
+              value={courseType !== '' ? courseType : ' '}
               disabled={disabled} />
           </Data>
         </div>
@@ -386,8 +386,8 @@ function CourseInfoTab(props) {
               controlClassName={`myControlClassName editForm${arrowVisibility}`}
               className='dropdownRoot' 
               menuClassName='myMenuClassName dropdown-menu'
-              options={props.groupTypeList.slice(1)}   
-              value={groupType}
+              options={props.groupTypeList}   
+              value={groupType !== '' ? groupType : ' '}
               disabled={disabled} />
           </Data>
         </div>
@@ -399,8 +399,8 @@ function CourseInfoTab(props) {
             controlClassName={`myControlClassName editForm${arrowVisibility}`}
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
-            options={props.schoolGradeList.slice(1)}   
-            value={schoolGrade}
+            options={props.schoolGradeList}   
+            value={schoolGrade !== '' ? schoolGrade : ' '}
             disabled={disabled} />
         </Data>
       </div>
@@ -412,8 +412,8 @@ function CourseInfoTab(props) {
             controlClassName={`myControlClassName editForm${arrowVisibility}`}
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
-            options={props.levelList.slice(1)}   
-            value={level}
+            options={props.levelList}   
+            value={level !== '' ? level : ' '}
             disabled={disabled} />
         </Data>
       </div>
@@ -461,8 +461,8 @@ function CourseInfoTab(props) {
             controlClassName={`myControlClassName editForm${arrowVisibility}`}
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
-            options={props.courseScheduleList.slice(1)}   
-            value={courseSchedule}
+            options={props.courseScheduleList}   
+            value={courseSchedule !== '' ? courseSchedule : ' '}
             disabled={disabled} />
         </Data>
       </div>
@@ -474,8 +474,8 @@ function CourseInfoTab(props) {
             controlClassName={`myControlClassName editForm${arrowVisibility}`}
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
-            options={props.teacherList.slice(1)}   
-            value={teacher}
+            options={props.teacherList}   
+            value={teacher !== '' ? teacher : ' '}
             disabled={disabled} />
         </Data>
       </div>
@@ -487,8 +487,8 @@ function CourseInfoTab(props) {
             controlClassName={`myControlClassName editForm${arrowVisibility}`}
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
-            options={props.roomList.slice(1)}   
-            value={room}
+            options={props.roomList}   
+            value={room !== '' ? room : ' '}
             disabled={disabled} />
         </Data>
       </div>
@@ -525,7 +525,7 @@ function CourseInfoTab(props) {
             className='dropdownRoot' 
             menuClassName='myMenuClassName dropdown-menu'
             options={statusArr}   
-            value={status}
+            value={status !== '' ? status : ' '}
             disabled={disabled} />
         </Data>
       </div>
