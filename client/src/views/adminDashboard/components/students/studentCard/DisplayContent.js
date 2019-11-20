@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import StudentInfoTab from './StudentInfoTab';
 import StudentCourses from './StudentCourses';
+import Progress from './Progress';
 
 function DisplayContent({navigation, studentData, resetForm}) {
 
@@ -13,10 +14,8 @@ function DisplayContent({navigation, studentData, resetForm}) {
   } else if (navigation === "Courses") {
     return <StudentCourses id={studentData.id}/>
   } else if (navigation === "Progress") {
-    return <div>Progress</div>
-  } else if (navigation === "Billing") {
-    return <div>Billling</div>
-  }
+    return <Progress />
+  } 
   }
 }
 

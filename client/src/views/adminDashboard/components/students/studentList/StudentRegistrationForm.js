@@ -78,6 +78,18 @@ function StudentRegistrationForm(props) {
   // display a spinner on isLoading when posting a new record
   const [loading, setLoading] = useState(props.createNewStudentIsLoading);
 
+  //error message visibility
+  const [cprMessage, setCprMessage] = useState('#E0EBF0'); //or block
+  const [cprOpacity, setCprOpacity] = useState('0');
+  const [firstNameMessage, setFirstNameMessage] = useState('#E0EBF0'); //or block
+  const [firstNameOpacity, setFirstNameopacity] = useState('0');
+  const [additionalNamesMessage, setAdditionalNamesMessage] = useState('#E0EBF0'); //or block
+  const [additionalNamesOpacity, setAdditionalNamesOpacity] = useState('0');
+  const [homeTelephoneMessage, setHomeTelephoneMessage] = useState('#E0EBF0'); //or block
+  const [homeTelephoneOpacity, setHomeTelephoneOpacity] = useState('0');
+  const [mobileTelephoneMessage, setMobileTelephoneMessage] = useState('#E0EBF0'); //or block
+  const [mobileTelephoneOpacity, setMobileTelephoneOpacity] = useState('0');
+
 
   useEffect(() => {
 
@@ -85,22 +97,28 @@ function StudentRegistrationForm(props) {
 
 
   function handleChange(event) {
-    setStudent({ ...student, [event.target.name]: event.target.value })
+    setStudent({ ...student, [event.target.name]: event.target.value.split(" ").join("") })
   }                                        
 
   function handleSubmit(event) {
     event.preventDefault();
+    console.log('STUDENT:', student)
+
+    var regexStr=/^[a-zA-Z]+$/;
+    var regexNum=/^[0-9]+$/;
+    var regexMultipleWords=/^[a-zA-Z ]+$/;
+
 
     // check for required fields
     if (student.cpr === '' || student.firstName === '' || 
-        student.additionalNames === '' || student.gender === '' ||
-        student.birthdate === '' || student.schoolGradeId === '' || 
+        student.additionalNames === '' || student.gender === '' || student.gender === undefined ||
+        student.birthdate === '' || student.schoolGradeId === '' || student.schoolGradeId === undefined ||
         student.schoolName === '' || student.homeTelephone === '' ||
         student.mobileTelephone === '' || student.block === '' || 
-        student.road === '' || student.building === '' ||
+        student.road === '' || student.road === ' ' || student.building === '' ||
         student.flat === '' || student.email === '' || 
-        student.notes === '' || student.contactTypeId === '' ||
-        student.locationId === '') 
+        student.notes === '' || student.contactTypeId === '' || student.contactTypeId === undefined ||
+        student.locationId === '' || student.locationId === undefined)  
       { 
         // highlight all that were missed
         if (student.cpr === '') {
@@ -112,13 +130,13 @@ function StudentRegistrationForm(props) {
         if (student.additionalNames === '') {
           setErrorBorderAdditionalNames('#ef6570');
         }
-        if (student.gender === '') {
+        if (student.gender === '' || student.gender === undefined) {
           setErrorBorderGender('#ef6570');
         }
         if (student.birthdate === '') {
           setErrorBorderBirthdate('#ef6570');
         }
-        if (student.schoolGradeId === '') {
+        if (student.schoolGradeId === '' || student.schoolGradeId === undefined) {
           setErrorBorderSchoolGrade('#ef6570');
         }
         if (student.schoolName === '') {
@@ -130,10 +148,13 @@ function StudentRegistrationForm(props) {
         if (student.mobileTelephone === '') {
           setErrorBorderMobileTelephone('#ef6570');
         }
-        if (student.block === '') {
+        if (student.block === '' || student.block === undefined) {
           setErrorBorderBlock('#ef6570');
         }
         if (student.road === '') {
+          setErrorBorderRoad('#ef6570');
+        }
+        if (student.road === ' ') {
           setErrorBorderRoad('#ef6570');
         }
         if (student.building === '') {
@@ -148,59 +169,77 @@ function StudentRegistrationForm(props) {
         if (student.notes === '') {
           setErrorBorderNotes('#ef6570');
         }
-        if (student.contactTypeId === '') {
+        if (student.contactTypeId === '' || student.contactTypeId === undefined) {
           setErrorBorderContactType('#ef6570');
         }
-        if (student.locationId === '') {
+        if (student.locationId === '' || student.locationId === undefined) {
           setErrorBorderLocation('#ef6570');
         }
     
-    } else {
+    } 
+      else if (!student.cpr.match(regexNum)) {
+        setCprMessage('red');
+        setCprOpacity('1');
+      } else if (!student.firstName.match(regexStr)) {
+        setFirstNameMessage('red');
+        setFirstNameopacity('1');
+      } else if (!student.additionalNames.match(regexMultipleWords)) {
+        setAdditionalNamesMessage('red');
+        setAdditionalNamesOpacity('1');
+      } else if (!student.homeTelephone.match(regexNum)) {
+        setHomeTelephoneMessage('red');
+        setHomeTelephoneOpacity('1');
+      } else if (!student.mobileTelephone.match(regexNum)) {
+        setMobileTelephoneMessage('red');
+        setMobileTelephoneOpacity('1');
+      } 
+    
+      else {
 
-        const newDate = moment();
-        const newDateISOFormat = newDate.toISOString();
-        const birthdateDate = moment(student.birthdate).toDate();
-        const birthdateISO = birthdateDate.toISOString()
+          const newDate = moment();
+          const newDateISOFormat = newDate.toISOString();
+          const birthdateDate = moment(student.birthdate).toDate();
+          const birthdateISO = birthdateDate.toISOString()
 
-        const newStudent = {
-          "cpr": student.cpr.toString(),
-          "registration_date": newDateISOFormat,
-          "first_name": student.firstName,
-          "additional_names": student.additionalNames,
-          "gender": student.gender,
-          "birthdate": birthdateISO,
-          "school_grade_id": student.schoolGradeId,
-          "school_name": student.schoolName,
-          "home_telephone": student.homeTelephone.toString(),
-          "mobile_telephone": student.mobileTelephone.toString(),
-          "block_code": parseInt(student.block),
-          "road": student.road.toString(),
-          "building": student.building.toString(),
-          "flat": student.flat.toString(),
-          "email": student.email,
-          "notes": student.notes,
-          "preferred_contact_type_id": student.contactTypeId,
-          "no_call": false,
-          "delinquent": false,
-          "expelled": false,
-          "location_id": student.locationId,
-        }
+          const newStudent = {
+            "cpr": student.cpr.toString(),
+            "registration_date": newDateISOFormat,
+            "first_name": student.firstName,
+            "additional_names": student.additionalNames,
+            "gender": student.gender,
+            "birthdate": birthdateISO,
+            "school_grade_id": student.schoolGradeId,
+            "school_name": student.schoolName,
+            "home_telephone": student.homeTelephone.toString(),
+            "mobile_telephone": student.mobileTelephone.toString(),
+            "block_code": parseInt(student.block),
+            "road": student.road.toString(),
+            "building": student.building.toString(),
+            "flat": student.flat.toString(),
+            "email": student.email,
+            "notes": student.notes,
+            "preferred_contact_type_id": student.contactTypeId,
+            "no_call": false,
+            "delinquent": false,
+            "expelled": false,
+            "location_id": student.locationId,
+          }
 
-        props.createNewStudent(newStudent, props.setNewRecord, props.newRecord, 
-                              props.displaySuccessMessageTimeout, props.setSavePrevState);
+          props.createNewStudent(newStudent, props.setNewRecord, props.newRecord, 
+                                props.displaySuccessMessageTimeout, props.setSavePrevState);
 
-        // reset form fields
-        setStudent({cpr: '', registrationDate: '', firstName: '', additionalNames: '', 
-                    gender: '', birthdate: '', schoolGradeId: '', schoolName: '', 
-                    gradeUpdated: '', homeTelephone: '', mobileTelephone: '', 
-                    block: '', road: '', building: '', flat: '', email: '', 
-                    notes: '', contactTypeId: '', noCall: false, delinquent: false,
-                    expelled: false, locationId: ''
-                   });
+          // reset form fields
+          setStudent({cpr: '', registrationDate: '', firstName: '', additionalNames: '', 
+                      gender: '', birthdate: '', schoolGradeId: '', schoolName: '', 
+                      gradeUpdated: '', homeTelephone: '', mobileTelephone: '', 
+                      block: '', road: '', building: '', flat: '', email: '', 
+                      notes: '', contactTypeId: '', noCall: false, delinquent: false,
+                      expelled: false, locationId: ''
+                    });
 
-        // hide the form by reusing the cancel button method
-        props.handleCancelButtonOnForm();
-    }
+          // hide the form by reusing the cancel button method
+          props.handleCancelButtonOnForm();
+      }
   }
 
   function handleCancel(event) {
@@ -276,7 +315,7 @@ function StudentRegistrationForm(props) {
         <FormWrap onSubmit={handleSubmit} style={{margin: '30px 10px 20px 10px'}}>
           <fieldset style={{border: '1px solid transparent', margin: '10px 5px 0px 5px',  background: '#E0EBF0'}}>
             <div style={{display: 'grid', textAlign: 'left', gridTemplateColumns: '1fr 1fr 1fr 1fr',
-                         gridGap: '15px', margin: '10px'}}>
+                         gridGap: '10px', margin: '10px'}}>
               <div >
                 <label>CPR</label>
                 <div style={{border: `1px solid ${errorBorderCpr}`, borderRadius: '3px'}}>
@@ -286,6 +325,7 @@ function StudentRegistrationForm(props) {
                     value={student.cpr}
                     onChange={handleChange} />
                 </div>
+                <div style={{fontSize: '8px', color: cprMessage, opacity: cprOpacity, marginLeft: '2px'}}>Must input numbers</div>
               </div>
               <div>
                 <label>First Name</label>
@@ -296,6 +336,7 @@ function StudentRegistrationForm(props) {
                     value={student.firstName}
                     onChange={handleChange} />
                 </div>
+                <div style={{fontSize: '8px', color: firstNameMessage, opacity: firstNameOpacity, marginLeft: '2px'}}>Must input strings</div>
               </div>
               <div style={{gridColumn: 'span 2'}}>
                 <label>Additional names</label>
@@ -307,6 +348,7 @@ function StudentRegistrationForm(props) {
                     value={student.additionalNames}
                     onChange={handleChange} />
                 </div>
+                <div style={{fontSize: '8px', color: additionalNamesMessage, opacity: additionalNamesOpacity, marginLeft: '2px'}}>Must input strings</div>
               </div>
               <div>
                 <label>Gender</label>
@@ -328,6 +370,7 @@ function StudentRegistrationForm(props) {
                     value={student.email}
                     onChange={handleChange} />
                 </div>
+                <div style={{fontSize: '8px', color: '#E0EBF0', opacity: '0', marginLeft: '2px'}}>text</div>
               </div>
               <div>
                 <label>School Name</label>
@@ -369,6 +412,7 @@ function StudentRegistrationForm(props) {
                     value={student.homeTelephone}
                     onChange={handleChange} />
                 </div>
+                <div style={{fontSize: '8px', color: homeTelephoneMessage, opacity: homeTelephoneOpacity, marginLeft: '2px'}}>Must input numbers</div>
               </div>
               <div>
                 <label>Mobile Telephone</label>
@@ -379,6 +423,7 @@ function StudentRegistrationForm(props) {
                     value={student.mobileTelephone}
                     onChange={handleChange} />
                 </div>
+                <div style={{fontSize: '8px', color: mobileTelephoneMessage, opacity: mobileTelephoneOpacity, marginLeft: '2px'}}>Must input numbers</div>
               </div>
               <div>
                 <label>Preferred contact method</label>
@@ -411,6 +456,7 @@ function StudentRegistrationForm(props) {
                     value={student.road}
                     onChange={handleChange} />
                 </div>
+                <div style={{fontSize: '8px', color: '#E0EBF0', opacity: '0', marginLeft: '2px'}}>text</div>
               </div>
               <div>
                 <label>Building</label>
