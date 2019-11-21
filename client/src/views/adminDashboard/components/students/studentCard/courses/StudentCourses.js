@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { getCoursesByStudent } from '../../../../../actions/adminDashboardActions/students/studentsActions';
+import { getCoursesByStudent } from '../../../../../../actions/adminDashboardActions/students/studentsActions';
 import { Table, Spin } from 'antd';
 import 'antd/dist/antd.css';
 import './studentCourses.scss';

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getStudentById,  editStudentById, resetEdited} 
-       from '../../../../../actions/adminDashboardActions/students/studentsActions';
+       from '../../../../../../actions/adminDashboardActions/students/studentsActions';
 import { withRouter, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import moment from 'moment';

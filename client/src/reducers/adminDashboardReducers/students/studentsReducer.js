@@ -19,7 +19,10 @@ import {
   FETCH_COURSES_BY_STUDENT_FAILURE,
   GET_PLACEMENT_EXAM_START,
   GET_PLACEMENT_EXAM_SUCCESS,
-  GET_PLACEMENT_EXAM_FAILURE
+  GET_PLACEMENT_EXAM_FAILURE,
+  GET_PROGRESS_REPORTS_START,
+  GET_PROGRESS_REPORTS_SUCCESS,
+  GET_PROGRESS_REPORTS_FAILURE
 
 } from '../../../actions/adminDashboardActions/students/studentsActions';
 
@@ -59,7 +62,11 @@ const initialState = {
 
     placementExam: [],
     placementIsLoading: false,
-    placementError: null
+    placementError: null,
+
+    progressReports: [],
+    progressIsLoading: false,
+    progressError: null
 
 }
 
@@ -235,6 +242,22 @@ export const studentsReducer = (state = initialState, action) => {
           return {
             ...state,
             placementError: 'Something went wrong'
+          }
+      case GET_PROGRESS_REPORTS_START:
+          return {
+            ...state,
+            progressIsLoading: true
+          };
+      case GET_PROGRESS_REPORTS_SUCCESS:
+          return {
+            ...state,
+            progressIsLoading: false,
+            progressReports: action.payload
+          };
+      case GET_PROGRESS_REPORTS_FAILURE:
+          return {
+            ...state,
+            progressError: 'Something went wrong'
           }
       default: return state;
 

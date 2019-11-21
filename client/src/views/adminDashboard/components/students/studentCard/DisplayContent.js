@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import StudentInfoTab from './StudentInfoTab';
-import StudentCourses from './StudentCourses';
-import Progress from './Progress';
+import StudentInfoTab from '../studentCard/studentInformation/StudentInfoTab';
+import StudentCourses from '../studentCard/courses/StudentCourses';
+import Progress from '../studentCard/progress/Progress';
 
 function DisplayContent({navigation, studentData, resetForm}) {
 

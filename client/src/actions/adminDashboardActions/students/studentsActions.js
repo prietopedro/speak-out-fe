@@ -204,3 +204,24 @@ export const getPlacementExam = (studentId) => {
       })  
   };
 }
+
+export const GET_PROGRESS_REPORTS_START = 'GET_PROGRESS_REPORTS_START';
+export const GET_PROGRESS_REPORTS_SUCCESS = 'GET_PROGRESS_REPORTS_SUCCESS';
+export const GET_PROGRESS_REPORTS_FAILURE = 'GET_PROGRESS_REPORTS_FAILURE';
+
+
+export const getProgressReports = (studentId) => {
+  return dispatch => {
+    dispatch({ type: GET_PROGRESS_REPORTS_START });
+    
+    axios 
+      .get(`https://speak-out-be-staging.herokuapp.com/api/?table=progress_report&where=student_id=${studentId}`)
+      .then(res => {
+        console.log('GET PROGRESS REPORTS: ', res.data)
+        dispatch({ type: GET_PROGRESS_REPORTS_SUCCESS, payload: res.data.tableData }); 
+      })
+      .catch(err => {
+        dispatch({ type: GET_PROGRESS_REPORTS_FAILURE, payload: err })
+      })  
+  };
+}

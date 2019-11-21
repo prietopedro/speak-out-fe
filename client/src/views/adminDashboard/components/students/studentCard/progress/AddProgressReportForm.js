@@ -5,7 +5,9 @@ import { withRouter } from 'react-router-dom';
 function AddProgressReportForm() {
 
   return (
-    <div></div>
+    <div>
+      FORM
+    </div>
   )
 }
 
