@@ -68,7 +68,7 @@ const handleAddProgressReport = () => {
                 <AddProgressReportForm />
               ) : null}
       <div style={{display: 'flex', marginTop: '10px', alignContent: 'center', marginBottom: '40px'}}>
-        <div><FontAwesomeIcon onClick={handleAddProgressReport} style={{width: '18px', height: '18px', cursor: 'pointer', color: '#bfbfbf'}} icon={faPlusCircle} size='lg'/></div>
+        <div><FontAwesomeIcon onClick={handleAddProgressReport} style={{width: '18px', height: '18px', cursor: 'pointer', color: '#bfbfbf', marginLeft: '2px'}} icon={faPlusCircle} size='lg'/></div>
         <div style={{marginLeft: '5px', color: '#89878A', fontSize: '14px'}}>Add</div>
       </div>
     </div>

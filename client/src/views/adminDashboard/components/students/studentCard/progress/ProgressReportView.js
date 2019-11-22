@@ -89,7 +89,7 @@ function ProgressReportView(props) {
     console.log('VIEW REPORT: ', props)
   //reset edited in case it wasn't in other tab
   props.resetEdited();
-  
+
   props.getCourseInfo(props.report.course_id);
 
   let calcOverall = (((speakingFluency + speakingAccuracy + vocabulary + pronunciation + grammar + listening + writing
@@ -284,7 +284,7 @@ function ProgressReportView(props) {
                   borderBottom: '1px solid #E8E8E8', borderLeft: '1px solid #f9f7f7', borderRight: '1px solid #f9f7f7', borderTop: '1px solid #f9f7f7',
                   padding: '10px 10px 10px 2px', cursor: 'pointer'}}>
       <div>
-        <div style={{width: '35px', margin: '0px 10px 0px 2px'}}>
+        <div style={{width: '45px', margin: '0px 10px 0px 2px'}}>
           <CircularProgressbar
             value={overall}
             text={`${overall}%`}
@@ -300,7 +300,7 @@ function ProgressReportView(props) {
               pathTransitionDuration: 0.5,
           
               // Colors
-              pathColor: '#1f7e8c',
+              pathColor: '#89878A',
               textColor: '#89878a',
               trailColor: '#d6d6d6',
               backgroundColor: '#3e98c7',
