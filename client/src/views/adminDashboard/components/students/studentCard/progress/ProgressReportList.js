@@ -13,12 +13,13 @@ function ProgressReportList(props) {
       })} 
     </div>
   )
+
 }
 
 const mapStateToProps = state => {
   return {
     progressReports: state.studentsReducer.progressReports,
-    progressIsLoading: state.studentsReducer.progressIsLoading
+    progressIsLoading: state.studentsReducer.progressIsLoading,
   };
 };
 

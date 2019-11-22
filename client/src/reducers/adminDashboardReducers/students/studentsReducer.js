@@ -22,7 +22,11 @@ import {
   GET_PLACEMENT_EXAM_FAILURE,
   GET_PROGRESS_REPORTS_START,
   GET_PROGRESS_REPORTS_SUCCESS,
-  GET_PROGRESS_REPORTS_FAILURE
+  GET_PROGRESS_REPORTS_FAILURE,
+  GET_TEACHERS_TABLE_START,
+  GET_TEACHERS_TABLE_SUCCESS,
+  GET_COURSE_INFO_START,
+  GET_COURSE_INFO_SUCCESS
 
 } from '../../../actions/adminDashboardActions/students/studentsActions';
 
@@ -66,7 +70,16 @@ const initialState = {
 
     progressReports: [],
     progressIsLoading: false,
-    progressError: null
+    progressError: null,
+
+    courseLevelList: [], //first get courses student is enrolled in and create an array of 
+                         //level/sections to be displayed in the course dropdown for progress reports
+    courseLevelLookup: {},
+    teacherList: [],
+    teacherIdLookup: {},
+    teachersTableIsLoading: false,
+    courseInfo: [],
+    courseInfoIsLoading: false
 
 }
 
@@ -215,11 +228,19 @@ export const studentsReducer = (state = initialState, action) => {
               coursesListError: null
           };
       case FETCH_COURSES_BY_STUDENT_SUCCESS:
+          let arr = [];
+          let obj = {};
+          for (let i = 0; i < action.payload.length; i++) {
+            arr.push(action.payload[i].level + ' ' + action.payload[i].section);
+            obj[action.payload[i].level + ' ' + action.payload[i].section] = action.payload[i].id;
+          }
           return {
               ...state,
               coursesListIsLoading: false,
               coursesListError: null,
-              courseList: action.payload
+              courseList: action.payload,
+              courseLevelList: arr,
+              courseLevelLookup: obj
           };
       case FETCH_COURSES_BY_STUDENT_FAILURE:
           return {
@@ -259,6 +280,35 @@ export const studentsReducer = (state = initialState, action) => {
             ...state,
             progressError: 'Something went wrong'
           }
+      case GET_TEACHERS_TABLE_START:
+          return {
+            ...state,
+            teachersTableIsLoading: true
+          }
+      case GET_TEACHERS_TABLE_SUCCESS:
+          let teacherArr = [];
+          let teacherObj = {};
+          for (let i = 0; i < action.payload.length; i++) {
+            teacherArr.push(action.payload[i].name);
+            teacherObj[action.payload[i].name] = action.payload[i].id;
+          }
+          return {
+            ...state,
+            teachersTableIsLoading: false,
+            teacherList: teacherArr,
+            teacherIdLookup: teacherObj
+          }
+        case GET_COURSE_INFO_START:
+            return {
+              ...state,
+              courseInfoIsLoading: true
+            }
+        case GET_COURSE_INFO_SUCCESS:
+            return {
+              ...state,
+              courseInfoIsLoading: false,
+              courseInfo: action.payload
+            }
       default: return state;
 
   }

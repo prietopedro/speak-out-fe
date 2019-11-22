@@ -29,6 +29,10 @@
   border: 1px solid transparent;
 }
 
+.Dropdown-control:hover {
+  box-shadow: 0 0px 0 transparent;
+}
+
 .dropdownRoot .editFormHidden div:hover {
   outline: none;
 }

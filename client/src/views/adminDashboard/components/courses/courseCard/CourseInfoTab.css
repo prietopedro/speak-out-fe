@@ -10,6 +10,10 @@
   display: none;
 }
 
+.Dropdown-control:hover {
+  box-shadow: 0 0px 0 transparent;
+}
+
 .dropdownRoot .editFormVisible span {
   margin: -3px 0px 0px 1px; 
   display: block;

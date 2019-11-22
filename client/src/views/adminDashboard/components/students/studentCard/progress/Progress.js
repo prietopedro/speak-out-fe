@@ -7,8 +7,8 @@ import AddPlacementExamForm from './AddPlacementExamForm';
 import AddProgressReportForm from './AddProgressReportForm';
 import PlacementExamList from './PlacementExamList';
 import ProgressReportList from './ProgressReportList';
-import { getPlacementExam, getProgressReports } from '../../../../../../actions/adminDashboardActions/students/studentsActions';
-
+import { getPlacementExam, getProgressReports, getTeacherTable, getCoursesByStudent } from '../../../../../../actions/adminDashboardActions/students/studentsActions';
+import { Spin } from 'antd';
 
 function ProgressReports(props) {
   const [placementExamForm, setPlacementExamForm] = useState(false);
@@ -18,6 +18,8 @@ useEffect(() => {
   console.log('PROGRESS REPORTS: ', props);
   props.getPlacementExam(props.studentId);
   props.getProgressReports(props.studentId);
+  props.getCoursesByStudent(props.studentId);
+  props.getTeacherTable();
 }, [])
 
 const handleAddPlacementExam = () => {
@@ -35,7 +37,13 @@ const handleAddProgressReport = () => {
     setProgressReportForm(true);
   }
 }
-  
+  if (props.progressIsLoading) {
+    return <Spin style={{ marginTop: '10px' }} size="large" />
+  } else if (props.coursesListIsLoading) {
+    return <div></div>
+  } else if (props.teachersTableIsLoading) {
+    return <div></div>
+  } else {
   return (
     <div style={{display: 'flex', flexDirection: 'column', marginTop: '30px', width: '100%'}}>
       {/* <div style={{fontSize: '18px', color: '#89878a', textAlign: 'left'}}>Placement Exam</div> */}
@@ -66,6 +74,7 @@ const handleAddProgressReport = () => {
     </div>
   )
 }
+}
 
 const mapStateToProps = state => {
   return {
@@ -74,13 +83,15 @@ const mapStateToProps = state => {
     placementExam: state.studentsReducer.placementExam,
     placementIsLoading: state.studentsReducer.placementIsLoading,
     progressReports: state.studentsReducer.progressReports,
-    progressIsLoading: state.studentsReducer.progressIsLoading
+    progressIsLoading: state.studentsReducer.progressIsLoading,
+    coursesListIsLoading: state.studentsReducer.coursesListIsLoading,
+    teachersTableIsLoading: state.studentsReducer.teachersTableIsLoading
   };
 };
 
 export default withRouter(
   connect(
       mapStateToProps,
-      { getPlacementExam, getProgressReports }
+      { getPlacementExam, getProgressReports, getTeacherTable, getCoursesByStudent }
   )(ProgressReports)
 )

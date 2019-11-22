@@ -7,6 +7,10 @@ import 'react-circular-progressbar/dist/styles.css';
 import './progressReportView.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faSave, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+import { getCourseInfo } from '../../../../../../actions/adminDashboardActions/students/studentsActions';
+import { Spin } from 'antd';
 
 const Label = styled.label`
 color: #89878a;
@@ -29,7 +33,9 @@ font-weight: 400;
 margin-left: -2px;
 `
 
-function ProgressReportView({ report }) {
+function ProgressReportView(props) {
+  const [progressReport, setProgressReport] = useState();
+
   //toggle disable on/off of the form on click of the edit button
   const [edit, setEdit] = useState(false);
   const [disabled, setDisabled] = useState(true);
@@ -42,13 +48,32 @@ function ProgressReportView({ report }) {
 
   //toggle visibility of cancel button
   const [displayCancelButton, setDisplayCancelButton] = useState('none');
+
+  const [teacher, setTeacher] = useState('');
+  const [level, setLevel] = useState('');
   
   useEffect(() => {
-    console.log('VIEW EXAM: ', report)
+    console.log('VIEW REPORT: ', props)
+
+  props.getCourseInfo(props.report.course_id);
 
   let options = { year: 'numeric', month: 'numeric', day: 'numeric' }; 
-  let date = new Date(report.report_date).toLocaleDateString('en-US', options);
+  let date = new Date(props.report.report_date).toLocaleDateString('en-US', options);
   setReportDate(date);
+
+  //display dropdown value based on the incoming data
+  for (let key in props.teacherIdLookup) {
+    if (props.teacherIdLookup[key] === props.report.teacher_id) {
+      setTeacher(key);
+    }
+  }
+
+  //display dropdown value based on the incoming data
+  for (let key in props.courseLevelLookup) {
+    if (props.courseLevelLookup[key] === props.report.course_id) {
+      setLevel(key);
+    }
+  }
 
   }, [])
 
@@ -59,6 +84,32 @@ function ProgressReportView({ report }) {
     setDisplayCancelButton('none');
     setCancel(!cancel);
     setArrowVisibility('Hidden')
+  }
+
+  function handleLevelDropdown(e) {
+    //reassign the dropdown value to the one selected
+    // let index;
+    // for (let i = 0; i < props.levelList.length; i++) {
+    //   if (props.levelList[i] === e.value) {
+    //     index = i;
+    //   }
+    // }
+    // setCourse({...course, level_id: props.levelListIdLookup[e.value]});
+    // setLevel(props.levelList[index]);
+  }
+
+  function handleTeacherDropdown(e) {
+    //reassign the dropdown value to the one selected
+    let index;
+    for (let i = 0; i < props.teacherList.length; i++) {
+      if (props.teacherList[i] === e.value) {
+        index = i;
+      }
+    }
+    setProgressReport(
+      // {...progressReport, teacher_id: props.teacherIdLookup[e.value]}
+    );
+    setTeacher(props.teacherList[index]);
   }
 
   const handleEdit = () => {
@@ -97,11 +148,11 @@ function ProgressReportView({ report }) {
     //   setDisplayCancelButton('none');
     //   setArrowVisibility('Hidden')
     // } else {
-    //   setDisabled(false);
-    //   setEdit(true);
-    //   setDisplayCancelButton('flex');
-    //   setArrowVisibility('Visible')
-    //   props.resetEdited();
+      setDisabled(false);
+      setEdit(true);
+      setDisplayCancelButton('flex');
+      setArrowVisibility('Visible')
+      // props.resetEdited();
     // }
   }
 
@@ -115,18 +166,18 @@ function ProgressReportView({ report }) {
       setDisplay('none');
     }
   }
+
  
   return (
-    <div style={{marginBottom: '10px'}}>
+    <div className="progress-report-view" style={{marginBottom: '10px'}}>
      <div onClick={handleDisplay} style={{display: 'flex', alignItems: 'center', ontSize: '16px', fontWeight: '500', backgroundColor: '#FAFAFA', 
                   borderBottom: '1px solid #E8E8E8', borderLeft: '1px solid #f9f7f7', borderRight: '1px solid #f9f7f7', borderTop: '1px solid #f9f7f7',
                   padding: '10px 10px 10px 2px', cursor: 'pointer'}}>
       <div>
-        {/* <Label>Overall</Label> */}
         <div style={{width: '35px', margin: '0px 10px 0px 2px'}}>
           <CircularProgressbar
-            value={report.overall * 10}
-            text={`${report.overall * 10}%`}
+            value={props.report.overall * 10}
+            text={`${props.report.overall * 10}%`}
             styles={buildStyles({
               // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
               strokeLinecap: 'round',
@@ -146,12 +197,31 @@ function ProgressReportView({ report }) {
           })}/>
         </div>
       </div>
-      <div style={{marginRight: '10px'}}>SS1</div>
+      <div style={{marginRight: '10px'}}>
+        <Dropdown 
+              onChange={handleLevelDropdown} 
+              controlClassName={`myControlClassName editForm${arrowVisibility}`} 
+              className='dropdownRoot' 
+              menuClassName='myMenuClassName dropdown-menu'
+              options={props.courseLevelList}   
+              value={level}
+              disabled={disabled} 
+            />
+      </div>
       <div style={{marginRight: '10px'}}>{reportDate}</div>
-      <div>Victoria Labdon</div>
+      {/* <div>Victoria Labdon</div> */}
+      <Dropdown 
+            onChange={handleTeacherDropdown} 
+            controlClassName={`myControlClassName editForm${arrowVisibility}`} 
+            className='dropdownRoot' 
+            menuClassName='myMenuClassName dropdown-menu'
+            options={props.teacherList}   
+            value={teacher}
+            disabled={disabled} 
+          />
      </div>
 
-     <div style={{display: `${display}`}}>
+     <div style={{display: `${edit ? 'block' : display}`}}>
       <div style={{display: 'flex', justifyContent: 'flex-end'}}>
         <div onClick={handleCancel} 
              style={{marginTop: '5px', 
@@ -170,60 +240,12 @@ function ProgressReportView({ report }) {
 
      <div style={{display: 'grid', textAlign: 'left', gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr',
                  gridGap: '10px', marginTop: '15px'}}>
-      {/* <div>
-        <Label>Date</Label>
-         <Data>
-          <Input 
-            style={{border: `${edit ? '1px solid #dedbdb' : '1px solid transparent'}`}}
-            type="text"
-            name="cpr"
-            value={reportDate}
-            onChange={handleChange}
-            disabled={disabled} />
-        </Data>
-      </div> */}
-      {/* <div>
-        <Label>Test</Label>
-         <Data>
-           <Input 
-            style={{border: `${edit ? '1px solid #dedbdb' : '1px solid transparent'}`}}
-            type="text"
-            name="cpr"
-            value={report.test}
-            onChange={handleChange}
-            disabled={disabled} />
-        </Data>
-      </div> */}
-      {/* <div>
-        <Label>Overall Level</Label>
-         <Data>
-           <Input 
-            style={{border: `${edit ? '1px solid #dedbdb' : '1px solid transparent'}`}}
-            type="text"
-            name="cpr"
-            // value={student.cpr}
-            onChange={handleChange}
-            disabled={disabled} />
-          </Data>
-      </div> */}
-      {/* <div>
-        <Label>Notes</Label>
-          <Data>
-           <Input 
-            style={{border: `${edit ? '1px solid #dedbdb' : '1px solid transparent'}`}}
-            type="text"
-            name="cpr"
-            value={report.notes}
-            onChange={handleChange}
-            disabled={disabled} />
-          </Data>
-      </div> */}
       <div>
         <Label>Speaking Fluency</Label>
         <div style={{width: '60px', marginTop: '10px'}}>
           <CircularProgressbar
-            value={report.speaking_fluency * 10}
-            text={`${report.speaking_fluency * 10}%`}
+            value={props.report.speaking_fluency * 10}
+            text={`${props.report.speaking_fluency * 10}%`}
             styles={buildStyles({
               // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
               strokeLinecap: 'round',
@@ -247,8 +269,8 @@ function ProgressReportView({ report }) {
         <Label>Speaking Accuracy</Label>
         <div style={{width: '60px', marginTop: '10px'}}>
          <CircularProgressbar
-            value={report.speaking_accuracy * 10}
-            text={`${report.speaking_accuracy * 10}%`}
+            value={props.report.speaking_accuracy * 10}
+            text={`${props.report.speaking_accuracy * 10}%`}
             styles={buildStyles({
               // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
               strokeLinecap: 'round',
@@ -271,8 +293,8 @@ function ProgressReportView({ report }) {
         <Label>Vocabulary</Label>
         <div style={{width: '60px', marginTop: '10px'}}>
           <CircularProgressbar
-            value={report.vocabulary * 10}
-            text={`${report.vocabulary * 10}%`}
+            value={props.report.vocabulary * 10}
+            text={`${props.report.vocabulary * 10}%`}
             styles={buildStyles({
               // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
               strokeLinecap: 'round',
@@ -296,8 +318,8 @@ function ProgressReportView({ report }) {
         <Label>Pronunciation</Label>
         <div style={{width: '60px', marginTop: '10px'}}>
           <CircularProgressbar
-            value={report.pronunciation * 10}
-            text={`${report.pronunciation * 10}%`}
+            value={props.report.pronunciation * 10}
+            text={`${props.report.pronunciation * 10}%`}
             styles={buildStyles({
               // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
               strokeLinecap: 'round',
@@ -321,8 +343,8 @@ function ProgressReportView({ report }) {
         <Label>Grammar</Label>
         <div style={{width: '60px', marginTop: '10px'}}>
           <CircularProgressbar
-            value={report.grammar * 10}
-            text={`${report.grammar * 10}%`}
+            value={props.report.grammar * 10}
+            text={`${props.report.grammar * 10}%`}
             styles={buildStyles({
               // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
               strokeLinecap: 'round',
@@ -346,8 +368,8 @@ function ProgressReportView({ report }) {
         <Label>Listening</Label>
         <div style={{width: '60px', marginTop: '10px'}}>
           <CircularProgressbar
-            value={report.listening * 10}
-            text={`${report.listening * 10}%`}
+            value={props.report.listening * 10}
+            text={`${props.report.listening * 10}%`}
             styles={buildStyles({
               // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
               strokeLinecap: 'round',
@@ -371,8 +393,8 @@ function ProgressReportView({ report }) {
         <Label>Writing</Label>
         <div style={{width: '60px', marginTop: '10px'}}>
           <CircularProgressbar
-            value={report.writing * 10}
-            text={`${report.writing * 10}%`}
+            value={props.report.writing * 10}
+            text={`${props.report.writing * 10}%`}
             styles={buildStyles({
               // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
               strokeLinecap: 'round',
@@ -396,8 +418,8 @@ function ProgressReportView({ report }) {
         <Label>Reading</Label>
         <div style={{width: '60px', marginTop: '10px'}}>
           <CircularProgressbar
-            value={report.reading * 10}
-            text={`${report.reading * 10}%`}
+            value={props.report.reading * 10}
+            text={`${props.report.reading * 10}%`}
             styles={buildStyles({
               // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
               strokeLinecap: 'round',
@@ -421,8 +443,8 @@ function ProgressReportView({ report }) {
         <Label>Interest</Label>
         <div style={{width: '60px', marginTop: '10px'}}>
           <CircularProgressbar
-            value={report.interest * 10}
-            text={`${report.interest * 10}%`}
+            value={props.report.interest * 10}
+            text={`${props.report.interest * 10}%`}
             styles={buildStyles({
               // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
               strokeLinecap: 'round',
@@ -446,8 +468,8 @@ function ProgressReportView({ report }) {
         <Label>Participation</Label>
         <div style={{width: '60px', marginTop: '10px'}}>
           <CircularProgressbar
-            value={report.participation * 10}
-            text={`${report.participation * 10}%`}
+            value={props.report.participation * 10}
+            text={`${props.report.participation * 10}%`}
             styles={buildStyles({
               // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
               strokeLinecap: 'round',
@@ -471,8 +493,8 @@ function ProgressReportView({ report }) {
         <Label>Submitting Homework</Label>
         <div style={{width: '60px', marginTop: '10px'}}>
           <CircularProgressbar
-            value={report.submitting_homework * 10}
-            text={`${report.submitting_homework * 10}%`}
+            value={props.report.submitting_homework * 10}
+            text={`${props.report.submitting_homework * 10}%`}
             styles={buildStyles({
               // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
               strokeLinecap: 'round',
@@ -496,8 +518,8 @@ function ProgressReportView({ report }) {
         <Label>Homework Effort</Label>
         <div style={{width: '60px', marginTop: '10px'}}>
           <CircularProgressbar
-            value={report.homework_effort * 10}
-            text={`${report.homework_effort * 10}%`}
+            value={props.report.homework_effort * 10}
+            text={`${props.report.homework_effort * 10}%`}
             styles={buildStyles({
               // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
               strokeLinecap: 'round',
@@ -550,7 +572,7 @@ function ProgressReportView({ report }) {
             borderRadius: '3px'}}
             type="text"
             name="cpr"
-            value={report.notes}
+            value={props.report.notes}
             onChange={handleChange}
             disabled={disabled} />
           </Data>
@@ -564,12 +586,19 @@ function ProgressReportView({ report }) {
 
 const mapStateToProps = state => {
   return {
+    state: state,
+    courseLevelList: state.studentsReducer.courseLevelList,
+    courseLevelLookup: state.studentsReducer.courseLevelLookup,
+    teacherList: state.studentsReducer.teacherList,
+    teacherIdLookup: state.studentsReducer.teacherIdLookup,
+    courseInfo: state.studentsReducer.courseInfo,
+    courseInfoIsLoading: state.studentsReducer.courseInfoIsLoading
   };
 };
 
 export default withRouter(
   connect(
       mapStateToProps,
-      {}
+      { getCourseInfo }
   )(ProgressReportView)
 )

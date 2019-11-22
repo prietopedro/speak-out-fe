@@ -225,3 +225,44 @@ export const getProgressReports = (studentId) => {
       })  
   };
 }
+
+export const GET_TEACHERS_TABLE_START = 'GET_TEACHERS_TABLE_START';
+export const GET_TEACHERS_TABLE_SUCCESS = 'GET_TEACHER_TABLE_SUCCESS';
+export const GET_COURSE_INFO_START = 'GET_COURSE_INFO_START';
+export const GET_COURSE_INFO_SUCCESS = 'GET_COURSE_INFO_SUCCESS';
+
+
+export const getTeacherTable = ()  => {
+  return dispatch => {
+    dispatch({ type: GET_TEACHERS_TABLE_START });
+
+  axios.get(`https://speak-out-be-staging.herokuapp.com/api/?table=staff`)
+  .then(res => {
+    dispatch({
+        type: GET_TEACHERS_TABLE_SUCCESS,
+        payload: res.data.tableData
+    })
+  })
+  .catch(err => {
+    //TODO: if it catches 401 unauthorized it means the session has expired so push to login here
+  })
+ }
+}
+
+
+export const getCourseInfo = (courseId)  => {
+  return dispatch => {
+    dispatch({ type: GET_COURSE_INFO_START });
+
+    axios.get(`https://speak-out-be-staging.herokuapp.com/api/?table=course_view&where=id=${courseId}`)
+    .then(res => {
+      dispatch({
+          type: GET_COURSE_INFO_SUCCESS,
+          payload: res.data.tableData[0]
+      })
+    })
+    .catch(err => {
+      //TODO: if it catches 401 unauthorized it means the session has expired so push to login here
+    })
+ }
+}
