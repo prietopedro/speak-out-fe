@@ -1,0 +1,26 @@
+.add-progress-report {
+  /* ====================== 
+   React Dropdown custom styles *important
+  */
+
+  .Dropdown-control:hover {
+    box-shadow: 0 0px 0 transparent;
+  }
+
+  .dropdownRoot {
+    position: relative;
+  }
+
+  .dropdownRoot span {
+    margin: -3px 0px 0px 1px; 
+  }
+
+  .dropdownRoot div {
+    border: 1px solid transparent;
+    padding: 1px 0px 0px 1px; 
+  }
+
+  label {
+    font-size: 12px;
+  }
+}

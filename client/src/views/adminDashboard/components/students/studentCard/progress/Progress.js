@@ -38,7 +38,10 @@ const handleAddProgressReport = () => {
   }
 }
   if (props.progressIsLoading) {
-    return <Spin style={{ marginTop: '10px' }} size="large" />
+    return (
+      <div style={{marginTop: '30px', width: '100%'}}>
+        <Spin style={{marginTop: '20px'}}size="large" />
+      </div>)
   } else if (props.coursesListIsLoading) {
     return <div></div>
   } else if (props.teachersTableIsLoading) {

@@ -24,8 +24,8 @@ export const staffDashboardTabs = [
 ]
 export const studentCardTabs = [
   {key: "Student Information"},
-  {key: "Progress"},
   {key: "Courses"},
+  {key: "Progress"},
 ]
 export const studentTableColumns = [
   {
