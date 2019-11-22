@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faSave, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-import { getCourseInfo } from '../../../../../../actions/adminDashboardActions/students/studentsActions';
+import { getCourseInfo, editProgressReport } from '../../../../../../actions/adminDashboardActions/students/studentsActions';
 import { Spin } from 'antd';
 
 const Label = styled.label`
@@ -34,7 +34,25 @@ margin-left: -2px;
 `
 
 function ProgressReportView(props) {
-  const [progressReport, setProgressReport] = useState();
+
+  const [progressReport, setProgressReport] = useState({
+    course_id: props.report.course_id,
+    teacher_id: '',
+    notes: props.report.notes,
+    grammar: '',
+    homework_effort: '',
+    interest: '',
+    listening: '',
+    overall: '',
+    participation: '',
+    pronunciation: '',
+    reading: '',
+    speaking_accuracy: '',
+    speaking_fluency: '',
+    submitting_homework: '',
+    vocabulary: '',
+    writing: ''
+  });
 
   //toggle disable on/off of the form on click of the edit button
   const [edit, setEdit] = useState(false);
@@ -51,6 +69,20 @@ function ProgressReportView(props) {
 
   const [teacher, setTeacher] = useState('');
   const [level, setLevel] = useState('');
+  const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+
+  const [speakingFluency, setSpeakingFluency] = useState(props.report.speaking_fluency);
+  const [speakingAccuracy, setSpeakingAccuracy] = useState(props.report.speaking_accuracy);
+  const [vocabulary, setVocabulary] = useState(props.report.vocabulary);
+  const [pronunciation, setPronunciation] = useState(props.report.pronunciation);
+  const [grammar, setGrammar] = useState(props.report.grammar);
+  const [listening, setListening] = useState(props.report.listening);
+  const [writing, setWriting] = useState(props.report.writing);
+  const [reading, setReading] = useState(props.report.reading);
+  const [interest, setInterest] = useState(props.report.interest);
+  const [participation, setParticipation] = useState(props.report.participation);
+  const [submittingHomework, setSubmittingHomework] = useState(props.report.submitting_homework);
+  const [homeworkEffort, setHomeworkEffort] = useState(props.report.homework_effort);
   
   useEffect(() => {
     console.log('VIEW REPORT: ', props)
@@ -79,23 +111,52 @@ function ProgressReportView(props) {
 
   function handleCancel(event) {
     event.preventDefault();
+
+    setSpeakingFluency(props.report.speaking_fluency);
+    setSpeakingAccuracy(props.report.speaking_accuracy);
+    setVocabulary(props.report.vocabulary);
+    setPronunciation(props.report.pronunciation);
+    setGrammar(props.report.grammar);
+    setListening(props.report.listening);
+    setWriting(props.report.writing);
+    setReading(props.report.reading);
+    setInterest(props.report.interest);
+    setParticipation(props.report.participation);
+    setSubmittingHomework(props.report.submitting_homework);
+    setHomeworkEffort(props.report.homework_effort);
+    setProgressReport({...progressReport, notes: props.report.notes});
+
+    //display dropdown value based on the incoming data
+    for (let key in props.teacherIdLookup) {
+      if (props.teacherIdLookup[key] === props.report.teacher_id) {
+        setTeacher(key);
+      }
+    }
+    //display dropdown value based on the incoming data
+    for (let key in props.courseLevelLookup) {
+      if (props.courseLevelLookup[key] === props.report.course_id) {
+        setLevel(key);
+      }
+    }
+
     setDisabled(true);
     setEdit(false);
     setDisplayCancelButton('none');
     setCancel(!cancel);
-    setArrowVisibility('Hidden')
+    setArrowVisibility('Hidden');
+
   }
 
   function handleLevelDropdown(e) {
     //reassign the dropdown value to the one selected
-    // let index;
-    // for (let i = 0; i < props.levelList.length; i++) {
-    //   if (props.levelList[i] === e.value) {
-    //     index = i;
-    //   }
-    // }
-    // setCourse({...course, level_id: props.levelListIdLookup[e.value]});
-    // setLevel(props.levelList[index]);
+    let index;
+    for (let i = 0; i < props.courseLevelList.length; i++) {
+      if (props.courseLevelList[i] === e.value) {
+        index = i;
+      }
+    }
+    setProgressReport({...progressReport, course_id: props.courseLevelLookup[e.value]});
+    setLevel(props.courseLevelList[index]);
   }
 
   function handleTeacherDropdown(e) {
@@ -107,56 +168,50 @@ function ProgressReportView(props) {
       }
     }
     setProgressReport(
-      // {...progressReport, teacher_id: props.teacherIdLookup[e.value]}
+      {...progressReport, teacher_id: props.teacherIdLookup[e.value]}
     );
     setTeacher(props.teacherList[index]);
   }
 
   const handleEdit = () => {
-    // if (edit) {
-    //   const birthdate = moment(student.birthdate).toDate();
-    //   const birthdateISO = birthdate.toISOString();
-
-    //   const schoolGradeUpdated = moment(student.birthdate).toDate();
-    //   const schoolGradeUpdatedISO = schoolGradeUpdated.toISOString();
-
-    //   const editStudent  = {
-    //     id: props.studentById.id,
-    //     cpr: student.cpr, 
-    //     registration_date: props.studentById.registration_date, 
-    //     first_name: student.firstName, 
-    //     additional_names: student.additionalNames, 
-    //     gender: student.gender, 
-    //     birthdate: birthdateISO, 
-    //     school_grade_id: student.schoolGradeId, 
-    //     grade_updated: schoolGradeUpdatedISO,
-    //     school_name: student.schoolName, 
-    //     home_telephone: student.homeTelephone, 
-    //     mobile_telephone: student.mobileTelephone, 
-    //     block_code: student.block, 
-    //     road: student.road, 
-    //     building: student.building, 
-    //     flat: student.flat, 
-    //     email: student.email, 
-    //     notes: student.notes, 
-    //     preferred_contact_type_id: student.contactTypeId, 
-    //     location_id: student.locationId
-    //   }
-    //   props.editStudentById(props.studentById.id, editStudent);
-    //   setDisabled(true);
-    //   setEdit(false);
-    //   setDisplayCancelButton('none');
-    //   setArrowVisibility('Hidden')
-    // } else {
+    if (edit) {
+      const editProgressReport = {
+        id: props.report.id,
+        course_id: progressReport.course_id,
+        teacher_id: progressReport.teacher_id,
+        notes: progressReport.notes,
+        grammar: grammar,
+        homework_effort: homeworkEffort,
+        interest: interest,
+        listening: listening,
+        participation: participation,
+        pronunciation: pronunciation,
+        reading: reading,
+        speaking_accuracy: speakingAccuracy,
+        speaking_fluency: speakingFluency,
+        submitting_homework: submittingHomework,
+        vocabulary: vocabulary,
+        writing: writing,
+        overall: Math.round((grammar + homeworkEffort + interest + listening + participation + pronunciation + reading 
+                  + speakingAccuracy + speakingFluency + submittingHomework + vocabulary +writing) / 12)
+      }
+      console.log('REPORT', editProgressReport)
+      props.editProgressReport(props.report.id, editProgressReport);
+      setDisabled(true);
+      setEdit(false);
+      setDisplayCancelButton('none');
+      setArrowVisibility('Hidden')
+    } else {
       setDisabled(false);
       setEdit(true);
       setDisplayCancelButton('flex');
       setArrowVisibility('Visible')
       // props.resetEdited();
-    // }
+    }
   }
 
   function handleChange(event) {
+    setProgressReport({...progressReport, [event.target.name]: event.target.value})
   }  
 
   function handleDisplay(event) {
@@ -167,6 +222,53 @@ function ProgressReportView(props) {
     }
   }
 
+  function handleSpeakingFluencyDropdown(e) {
+    setSpeakingFluency(parseInt(e.value));
+  }
+
+  function handleSpeakingAccuracyDropdown(e) {
+    setSpeakingAccuracy(parseInt(e.value));
+  }
+
+  function handleVocabularyDropdown(e) {
+    setVocabulary(parseInt(e.value));
+  }
+
+  function handlePronunciationDropdown(e) {
+    setPronunciation(parseInt(e.value));
+  }
+
+  function handleGrammarDropdown(e) {
+    setGrammar(parseInt(e.value));
+  }
+
+  function handleListeningDropdown(e) {
+    setListening(parseInt(e.value));
+  }
+
+  function handleWritingDropdown(e) {
+    setWriting(parseInt(e.value));
+  }
+
+  function handleReadingDropdown(e) {
+    setReading(parseInt(e.value));
+  }
+
+  function handleInterestDropdown(e) {
+    setInterest(parseInt(e.value));
+  }
+
+  function handleParticipationDropdown(e) {
+    setParticipation(parseInt(e.value));
+  }
+
+  function handleSubmittingHomeworkDropdown(e) {
+    setSubmittingHomework(parseInt(e.value));
+  }
+
+  function handleHomeworkEffortDropdown(e) {
+    setHomeworkEffort(parseInt(e.value));
+  }
  
   return (
     <div className="progress-report-view" style={{marginBottom: '10px'}}>
@@ -242,301 +344,433 @@ function ProgressReportView(props) {
                  gridGap: '10px', marginTop: '15px'}}>
       <div>
         <Label>Speaking Fluency</Label>
-        <div style={{width: '60px', marginTop: '10px'}}>
-          <CircularProgressbar
-            value={props.report.speaking_fluency * 10}
-            text={`${props.report.speaking_fluency * 10}%`}
-            styles={buildStyles({
-              // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-              strokeLinecap: 'round',
-          
-              // Text size
-              textSize: '20px',
-          
-              // How long animation takes to go from one percentage to another, in seconds
-              pathTransitionDuration: 0.5,
-          
-              // Colors
-              pathColor: '#2094a5',
-              textColor: '#f88',
-              trailColor: '#d6d6d6',
-              backgroundColor: '#3e98c7',
-          })}/>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+          <div style={{width: '60px', marginTop: '10px', marginRight: '10px'}}>
+            <CircularProgressbar
+              value={speakingFluency * 10}
+              text={`${speakingFluency * 10}%`}
+              styles={buildStyles({
+                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                strokeLinecap: 'round',
+            
+                // Text size
+                textSize: '20px',
+            
+                // How long animation takes to go from one percentage to another, in seconds
+                pathTransitionDuration: 0.5,
+            
+                // Colors
+                pathColor: '#2094a5',
+                textColor: '#f88',
+                trailColor: '#d6d6d6',
+                backgroundColor: '#3e98c7',
+            })}/>
+          </div>
+          <Dropdown 
+            onChange={handleSpeakingFluencyDropdown} 
+            controlClassName={`myControlClassName editFormCircles${arrowVisibility}`} 
+            className='dropdownRoot' 
+            menuClassName='myMenuClassName dropdown-menu'
+            options={numbers}   
+            value={5}
+            disabled={disabled} 
+          />
         </div>
       </div>
 
       <div>
         <Label>Speaking Accuracy</Label>
-        <div style={{width: '60px', marginTop: '10px'}}>
-         <CircularProgressbar
-            value={props.report.speaking_accuracy * 10}
-            text={`${props.report.speaking_accuracy * 10}%`}
-            styles={buildStyles({
-              // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-              strokeLinecap: 'round',
-          
-              // Text size
-              textSize: '20px',
-          
-              // How long animation takes to go from one percentage to another, in seconds
-              pathTransitionDuration: 0.5,
-          
-              // Colors
-              pathColor: '#2094a5',
-              textColor: '#f88',
-              trailColor: '#d6d6d6',
-              backgroundColor: '#3e98c7',})}/>
-        </div>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+          <div style={{width: '60px', marginTop: '10px', marginRight: '10px'}}>
+            <CircularProgressbar
+                value={speakingAccuracy * 10}
+                text={`${speakingAccuracy * 10}%`}
+                styles={buildStyles({
+                  // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                  strokeLinecap: 'round',
+              
+                  // Text size
+                  textSize: '20px',
+              
+                  // How long animation takes to go from one percentage to another, in seconds
+                  pathTransitionDuration: 0.5,
+              
+                  // Colors
+                  pathColor: '#2094a5',
+                  textColor: '#f88',
+                  trailColor: '#d6d6d6',
+                  backgroundColor: '#3e98c7',})}/>
+            </div>
+            <Dropdown 
+                    onChange={handleSpeakingAccuracyDropdown} 
+                    controlClassName={`myControlClassName editFormCircles${arrowVisibility}`} 
+                    className='dropdownRoot' 
+                    menuClassName='myMenuClassName dropdown-menu'
+                    options={numbers}   
+                    value={5}
+                    disabled={disabled} 
+              />
+          </div>
       </div>
 
       <div>
         <Label>Vocabulary</Label>
-        <div style={{width: '60px', marginTop: '10px'}}>
-          <CircularProgressbar
-            value={props.report.vocabulary * 10}
-            text={`${props.report.vocabulary * 10}%`}
-            styles={buildStyles({
-              // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-              strokeLinecap: 'round',
-          
-              // Text size
-              textSize: '20px',
-          
-              // How long animation takes to go from one percentage to another, in seconds
-              pathTransitionDuration: 0.5,
-          
-              // Colors
-              pathColor: '#2094a5',
-              textColor: '#f88',
-              trailColor: '#d6d6d6',
-              backgroundColor: '#3e98c7',
-          })}/>
-        </div>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+          <div style={{width: '60px', marginTop: '10px', marginRight: '10px'}}>
+            <CircularProgressbar
+              value={vocabulary * 10}
+              text={`${vocabulary * 10}%`}
+              styles={buildStyles({
+                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                strokeLinecap: 'round',
+            
+                // Text size
+                textSize: '20px',
+            
+                // How long animation takes to go from one percentage to another, in seconds
+                pathTransitionDuration: 0.5,
+            
+                // Colors
+                pathColor: '#2094a5',
+                textColor: '#f88',
+                trailColor: '#d6d6d6',
+                backgroundColor: '#3e98c7',
+            })}/>
+          </div>
+          <Dropdown 
+                  onChange={handleVocabularyDropdown} 
+                  controlClassName={`myControlClassName editFormCircles${arrowVisibility}`} 
+                  className='dropdownRoot' 
+                  menuClassName='myMenuClassName dropdown-menu'
+                  options={numbers}   
+                  value={5}
+                  disabled={disabled} 
+            />
+          </div>
       </div>
 
       <div>
         <Label>Pronunciation</Label>
-        <div style={{width: '60px', marginTop: '10px'}}>
-          <CircularProgressbar
-            value={props.report.pronunciation * 10}
-            text={`${props.report.pronunciation * 10}%`}
-            styles={buildStyles({
-              // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-              strokeLinecap: 'round',
-          
-              // Text size
-              textSize: '20px',
-          
-              // How long animation takes to go from one percentage to another, in seconds
-              pathTransitionDuration: 0.5,
-          
-              // Colors
-              pathColor: '#2094a5',
-              textColor: '#f88',
-              trailColor: '#d6d6d6',
-              backgroundColor: '#3e98c7',
-          })}/>
-        </div>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+          <div style={{width: '60px', marginTop: '10px', marginRight: '10px'}}>
+            <CircularProgressbar
+              value={pronunciation * 10}
+              text={`${pronunciation * 10}%`}
+              styles={buildStyles({
+                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                strokeLinecap: 'round',
+            
+                // Text size
+                textSize: '20px',
+            
+                // How long animation takes to go from one percentage to another, in seconds
+                pathTransitionDuration: 0.5,
+            
+                // Colors
+                pathColor: '#2094a5',
+                textColor: '#f88',
+                trailColor: '#d6d6d6',
+                backgroundColor: '#3e98c7',
+            })}/>
+          </div>
+          <Dropdown 
+                  onChange={handlePronunciationDropdown} 
+                  controlClassName={`myControlClassName editFormCircles${arrowVisibility}`} 
+                  className='dropdownRoot' 
+                  menuClassName='myMenuClassName dropdown-menu'
+                  options={numbers}   
+                  value={5}
+                  disabled={disabled} 
+            />
+          </div>
       </div>
 
       <div>
         <Label>Grammar</Label>
-        <div style={{width: '60px', marginTop: '10px'}}>
-          <CircularProgressbar
-            value={props.report.grammar * 10}
-            text={`${props.report.grammar * 10}%`}
-            styles={buildStyles({
-              // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-              strokeLinecap: 'round',
-          
-              // Text size
-              textSize: '20px',
-          
-              // How long animation takes to go from one percentage to another, in seconds
-              pathTransitionDuration: 0.5,
-          
-              // Colors
-              pathColor: '#2094a5',
-              textColor: '#f88',
-              trailColor: '#d6d6d6',
-              backgroundColor: '#3e98c7',
-          })}/>
-        </div>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+          <div style={{width: '60px', marginTop: '10px', marginRight: '10px'}}>
+            <CircularProgressbar
+              value={grammar * 10}
+              text={`${grammar * 10}%`}
+              styles={buildStyles({
+                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                strokeLinecap: 'round',
+            
+                // Text size
+                textSize: '20px',
+            
+                // How long animation takes to go from one percentage to another, in seconds
+                pathTransitionDuration: 0.5,
+            
+                // Colors
+                pathColor: '#2094a5',
+                textColor: '#f88',
+                trailColor: '#d6d6d6',
+                backgroundColor: '#3e98c7',
+            })}/>
+          </div>
+          <Dropdown 
+                  onChange={handleGrammarDropdown} 
+                  controlClassName={`myControlClassName editFormCircles${arrowVisibility}`} 
+                  className='dropdownRoot' 
+                  menuClassName='myMenuClassName dropdown-menu'
+                  options={numbers}   
+                  value={5}
+                  disabled={disabled} 
+            />
+          </div>
       </div>
 
       <div>
         <Label>Listening</Label>
-        <div style={{width: '60px', marginTop: '10px'}}>
-          <CircularProgressbar
-            value={props.report.listening * 10}
-            text={`${props.report.listening * 10}%`}
-            styles={buildStyles({
-              // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-              strokeLinecap: 'round',
-          
-              // Text size
-              textSize: '20px',
-          
-              // How long animation takes to go from one percentage to another, in seconds
-              pathTransitionDuration: 0.5,
-          
-              // Colors
-              pathColor: '#2094a5',
-              textColor: '#f88',
-              trailColor: '#d6d6d6',
-              backgroundColor: '#3e98c7',
-          })}/>
-        </div>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+          <div style={{width: '60px', marginTop: '10px', marginRight: '10px'}}>
+            <CircularProgressbar
+              value={listening * 10}
+              text={`${listening * 10}%`}
+              styles={buildStyles({
+                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                strokeLinecap: 'round',
+            
+                // Text size
+                textSize: '20px',
+            
+                // How long animation takes to go from one percentage to another, in seconds
+                pathTransitionDuration: 0.5,
+            
+                // Colors
+                pathColor: '#2094a5',
+                textColor: '#f88',
+                trailColor: '#d6d6d6',
+                backgroundColor: '#3e98c7',
+            })}/>
+          </div>
+          <Dropdown 
+                  onChange={handleListeningDropdown} 
+                  controlClassName={`myControlClassName editFormCircles${arrowVisibility}`} 
+                  className='dropdownRoot' 
+                  menuClassName='myMenuClassName dropdown-menu'
+                  options={numbers}   
+                  value={5}
+                  disabled={disabled} 
+            />
+          </div>
       </div>
 
       <div>
         <Label>Writing</Label>
-        <div style={{width: '60px', marginTop: '10px'}}>
-          <CircularProgressbar
-            value={props.report.writing * 10}
-            text={`${props.report.writing * 10}%`}
-            styles={buildStyles({
-              // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-              strokeLinecap: 'round',
-          
-              // Text size
-              textSize: '20px',
-          
-              // How long animation takes to go from one percentage to another, in seconds
-              pathTransitionDuration: 0.5,
-          
-              // Colors
-              pathColor: '#2094a5',
-              textColor: '#f88',
-              trailColor: '#d6d6d6',
-              backgroundColor: '#3e98c7',
-          })}/>
-        </div>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+          <div style={{width: '60px', marginTop: '10px', marginRight: '10px'}}>
+            <CircularProgressbar
+              value={writing * 10}
+              text={`${writing * 10}%`}
+              styles={buildStyles({
+                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                strokeLinecap: 'round',
+            
+                // Text size
+                textSize: '20px',
+            
+                // How long animation takes to go from one percentage to another, in seconds
+                pathTransitionDuration: 0.5,
+            
+                // Colors
+                pathColor: '#2094a5',
+                textColor: '#f88',
+                trailColor: '#d6d6d6',
+                backgroundColor: '#3e98c7',
+            })}/>
+          </div>
+          <Dropdown 
+                  onChange={handleWritingDropdown} 
+                  controlClassName={`myControlClassName editFormCircles${arrowVisibility}`} 
+                  className='dropdownRoot' 
+                  menuClassName='myMenuClassName dropdown-menu'
+                  options={numbers}   
+                  value={5}
+                  disabled={disabled} 
+            />
+          </div>
       </div>
 
       <div>
         <Label>Reading</Label>
-        <div style={{width: '60px', marginTop: '10px'}}>
-          <CircularProgressbar
-            value={props.report.reading * 10}
-            text={`${props.report.reading * 10}%`}
-            styles={buildStyles({
-              // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-              strokeLinecap: 'round',
-          
-              // Text size
-              textSize: '20px',
-          
-              // How long animation takes to go from one percentage to another, in seconds
-              pathTransitionDuration: 0.5,
-          
-              // Colors
-              pathColor: '#2094a5',
-              textColor: '#f88',
-              trailColor: '#d6d6d6',
-              backgroundColor: '#3e98c7',
-          })}/>
-        </div>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+          <div style={{width: '60px', marginTop: '10px', marginRight: '10px'}}>
+            <CircularProgressbar
+              value={reading * 10}
+              text={`${reading * 10}%`}
+              styles={buildStyles({
+                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                strokeLinecap: 'round',
+            
+                // Text size
+                textSize: '20px',
+            
+                // How long animation takes to go from one percentage to another, in seconds
+                pathTransitionDuration: 0.5,
+            
+                // Colors
+                pathColor: '#2094a5',
+                textColor: '#f88',
+                trailColor: '#d6d6d6',
+                backgroundColor: '#3e98c7',
+            })}/>
+          </div>
+          <Dropdown 
+                  onChange={handleReadingDropdown} 
+                  controlClassName={`myControlClassName editFormCircles${arrowVisibility}`} 
+                  className='dropdownRoot' 
+                  menuClassName='myMenuClassName dropdown-menu'
+                  options={numbers}   
+                  value={5}
+                  disabled={disabled} 
+            />
+          </div>
       </div>
 
       <div>
         <Label>Interest</Label>
-        <div style={{width: '60px', marginTop: '10px'}}>
-          <CircularProgressbar
-            value={props.report.interest * 10}
-            text={`${props.report.interest * 10}%`}
-            styles={buildStyles({
-              // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-              strokeLinecap: 'round',
-          
-              // Text size
-              textSize: '20px',
-          
-              // How long animation takes to go from one percentage to another, in seconds
-              pathTransitionDuration: 0.5,
-          
-              // Colors
-              pathColor: '#2094a5',
-              textColor: '#f88',
-              trailColor: '#d6d6d6',
-              backgroundColor: '#3e98c7',
-          })}/>
-        </div>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+          <div style={{width: '60px', marginTop: '10px', marginRight: '10px'}}>
+            <CircularProgressbar
+              value={interest * 10}
+              text={`${interest * 10}%`}
+              styles={buildStyles({
+                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                strokeLinecap: 'round',
+            
+                // Text size
+                textSize: '20px',
+            
+                // How long animation takes to go from one percentage to another, in seconds
+                pathTransitionDuration: 0.5,
+            
+                // Colors
+                pathColor: '#2094a5',
+                textColor: '#f88',
+                trailColor: '#d6d6d6',
+                backgroundColor: '#3e98c7',
+            })}/>
+          </div>
+          <Dropdown 
+                  onChange={handleInterestDropdown} 
+                  controlClassName={`myControlClassName editFormCircles${arrowVisibility}`} 
+                  className='dropdownRoot' 
+                  menuClassName='myMenuClassName dropdown-menu'
+                  options={numbers}   
+                  value={5}
+                  disabled={disabled} 
+            />
+          </div>
       </div>
 
       <div>
         <Label>Participation</Label>
-        <div style={{width: '60px', marginTop: '10px'}}>
-          <CircularProgressbar
-            value={props.report.participation * 10}
-            text={`${props.report.participation * 10}%`}
-            styles={buildStyles({
-              // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-              strokeLinecap: 'round',
-          
-              // Text size
-              textSize: '20px',
-          
-              // How long animation takes to go from one percentage to another, in seconds
-              pathTransitionDuration: 0.5,
-          
-              // Colors
-              pathColor: '#2094a5',
-              textColor: '#f88',
-              trailColor: '#d6d6d6',
-              backgroundColor: '#3e98c7',
-          })}/>
-        </div>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+          <div style={{width: '60px', marginTop: '10px', marginRight: '10px'}}>
+            <CircularProgressbar
+              value={participation * 10}
+              text={`${participation * 10}%`}
+              styles={buildStyles({
+                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                strokeLinecap: 'round',
+            
+                // Text size
+                textSize: '20px',
+            
+                // How long animation takes to go from one percentage to another, in seconds
+                pathTransitionDuration: 0.5,
+            
+                // Colors
+                pathColor: '#2094a5',
+                textColor: '#f88',
+                trailColor: '#d6d6d6',
+                backgroundColor: '#3e98c7',
+            })}/>
+          </div>
+          <Dropdown 
+                  onChange={handleParticipationDropdown} 
+                  controlClassName={`myControlClassName editFormCircles${arrowVisibility}`} 
+                  className='dropdownRoot' 
+                  menuClassName='myMenuClassName dropdown-menu'
+                  options={numbers}   
+                  value={5}
+                  disabled={disabled} 
+            />
+          </div>
       </div>
 
       <div>
         <Label>Submitting Homework</Label>
-        <div style={{width: '60px', marginTop: '10px'}}>
-          <CircularProgressbar
-            value={props.report.submitting_homework * 10}
-            text={`${props.report.submitting_homework * 10}%`}
-            styles={buildStyles({
-              // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-              strokeLinecap: 'round',
-          
-              // Text size
-              textSize: '20px',
-          
-              // How long animation takes to go from one percentage to another, in seconds
-              pathTransitionDuration: 0.5,
-          
-              // Colors
-              pathColor: '#2094a5',
-              textColor: '#f88',
-              trailColor: '#d6d6d6',
-              backgroundColor: '#3e98c7',
-          })}/>
-        </div>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+          <div style={{width: '60px', marginTop: '10px', marginRight: '10px'}}>
+            <CircularProgressbar
+              value={submittingHomework * 10}
+              text={`${submittingHomework * 10}%`}
+              styles={buildStyles({
+                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                strokeLinecap: 'round',
+            
+                // Text size
+                textSize: '20px',
+            
+                // How long animation takes to go from one percentage to another, in seconds
+                pathTransitionDuration: 0.5,
+            
+                // Colors
+                pathColor: '#2094a5',
+                textColor: '#f88',
+                trailColor: '#d6d6d6',
+                backgroundColor: '#3e98c7',
+            })}/>
+          </div>
+          <Dropdown 
+                  onChange={handleSubmittingHomeworkDropdown} 
+                  controlClassName={`myControlClassName editFormCircles${arrowVisibility}`} 
+                  className='dropdownRoot' 
+                  menuClassName='myMenuClassName dropdown-menu'
+                  options={numbers}   
+                  value={5}
+                  disabled={disabled} 
+            />
+          </div>
       </div>
 
       <div>
         <Label>Homework Effort</Label>
-        <div style={{width: '60px', marginTop: '10px'}}>
-          <CircularProgressbar
-            value={props.report.homework_effort * 10}
-            text={`${props.report.homework_effort * 10}%`}
-            styles={buildStyles({
-              // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-              strokeLinecap: 'round',
-          
-              // Text size
-              textSize: '20px',
-          
-              // How long animation takes to go from one percentage to another, in seconds
-              pathTransitionDuration: 0.5,
-          
-              // Colors
-              pathColor: '#2094a5',
-              textColor: '#f88',
-              trailColor: '#d6d6d6',
-              backgroundColor: '#3e98c7',
-          })}/>
-        </div>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+          <div style={{width: '60px', marginTop: '10px', marginRight: '10px'}}>
+            <CircularProgressbar
+              value={homeworkEffort * 10}
+              text={`${homeworkEffort * 10}%`}
+              styles={buildStyles({
+                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                strokeLinecap: 'round',
+            
+                // Text size
+                textSize: '20px',
+            
+                // How long animation takes to go from one percentage to another, in seconds
+                pathTransitionDuration: 0.5,
+            
+                // Colors
+                pathColor: '#2094a5',
+                textColor: '#f88',
+                trailColor: '#d6d6d6',
+                backgroundColor: '#3e98c7',
+            })}/>
+          </div>
+          <Dropdown 
+                  onChange={handleHomeworkEffortDropdown} 
+                  controlClassName={`myControlClassName editFormCircles${arrowVisibility}`} 
+                  className='dropdownRoot' 
+                  menuClassName='myMenuClassName dropdown-menu'
+                  options={numbers}   
+                  value={5}
+                  disabled={disabled} 
+            />
+          </div>
       </div>
 
       {/* <div>
@@ -571,8 +805,8 @@ function ProgressReportView(props) {
             style={{border: `${edit ? '1px solid #dedbdb' : '1px solid transparent'}`, width: '100%', height: '80px', outline: 'none', 
             borderRadius: '3px'}}
             type="text"
-            name="cpr"
-            value={props.report.notes}
+            name="notes"
+            value={progressReport.notes}
             onChange={handleChange}
             disabled={disabled} />
           </Data>
@@ -599,6 +833,6 @@ const mapStateToProps = state => {
 export default withRouter(
   connect(
       mapStateToProps,
-      { getCourseInfo }
+      { getCourseInfo, editProgressReport }
   )(ProgressReportView)
 )

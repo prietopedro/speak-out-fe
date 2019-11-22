@@ -43,7 +43,6 @@ export const EDIT_STUDENTBYID_SUCCESS = 'EDIT_STUDENTBYID_SUCCESS';
 export const EDIT_STUDENTBYID_FAILURE = 'EDIT_STUDENTBYID_FAILURE';
 
 
-
 export const editStudentById = (id, state) => dispatch => {
     axios.put(`https://speak-out-be-staging.herokuapp.com/api/?table=student&where=id=${id}`, state)
     .then(res => {
@@ -265,4 +264,26 @@ export const getCourseInfo = (courseId)  => {
       //TODO: if it catches 401 unauthorized it means the session has expired so push to login here
     })
  }
+}
+
+export const EDIT_PROGRESS_REPORT_START = 'EDIT_PROGRESS_REPORT_START';
+export const EDIT_PROGRESS_REPORT_SUCCESS = 'EDIT_PROGRESS_REPORT_SUCCESS';
+export const EDIT_PROGRESS_REPORT_FAILURE = 'EDIT_PROGRESS_REPORT_FAILURE';
+
+
+export const editProgressReport = (id, state) => dispatch => {
+    axios.put(`https://speak-out-be-staging.herokuapp.com/api/?table=progress_report&where=id=${id}`, state)
+    .then(res => {
+      console.log('EDIR REPORT SUCCESS: ', res.data)
+      dispatch({
+          type: EDIT_PROGRESS_REPORT_SUCCESS,
+          payload: res.data
+      })
+    })
+    .catch(err => {
+       dispatch({
+        type: EDIT_PROGRESS_REPORT_FAILURE,
+        payload: err.data
+       }) 
+    })
 }

@@ -35,6 +35,8 @@ export {
   GET_TEACHERS_TABLE_SUCCESS,
   GET_COURSE_INFO_START,
   GET_COURSE_INFO_SUCCESS,
+  EDIT_PROGRESS_REPORT_SUCCESS,
+  EDIT_PROGRESS_REPORT_FAILURE
 
 } from './adminDashboardActions/students/studentsActions';
 

@@ -26,7 +26,9 @@ import {
   GET_TEACHERS_TABLE_START,
   GET_TEACHERS_TABLE_SUCCESS,
   GET_COURSE_INFO_START,
-  GET_COURSE_INFO_SUCCESS
+  GET_COURSE_INFO_SUCCESS,
+  EDIT_PROGRESS_REPORT_SUCCESS,
+  EDIT_PROGRESS_REPORT_FAILURE
 
 } from '../../../actions/adminDashboardActions/students/studentsActions';
 
@@ -308,6 +310,15 @@ export const studentsReducer = (state = initialState, action) => {
               ...state,
               courseInfoIsLoading: false,
               courseInfo: action.payload
+            }
+        case EDIT_PROGRESS_REPORT_SUCCESS:
+            return {
+              ...state,
+              
+            }
+        case EDIT_PROGRESS_REPORT_FAILURE:
+            return {
+              ...state,
             }
       default: return state;
 
