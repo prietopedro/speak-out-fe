@@ -39,7 +39,7 @@
     font-size: 14px;
     font-weight: 400;
     margin-left: -4px;
-    border: 1px solid #dedbdb;
+    border: 1px solid transparent;
     width: 200px;
   }
 
@@ -47,7 +47,7 @@
     font-size: 14px;
     font-weight: 400;
     margin-left: -4px;
-    border: 1px solid #dedbdb;
+    // border-top: 1px solid #dedbdb;
     width: 40px;
     height: 30px;
   }
