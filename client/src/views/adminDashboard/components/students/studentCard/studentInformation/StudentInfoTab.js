@@ -87,6 +87,9 @@ function StudentInfoTab(props) {
   const [edited, setEdited] = useState(props.edited);
 
   useEffect(() => {
+    //reset edited in case it wasn't in other tab
+    props.resetEdited();
+    
     let options = { year: 'numeric', month: 'numeric', day: 'numeric' }; 
     let birthdate = new Date(props.studentById.birthdate).toLocaleDateString('en-US', options) 
     let registration_date = new Date(props.studentById.registration_date).toLocaleDateString('en-US', options)

@@ -312,8 +312,18 @@ export const studentsReducer = (state = initialState, action) => {
               courseInfo: action.payload
             }
         case EDIT_PROGRESS_REPORT_SUCCESS:
+        let newProgressReportArr  = [];
+        for (let i = 0; i < state.progressReports.length; i++) {
+          if (state.progressReports[i].id === action.payload.id) {
+            newProgressReportArr.push(action.payload);
+          } else {
+            newProgressReportArr.push(state.progressReports[i]);
+          }
+        }
             return {
               ...state,
+              edited: true,
+              progressReports: newProgressReportArr
               
             }
         case EDIT_PROGRESS_REPORT_FAILURE:

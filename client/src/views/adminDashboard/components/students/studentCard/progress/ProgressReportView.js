@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faSave, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-import { getCourseInfo, editProgressReport } from '../../../../../../actions/adminDashboardActions/students/studentsActions';
+import { getCourseInfo, editProgressReport, resetEdited } from '../../../../../../actions/adminDashboardActions/students/studentsActions';
 import { Spin } from 'antd';
 
 const Label = styled.label`
@@ -37,7 +37,7 @@ function ProgressReportView(props) {
 
   const [progressReport, setProgressReport] = useState({
     course_id: props.report.course_id,
-    teacher_id: '',
+    teacher_id: props.report.teacher_id,
     notes: props.report.notes,
     grammar: '',
     homework_effort: '',
@@ -83,11 +83,19 @@ function ProgressReportView(props) {
   const [participation, setParticipation] = useState(props.report.participation);
   const [submittingHomework, setSubmittingHomework] = useState(props.report.submitting_homework);
   const [homeworkEffort, setHomeworkEffort] = useState(props.report.homework_effort);
+  const [overall, setOverall] = useState();
   
   useEffect(() => {
     console.log('VIEW REPORT: ', props)
-
+  //reset edited in case it wasn't in other tab
+  props.resetEdited();
+  
   props.getCourseInfo(props.report.course_id);
+
+  let calcOverall = (((speakingFluency + speakingAccuracy + vocabulary + pronunciation + grammar + listening + writing
+    + reading + interest + participation + submittingHomework + homeworkEffort) / 12) * 10).toString();
+  let formatted = calcOverall.split('.')[0];
+  setOverall(parseInt(formatted));
 
   let options = { year: 'numeric', month: 'numeric', day: 'numeric' }; 
   let date = new Date(props.report.report_date).toLocaleDateString('en-US', options);
@@ -107,7 +115,7 @@ function ProgressReportView(props) {
     }
   }
 
-  }, [])
+  }, [props.edited])
 
   function handleCancel(event) {
     event.preventDefault();
@@ -195,7 +203,7 @@ function ProgressReportView(props) {
         overall: Math.round((grammar + homeworkEffort + interest + listening + participation + pronunciation + reading 
                   + speakingAccuracy + speakingFluency + submittingHomework + vocabulary +writing) / 12)
       }
-      console.log('REPORT', editProgressReport)
+      console.log('REPORT', editProgressReport, 'OVERALL: ', overall)
       props.editProgressReport(props.report.id, editProgressReport);
       setDisabled(true);
       setEdit(false);
@@ -206,7 +214,7 @@ function ProgressReportView(props) {
       setEdit(true);
       setDisplayCancelButton('flex');
       setArrowVisibility('Visible')
-      // props.resetEdited();
+      props.resetEdited();
     }
   }
 
@@ -278,8 +286,8 @@ function ProgressReportView(props) {
       <div>
         <div style={{width: '35px', margin: '0px 10px 0px 2px'}}>
           <CircularProgressbar
-            value={props.report.overall * 10}
-            text={`${props.report.overall * 10}%`}
+            value={overall}
+            text={`${overall}%`}
             styles={buildStyles({
               // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
               strokeLinecap: 'round',
@@ -826,13 +834,14 @@ const mapStateToProps = state => {
     teacherList: state.studentsReducer.teacherList,
     teacherIdLookup: state.studentsReducer.teacherIdLookup,
     courseInfo: state.studentsReducer.courseInfo,
-    courseInfoIsLoading: state.studentsReducer.courseInfoIsLoading
+    courseInfoIsLoading: state.studentsReducer.courseInfoIsLoading,
+    edited: state.studentsReducer.edited
   };
 };
 
 export default withRouter(
   connect(
       mapStateToProps,
-      { getCourseInfo, editProgressReport }
+      { getCourseInfo, editProgressReport, resetEdited }
   )(ProgressReportView)
 )
