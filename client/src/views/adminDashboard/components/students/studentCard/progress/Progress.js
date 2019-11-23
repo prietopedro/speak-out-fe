@@ -43,6 +43,8 @@ const handleCancelButtonOnForm = () => {
     return <div></div>
   } else if (props.teachersTableIsLoading) {
     return <div></div>
+  } else if (props.createNewProgressReportIsLoading) {
+    return <div></div>
   } else {
   return (
     <div style={{display: 'flex', flexDirection: 'column', marginTop: '30px', width: '100%'}}>
@@ -75,7 +77,8 @@ const mapStateToProps = state => {
     progressIsLoading: state.studentsReducer.progressIsLoading,
     coursesListIsLoading: state.studentsReducer.coursesListIsLoading,
     teachersTableIsLoading: state.studentsReducer.teachersTableIsLoading,
-    courseList: state.studentsReducer.courseList
+    courseList: state.studentsReducer.courseList,
+    createNewProgressReportIsLoading: state.studentsReducer.createNewProgressReportIsLoading,
   };
 };
 

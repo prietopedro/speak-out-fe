@@ -145,9 +145,9 @@ function AddProgressReportForm(props) {
     }
 
     console.log('NEW REPORT: ', newProgressReport, 'PROPS: ', props)
-    props.createNewProgressReport(newProgressReport);
+    props.createNewProgressReport(newProgressReport, props.setReload);
     props.handleCancelButtonOnForm();
-    props.setReload(true);
+    // props.setReload(true);
 
   }
 

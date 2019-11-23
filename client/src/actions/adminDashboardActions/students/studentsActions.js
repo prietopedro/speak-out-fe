@@ -293,7 +293,7 @@ export const CREATE_NEW_PROGRESS_REPORT_START = 'CREATE_NEW_PROGRESS_REPORT_STAR
 export const CREATE_NEW_PROGRESS_REPORT_SUCCESS = 'CREATE_NEW_PROGRESS_REPORT_SUCCESS';
 export const CREATE_NEW_PROGRESS_REPORT_FAILURE = 'CREATE_NEW_PROGRESS_REPORT_FAILURE';
 
-export const createNewProgressReport = (newProgressReport, setNewRecord, newRecord, displaySuccessMessageTimeout, setSavePrevState) => dispatch => {
+export const createNewProgressReport = (newProgressReport, setReload, setNewRecord, newRecord, displaySuccessMessageTimeout, setSavePrevState) => dispatch => {
   dispatch({ type: CREATE_NEW_PROGRESS_REPORT_START })
 
   axios.post(`https://speak-out-be-staging.herokuapp.com/api/?table=progress_report`, newProgressReport)
@@ -301,6 +301,7 @@ export const createNewProgressReport = (newProgressReport, setNewRecord, newReco
     // setSavePrevState(newRecord);
     // setNewRecord(!newRecord);
     // displaySuccessMessageTimeout();
+    setReload(true);
     console.log('NEW REPORT ADDED: ', res.data)
     dispatch({
         type: CREATE_NEW_PROGRESS_REPORT_SUCCESS,
