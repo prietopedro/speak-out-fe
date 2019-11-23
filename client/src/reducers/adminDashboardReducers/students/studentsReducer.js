@@ -28,7 +28,10 @@ import {
   GET_COURSE_INFO_START,
   GET_COURSE_INFO_SUCCESS,
   EDIT_PROGRESS_REPORT_SUCCESS,
-  EDIT_PROGRESS_REPORT_FAILURE
+  EDIT_PROGRESS_REPORT_FAILURE,
+  CREATE_NEW_PROGRESS_REPORT_START,
+  CREATE_NEW_PROGRESS_REPORT_SUCCESS,
+  CREATE_NEW_PROGRESS_REPORT_FAILURE
 
 } from '../../../actions/adminDashboardActions/students/studentsActions';
 
@@ -81,7 +84,11 @@ const initialState = {
     teacherIdLookup: {},
     teachersTableIsLoading: false,
     courseInfo: [],
-    courseInfoIsLoading: false
+    courseInfoIsLoading: false,
+
+    createNewProgressReportIsLoading: false,
+    createNewProgressReportError: null,
+    createNewProgressReportSuccessMessage: '',
 
 }
 
@@ -329,6 +336,22 @@ export const studentsReducer = (state = initialState, action) => {
         case EDIT_PROGRESS_REPORT_FAILURE:
             return {
               ...state,
+            }
+        case CREATE_NEW_PROGRESS_REPORT_START:
+            return {
+              ...state,
+              createNewProgressReportIsLoading: true
+            }
+        case CREATE_NEW_PROGRESS_REPORT_SUCCESS:
+            return {
+              ...state,
+              createNewProgressReportIsLoading: false,
+              createNewProgressReportSuccessMessage: 'New progress report has been created'
+            }
+        case CREATE_NEW_PROGRESS_REPORT_FAILURE:
+            return {
+              ...state,
+              createNewProgressReportError: 'Something went wrong'
             }
       default: return state;
 

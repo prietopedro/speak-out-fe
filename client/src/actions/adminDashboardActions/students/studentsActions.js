@@ -287,3 +287,30 @@ export const editProgressReport = (id, state) => dispatch => {
        }) 
     })
 }
+
+
+export const CREATE_NEW_PROGRESS_REPORT_START = 'CREATE_NEW_PROGRESS_REPORT_START';
+export const CREATE_NEW_PROGRESS_REPORT_SUCCESS = 'CREATE_NEW_PROGRESS_REPORT_SUCCESS';
+export const CREATE_NEW_PROGRESS_REPORT_FAILURE = 'CREATE_NEW_PROGRESS_REPORT_FAILURE';
+
+export const createNewProgressReport = (newProgressReport, setNewRecord, newRecord, displaySuccessMessageTimeout, setSavePrevState) => dispatch => {
+  dispatch({ type: CREATE_NEW_PROGRESS_REPORT_START })
+
+  axios.post(`https://speak-out-be-staging.herokuapp.com/api/?table=progress_report`, newProgressReport)
+  .then(res => {
+    // setSavePrevState(newRecord);
+    // setNewRecord(!newRecord);
+    // displaySuccessMessageTimeout();
+    console.log('NEW REPORT ADDED: ', res.data)
+    dispatch({
+        type: CREATE_NEW_PROGRESS_REPORT_SUCCESS,
+        // payload: res
+    })
+  })
+  .catch(err => {
+     dispatch({
+      type: CREATE_NEW_PROGRESS_REPORT_FAILURE,
+      payload: err.data
+     }) 
+  })
+}
