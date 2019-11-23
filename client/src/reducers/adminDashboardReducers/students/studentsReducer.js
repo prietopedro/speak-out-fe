@@ -279,10 +279,13 @@ export const studentsReducer = (state = initialState, action) => {
             progressIsLoading: true
           };
       case GET_PROGRESS_REPORTS_SUCCESS:
+        let sorted = action.payload.sort((a, b) =>  {
+          return a.id - b.id
+        })
           return {
             ...state,
             progressIsLoading: false,
-            progressReports: action.payload
+            progressReports: sorted
           };
       case GET_PROGRESS_REPORTS_FAILURE:
           return {
