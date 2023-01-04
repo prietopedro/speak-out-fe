@@ -17,7 +17,7 @@
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.28",
     "moxios": "^0.4.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.14.0",
     "react": "^16.10.2",
     "react-calendar": "^2.19.2",
     "react-dom": "^16.10.2",
