@@ -39,26 +39,26 @@ export const loggedIn = (history, location) => {
 export const logIn = (user, history) => {
 	return dispatch => {
 		dispatch({ type: LOGIN_START });
-
-		// axios
-		// 	.post(`${API_URL}/login`, user)
-		// 	.then(res => {
-		// 		// SETTING THE USER TYPE TO LOCAL STORAGE SO THAT IT DOES NOT GET LOST IF USER RELOADS THE PAGE
-		// 		localStorage.setItem('userType', res.data.user_type);
-		// 		dispatch({ type: LOGIN_SUCCESS, payload: res.data });
-		// 		history.push('/dashboard');
-		// 	})
-		// 	.catch(err => {
-		// 		dispatch({ type: LOGIN_FAILURE, payload: 'Error' });
-		// 	});
-		return fetch(`${API_URL}/login`, {
-			method: 'POST',
-			mode: 'same-origin',
-			redirect: 'follow',
-			credentials: 'include', // Don't forget to specify this if you need cookies
-			// headers: headers,
-			body: JSON.stringify(user)
-		})
+		axios.defaults.withCredentials = true;
+		axios
+			.post(`${API_URL}/login`, user)
+			.then(res => {
+				// SETTING THE USER TYPE TO LOCAL STORAGE SO THAT IT DOES NOT GET LOST IF USER RELOADS THE PAGE
+				localStorage.setItem('userType', res.data.user_type);
+				dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+				history.push('/dashboard');
+			})
+			.catch(err => {
+				dispatch({ type: LOGIN_FAILURE, payload: 'Error' });
+			});
+		// return fetch(`${API_URL}/login`, {
+		// 	method: 'POST',
+		// 	mode: 'same-origin',
+		// 	redirect: 'follow',
+		// 	credentials: 'include', // Don't forget to specify this if you need cookies
+		// 	// headers: headers,
+		// 	body: JSON.stringify(user)
+		// })
 	};
 };
 
