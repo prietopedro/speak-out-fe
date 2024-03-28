@@ -1,4 +1,4 @@
-const productionURL = `https://speakout.herokuapp.com`;
+const productionURL = `https://speakout-86eab5de2da5.herokuapp.com/`;
 
 const localhost = `http://localhost:5000`;
 
