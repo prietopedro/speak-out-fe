@@ -1,5 +1,4 @@
-const productionURL = `https://speakout-86eab5de2da5.herokuapp.com`;
-
+const productionURL = `https://speak-out-be.onrender.com`;
 const localhost = `http://localhost:5000`;
 
 let API_URL = productionURL;
